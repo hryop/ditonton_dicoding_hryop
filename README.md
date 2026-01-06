@@ -1,6 +1,6 @@
 # a199-flutter-expert-project
 
-Repository ini merupakan [starter project](https://github.com/dicodingacademy/a199-flutter-expert-project) submission kelas Flutter Expert Dicoding Indonesia.
+Repository ini merupakan [starter project](https://github.com/dicodingacademy/a199-flutter-expert-project) submission kelas [Flutter Expert Dicoding Indonesia](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert).
 
 ---
 
