@@ -8,7 +8,7 @@ This repository was developed based on [starter project a199-flutter-expert-proj
 
 ## Features
 1. Scrolling through popular and top rated of movies and tv series from [TMDB API](https://developer.themoviedb.org/docs/getting-started) including now playing movies and airing today tv series
-2. Search movies and tv series that availabel in [TMDB API](https://developer.themoviedb.org/docs/getting-started)
+2. Search movies and tv series that available in [TMDB API](https://developer.themoviedb.org/docs/getting-started)
 3. See the details of selected movie or tv series
 4. Add watchlist of selected movie and tv series
 
