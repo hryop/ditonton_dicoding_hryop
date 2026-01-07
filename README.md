@@ -1,6 +1,8 @@
 # a199-flutter-expert-project
 
-Repository ini merupakan [starter project](https://github.com/dicodingacademy/a199-flutter-expert-project) submission kelas [Flutter Expert Dicoding Indonesia](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert).
+<img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_1.png" width="200" height="355,56"> <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_2.png" width="200" height="355,56">
+
+Repository ini dibuat dari [starter project](https://github.com/dicodingacademy/a199-flutter-expert-project) untuk submission kelas [Flutter Expert Dicoding Indonesia](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert).
 
 ---
 
