@@ -3,6 +3,7 @@ import 'package:ditonton/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomDrawer extends StatefulWidget {
   CustomDrawer();
@@ -19,9 +20,8 @@ class _CustomDrawerState extends State<CustomDrawer>
       ? _animationController.forward()
       : _animationController.reverse();
 
-  void closeDrawer() => _animationController.isDismissed
-      ? {}
-      : _animationController.reverse();
+  void closeDrawer() =>
+      _animationController.isDismissed ? {} : _animationController.reverse();
 
   @override
   void initState() {
@@ -34,26 +34,34 @@ class _CustomDrawerState extends State<CustomDrawer>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: closeDrawer,
-      child: AnimatedBuilder(
-        animation: _animationController,
-        builder: (BuildContext context, Widget? child) {
-          double slide = 255.0 * _animationController.value;
-          double scale = 1 - (_animationController.value * 0.3);
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        _animationController.isDismissed ? {SystemNavigator.pop()} : _animationController.reverse();
+      },
+      child: GestureDetector(
+        onTap: closeDrawer,
+        child: AnimatedBuilder(
+          animation: _animationController,
+          builder: (BuildContext context, Widget? child) {
+            double slide = 255.0 * _animationController.value;
+            double scale = 1 - (_animationController.value * 0.3);
 
-          return Stack(
-            children: [
-              _buildDrawer(),
-              Transform(
-                  transform: Matrix4.identity()
-                    ..translate(slide)
-                    ..scale(scale),
-                  alignment: Alignment.centerLeft,
-                  child: HomeMoviePage(toggleDrawer: toggle,))
-            ],
-          );
-        },
+            return Stack(
+              children: [
+                _buildDrawer(),
+                Transform(
+                    transform: Matrix4.identity()
+                      ..translate(slide)
+                      ..scale(scale),
+                    alignment: Alignment.centerLeft,
+                    child: HomeMoviePage(
+                      toggleDrawer: toggle,
+                    ))
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -80,7 +88,7 @@ class _CustomDrawerState extends State<CustomDrawer>
           ),
           ListTile(
             leading: Icon(Icons.tv),
-            title: Text('TV'),
+            title: Text('TV Series'),
             onTap: toggle,
           ),
           ListTile(
