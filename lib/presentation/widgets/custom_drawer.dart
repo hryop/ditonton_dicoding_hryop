@@ -82,8 +82,10 @@ class _CustomDrawerState extends State<CustomDrawer>
               backgroundImage: AssetImage('assets/circle-g.png'),
               backgroundColor: Colors.grey.shade900,
             ),
-            accountName: Text('Haryo Pramanto'),
-            accountEmail: Text('haryopramanto@gmail.com'),
+            accountName: Text('hryop'),
+            accountEmail: Text('https://github.com/hryop'),
+            // accountName: Text('Haryo Pramanto'),
+            // accountEmail: Text('haryopramanto@gmail.com'),
             decoration: BoxDecoration(
               color: Colors.grey.shade900,
             ),

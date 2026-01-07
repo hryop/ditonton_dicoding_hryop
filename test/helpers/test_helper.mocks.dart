@@ -503,6 +503,17 @@ class MockMovieLocalDataSource extends _i1.Mock
         returnValue:
             _i7.Future<List<_i15.MovieTable>>.value(<_i15.MovieTable>[]),
       ) as _i7.Future<List<_i15.MovieTable>>);
+
+  @override
+  _i7.Future<List<_i15.MovieTable>> getCachedAiringTodayTvSeries() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCachedAiringTodayTvSeries,
+          [],
+        ),
+        returnValue:
+            _i7.Future<List<_i15.MovieTable>>.value(<_i15.MovieTable>[]),
+      ) as _i7.Future<List<_i15.MovieTable>>);
 }
 
 /// A class which mocks [DatabaseHelper].

@@ -2,53 +2,20 @@
 
 <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_1.png" width="200" height="355,56"> <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_2.png" width="200" height="355,56">
 
-Repository ini dibuat dari [starter project a199-flutter-expert-project](https://github.com/dicodingacademy/a199-flutter-expert-project) untuk submission kelas [Flutter Expert Dicoding Indonesia](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert).
+This repository was developed based on [starter project a199-flutter-expert-project](https://github.com/dicodingacademy/a199-flutter-expert-project) for [Flutter Expert Dicoding Indonesia](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert) class submission.
 
 ---
 
-## Tips Submission Awal
+## Features
+1. Scrolling through popular and top rated of movies and tv series from [TMDB API](https://developer.themoviedb.org/docs/getting-started) including now playing movies and airing today tv series
+2. Search movies and tv series that availabel in [TMDB API](https://developer.themoviedb.org/docs/getting-started)
+3. See the details of selected movie or tv series
+4. Add watchlist of selected movie and tv series
 
-Pastikan untuk memeriksa kembali seluruh hasil testing pada submissionmu sebelum dikirimkan. Karena kriteria pada submission ini akan diperiksa setelah seluruh berkas testing berhasil dijalankan.
+## Build App Setup Recomendation
+- Flutter 3.24.0
+- Dart 3.5.0
+- JDK 17
 
-
-## Tips Submission Akhir
-
-Jika kamu menerapkan modular pada project, Anda dapat memanfaatkan berkas `test.sh` pada repository ini. Berkas tersebut dapat mempermudah proses testing melalui *terminal* atau *command prompt*. Sebelumnya menjalankan berkas tersebut, ikuti beberapa langkah berikut:
-1. Install terlebih dahulu aplikasi sesuai dengan Operating System (OS) yang Anda gunakan.
-    - Bagi pengguna **Linux**, jalankan perintah berikut pada terminal.
-        ```
-        sudo apt-get update -qq -y
-        sudo apt-get install lcov -y
-        ```
-    
-    - Bagi pengguna **Mac**, jalankan perintah berikut pada terminal.
-        ```
-        brew install lcov
-        ```
-    - Bagi pengguna **Windows**, ikuti langkah berikut.
-        - Install [Chocolatey](https://chocolatey.org/install) pada komputermu.
-        - Setelah berhasil, install [lcov](https://community.chocolatey.org/packages/lcov) dengan menjalankan perintah berikut.
-            ```
-            choco install lcov
-            ```
-        - Kemudian cek **Environtment Variabel** pada kolom **System variabels** terdapat variabel GENTHTML dan LCOV_HOME. Jika tidak tersedia, Anda bisa menambahkan variabel baru dengan nilai seperti berikut.
-            | Variable | Value|
-            | ----------- | ----------- |
-            | GENTHTML | C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml |
-            | LCOV_HOME | C:\ProgramData\chocolatey\lib\lcov\tools |
-        
-2. Untuk mempermudah proses verifikasi testing, jalankan perintah berikut.
-    ```
-    git init
-    ```
-3. Kemudian jalankan berkas `test.sh` dengan perintah berikut pada *terminal* atau *powershell*.
-    ```
-    test.sh
-    ```
-    atau
-    ```
-    ./test.sh
-    ```
-    Proses ini akan men-*generate* berkas `lcov.info` dan folder `coverage` terkait dengan laporan coverage.
-4. Tunggu proses testing selesai hingga muncul web terkait laporan coverage.
-
+## Code Design & Structure
+This project is using Proivider State Management and Clean Architecture Pattern
