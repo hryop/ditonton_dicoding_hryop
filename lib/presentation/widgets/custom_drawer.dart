@@ -1,5 +1,7 @@
+import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/home_movie_page.dart';
+import 'package:ditonton/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  String SELECTED_HOME = DatabaseHelper.CONTENT_TYPE_MOVIE;
 
   void toggle() => _animationController.isDismissed
       ? _animationController.forward()
@@ -37,7 +40,9 @@ class _CustomDrawerState extends State<CustomDrawer>
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        _animationController.isDismissed ? {SystemNavigator.pop()} : _animationController.reverse();
+        _animationController.isDismissed
+            ? {SystemNavigator.pop()}
+            : _animationController.reverse();
       },
       child: GestureDetector(
         onTap: closeDrawer,
@@ -55,9 +60,11 @@ class _CustomDrawerState extends State<CustomDrawer>
                       ..translate(slide)
                       ..scale(scale),
                     alignment: Alignment.centerLeft,
-                    child: HomeMoviePage(
-                      toggleDrawer: toggle,
-                    ))
+                    child: SELECTED_HOME == DatabaseHelper.CONTENT_TYPE_MOVIE
+                        ? HomeMoviePage(
+                            toggleDrawer: toggle,
+                          )
+                        : HomeTvPage(toggleDrawer: toggle))
               ],
             );
           },
@@ -84,12 +91,18 @@ class _CustomDrawerState extends State<CustomDrawer>
           ListTile(
             leading: Icon(Icons.movie),
             title: Text('Movies'),
-            onTap: toggle,
+            onTap: () {
+              SELECTED_HOME = DatabaseHelper.CONTENT_TYPE_MOVIE;
+              toggle();
+            },
           ),
           ListTile(
             leading: Icon(Icons.tv),
             title: Text('TV Series'),
-            onTap: toggle,
+            onTap: () {
+              SELECTED_HOME = DatabaseHelper.CONTENT_TYPE_TV;
+              toggle();
+            },
           ),
           ListTile(
             leading: Icon(Icons.save_alt),

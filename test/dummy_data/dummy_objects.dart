@@ -1,3 +1,4 @@
+import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/models/movie/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
@@ -18,6 +19,7 @@ final testMovie = Movie(
   video: false,
   voteAverage: 7.2,
   voteCount: 13507,
+  contentType: DatabaseHelper.CONTENT_TYPE_MOVIE
 );
 
 final testMovieList = [testMovie];
@@ -49,6 +51,7 @@ final testMovieTable = MovieTable(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
+  contentType: DatabaseHelper.CONTENT_TYPE_MOVIE
 );
 
 final testMovieMap = {

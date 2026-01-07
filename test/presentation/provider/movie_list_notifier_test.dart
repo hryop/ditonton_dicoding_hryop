@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
-import 'package:ditonton/domain/usecases/get_now_playing_movies.dart';
+import 'package:ditonton/domain/usecases/movie/get_now_playing_movies.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/get_popular_movies.dart';
-import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
-import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
+import 'package:ditonton/domain/usecases/movie/get_popular_movies.dart';
+import 'package:ditonton/domain/usecases/movie/get_top_rated_movies.dart';
+import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -35,20 +36,20 @@ void main() {
   });
 
   final tMovie = Movie(
-    adult: false,
-    backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
-    id: 1,
-    originalTitle: 'originalTitle',
-    overview: 'overview',
-    popularity: 1,
-    posterPath: 'posterPath',
-    releaseDate: 'releaseDate',
-    title: 'title',
-    video: false,
-    voteAverage: 1,
-    voteCount: 1,
-  );
+      adult: false,
+      backdropPath: 'backdropPath',
+      genreIds: [1, 2, 3],
+      id: 1,
+      originalTitle: 'originalTitle',
+      overview: 'overview',
+      popularity: 1,
+      posterPath: 'posterPath',
+      releaseDate: 'releaseDate',
+      title: 'title',
+      video: false,
+      voteAverage: 1,
+      voteCount: 1,
+      contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
   final tMovieList = <Movie>[tMovie];
 
   group('now playing movies', () {

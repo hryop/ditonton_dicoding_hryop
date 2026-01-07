@@ -5,6 +5,9 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
+  static const int databaseVersion = 2;
+  static const String CONTENT_TYPE_TV = 'tv';
+  static const String CONTENT_TYPE_MOVIE = 'movie';
 
   DatabaseHelper._instance() {
     _databaseHelper = this;
@@ -28,7 +31,8 @@ class DatabaseHelper {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(databasePath, version: databaseVersion,
+        onCreate: _onCreate, onUpgrade: _onUpgrade);
     return db;
   }
 
@@ -38,7 +42,8 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY,
         title TEXT,
         overview TEXT,
-        posterPath TEXT
+        posterPath TEXT,
+        contentType TEXT
       );
     ''');
     await db.execute('''
@@ -47,10 +52,23 @@ class DatabaseHelper {
         title TEXT,
         overview TEXT,
         posterPath TEXT,
-        category TEXT
+        category TEXT,
+        contentType TEXT
       );
     ''');
   }
+
+  void _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if(oldVersion < 2){
+      await db.execute('''
+        ALTER TABLE $_tblWatchlist ADD COLUMN contentType TEXT
+      ''');
+      await db.execute('''
+        ALTER TABLE $_tblCache ADD COLUMN contentType TEXT
+      ''');
+    }
+  }
+
 
   Future<int> insertWatchlist(MovieTable movie) async {
     final db = await database;

@@ -14,6 +14,7 @@ abstract class MovieLocalDataSource {
   Future<void> cacheNowPlayingMovies(List<MovieTable> movies);
 
   Future<List<MovieTable>> getCachedNowPlayingMovies();
+  Future<List<MovieTable>> getCachedAiringTodayTvSeries();
 }
 
 class MovieLocalDataSourceImpl implements MovieLocalDataSource {
@@ -70,5 +71,16 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
       return result.map((data) => MovieTable.fromMap(data)).toList();
     } else {
       throw CacheException("Can't get the data :(");
-    }  }
+    }
+  }
+
+  @override
+  Future<List<MovieTable>> getCachedAiringTodayTvSeries() async{
+    final result = await databaseHelper.getCacheMovies('airing today');
+    if (result.length > 0) {
+      return result.map((data) => MovieTable.fromMap(data)).toList();
+    } else {
+      throw CacheException("Can't get the data :(");
+    }
+  }
 }
