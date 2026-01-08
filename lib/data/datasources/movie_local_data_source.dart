@@ -4,16 +4,12 @@ import 'package:ditonton/data/models/movie/movie_table.dart';
 
 abstract class MovieLocalDataSource {
   Future<String> insertWatchlist(MovieTable movie);
-
   Future<String> removeWatchlist(MovieTable movie);
-
-  Future<MovieTable?> getMovieById(int id);
-
+  Future<MovieTable?> getMovieById(int id, String contentType);
   Future<List<MovieTable>> getWatchlistMovies();
-
   Future<void> cacheNowPlayingMovies(List<MovieTable> movies);
-
   Future<List<MovieTable>> getCachedNowPlayingMovies();
+
   Future<List<MovieTable>> getCachedAiringTodayTvSeries();
 }
 
@@ -43,8 +39,8 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   }
 
   @override
-  Future<MovieTable?> getMovieById(int id) async {
-    final result = await databaseHelper.getMovieById(id);
+  Future<MovieTable?> getMovieById(int id, String contentType) async {
+    final result = await databaseHelper.getMovieById(id, contentType);
     if (result != null) {
       return MovieTable.fromMap(result);
     } else {
@@ -75,7 +71,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   }
 
   @override
-  Future<List<MovieTable>> getCachedAiringTodayTvSeries() async{
+  Future<List<MovieTable>> getCachedAiringTodayTvSeries() async {
     final result = await databaseHelper.getCacheMovies('airing today');
     if (result.length > 0) {
       return result.map((data) => MovieTable.fromMap(data)).toList();

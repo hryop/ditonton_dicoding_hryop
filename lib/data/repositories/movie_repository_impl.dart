@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/network_info.dart';
+import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
 import 'package:ditonton/data/models/movie/movie_table.dart';
@@ -133,13 +134,13 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<bool> isAddedToWatchlist(int id) async {
-    final result = await localDataSource.getMovieById(id);
+    final result = await localDataSource.getMovieById(id, DatabaseHelper.CONTENT_TYPE_MOVIE);
     return result != null;
   }
 
   @override
-  Future<Either<Failure, List<Movie>>> getWatchlistMovies() async {
+  Future<Either<Failure, List<MovieTable>>> getWatchlistMovies() async {
     final result = await localDataSource.getWatchlistMovies();
-    return Right(result.map((data) => data.toEntity()).toList());
+    return Right(result);
   }
 }

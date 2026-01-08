@@ -3,6 +3,7 @@ import 'package:ditonton/data/models/tv/tv_series_model.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
+import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
 
 import 'movie_model.dart';
@@ -28,6 +29,13 @@ class MovieTable extends Equatable {
       posterPath: movie.posterPath,
       overview: movie.overview,
       contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+
+  factory MovieTable.fromTvEntity(TvSeriesDetail tvSeriesDetail) => MovieTable(
+      id: tvSeriesDetail.id,
+      title: tvSeriesDetail.title,
+      posterPath: tvSeriesDetail.posterPath,
+      overview: tvSeriesDetail.overview,
+      contentType: DatabaseHelper.CONTENT_TYPE_TV);
 
   factory MovieTable.fromMap(Map<String, dynamic> map) => MovieTable(
         id: map['id'],

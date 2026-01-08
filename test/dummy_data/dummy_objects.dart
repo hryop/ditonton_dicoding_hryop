@@ -23,6 +23,7 @@ final testMovie = Movie(
 );
 
 final testMovieList = [testMovie];
+final testMovieTableList = [testWatchlistMovieTable];
 
 final testMovieDetail = MovieDetail(
   adult: false,
@@ -45,6 +46,11 @@ final testWatchlistMovie = Movie.watchlist(
   posterPath: 'posterPath',
   overview: 'overview',
 );
+
+final testWatchlistMovieTable = MovieTable(id: 1,
+  title: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview', contentType: DatabaseHelper.CONTENT_TYPE_MOVIE,);
 
 final testMovieTable = MovieTable(
   id: 1,

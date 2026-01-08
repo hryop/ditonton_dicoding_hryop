@@ -1,4 +1,5 @@
 import 'package:ditonton/common/exception.dart';
+import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -68,19 +69,19 @@ void main() {
 
     test('should return Movie Detail Table when data is found', () async {
       // arrange
-      when(mockDatabaseHelper.getMovieById(tId))
+      when(mockDatabaseHelper.getMovieById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE))
           .thenAnswer((_) async => testMovieMap);
       // act
-      final result = await dataSource.getMovieById(tId);
+      final result = await dataSource.getMovieById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE);
       // assert
       expect(result, testMovieTable);
     });
 
     test('should return null when data is not found', () async {
       // arrange
-      when(mockDatabaseHelper.getMovieById(tId)).thenAnswer((_) async => null);
+      when(mockDatabaseHelper.getMovieById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE)).thenAnswer((_) async => null);
       // act
-      final result = await dataSource.getMovieById(tId);
+      final result = await dataSource.getMovieById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE);
       // assert
       expect(result, null);
     });

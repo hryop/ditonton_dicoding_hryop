@@ -18,7 +18,7 @@ void main() {
   test('should get list of movies from the repository', () async {
     // arrange
     when(mockMovieRepository.getWatchlistMovies())
-        .thenAnswer((_) async => Right(testMovieList));
+        .thenAnswer((_) async => Right(testMovieTableList));
     // act
     final result = await usecase.execute();
     // assert

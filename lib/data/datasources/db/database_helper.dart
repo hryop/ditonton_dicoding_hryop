@@ -79,17 +79,17 @@ class DatabaseHelper {
     final db = await database;
     return await db!.delete(
       _tblWatchlist,
-      where: 'id = ?',
-      whereArgs: [movie.id],
+      where: 'id = ? AND contentType = ?',
+      whereArgs: [movie.id, movie.contentType],
     );
   }
 
-  Future<Map<String, dynamic>?> getMovieById(int id) async {
+  Future<Map<String, dynamic>?> getMovieById(int id, String contentType) async {
     final db = await database;
     final results = await db!.query(
       _tblWatchlist,
-      where: 'id = ?',
-      whereArgs: [id],
+      where: 'id = ? AND contentType = ?',
+      whereArgs: [id, contentType],
     );
 
     if (results.isNotEmpty) {

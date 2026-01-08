@@ -1,13 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
+  final bool showContentType;
+  final String contentType;
 
-  MovieCard(this.movie);
+  MovieCard(this.movie,
+      {this.showContentType = false,
+      this.contentType = DatabaseHelper.CONTENT_TYPE_MOVIE});
+
+  String getContentType() {
+    return contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
+        ? 'Movie'
+        : 'TV Series';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +29,9 @@ class MovieCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            MovieDetailPage.ROUTE_NAME,
+            contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
+                ? MovieDetailPage.ROUTE_NAME
+                : TvDetailPage.ROUTE_NAME,
             arguments: movie.id,
           );
         },
@@ -40,6 +54,12 @@ class MovieCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
+                    showContentType
+                        ? Text(
+                            getContentType(),
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : SizedBox(),
                     SizedBox(height: 16),
                     Text(
                       movie.overview ?? '-',

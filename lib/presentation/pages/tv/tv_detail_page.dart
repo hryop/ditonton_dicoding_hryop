@@ -3,7 +3,6 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
-import 'package:ditonton/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +26,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
     Future.microtask(() {
       Provider.of<TvDetailNotifier>(context, listen: false)
           .fetchTvSeriesDetail(widget.id);
-      Provider.of<MovieDetailNotifier>(context, listen: false)
+      Provider.of<TvDetailNotifier>(context, listen: false)
           .loadWatchlistStatus(widget.id);
     });
   }
@@ -107,28 +106,28 @@ class DetailContent extends StatelessWidget {
                             ),
                             FilledButton(
                               onPressed: () async {
-                                // if (!isAddedWatchlist) {
-                                //   await Provider.of<MovieDetailNotifier>(
-                                //           context,
-                                //           listen: false)
-                                //       .addWatchlist(tvDetail);
-                                // } else {
-                                //   await Provider.of<MovieDetailNotifier>(
-                                //           context,
-                                //           listen: false)
-                                //       .removeFromWatchlist(tvDetail);
-                                // }
+                                if (!isAddedWatchlist) {
+                                  await Provider.of<TvDetailNotifier>(
+                                          context,
+                                          listen: false)
+                                      .addWatchlist(tvDetail);
+                                } else {
+                                  await Provider.of<TvDetailNotifier>(
+                                          context,
+                                          listen: false)
+                                      .removeFromWatchlist(tvDetail);
+                                }
 
                                 final message =
-                                    Provider.of<MovieDetailNotifier>(context,
+                                    Provider.of<TvDetailNotifier>(context,
                                             listen: false)
                                         .watchlistMessage;
 
                                 if (message ==
-                                        MovieDetailNotifier
+                                        TvDetailNotifier
                                             .watchlistAddSuccessMessage ||
                                     message ==
-                                        MovieDetailNotifier
+                                        TvDetailNotifier
                                             .watchlistRemoveSuccessMessage) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text(message)));
@@ -185,7 +184,7 @@ class DetailContent extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            Consumer<MovieDetailNotifier>(
+                            Consumer<TvDetailNotifier>(
                               builder: (context, data, child) {
                                 if (data.recommendationState ==
                                     RequestState.Loading) {
@@ -202,7 +201,7 @@ class DetailContent extends StatelessWidget {
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        final movie = recommendations[index];
+                                        final tvRecommendation = recommendations[index];
                                         return Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
@@ -210,7 +209,7 @@ class DetailContent extends StatelessWidget {
                                               Navigator.pushReplacementNamed(
                                                 context,
                                                 TvDetailPage.ROUTE_NAME,
-                                                arguments: movie.id,
+                                                arguments: tvRecommendation.id,
                                               );
                                             },
                                             child: ClipRRect(
@@ -219,7 +218,7 @@ class DetailContent extends StatelessWidget {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                                    'https://image.tmdb.org/t/p/w500${tvRecommendation.posterPath}',
                                                 placeholder: (context, url) =>
                                                     Center(
                                                   child:
