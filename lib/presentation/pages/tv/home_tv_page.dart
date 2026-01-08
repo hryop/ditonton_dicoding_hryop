@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/pages/tv/popular_tv_page.dart';
+import 'package:ditonton/presentation/pages/tv/search_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/top_rated_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv/tv_list_notifier.dart';
@@ -39,7 +39,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchTvPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           )
