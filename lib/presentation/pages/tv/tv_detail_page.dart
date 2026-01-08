@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
+import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
 import 'package:ditonton/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
@@ -42,11 +42,10 @@ class _TvDetailPageState extends State<TvDetailPage> {
               child: CircularProgressIndicator(),
             );
           } else if (provider.tvDetailState == RequestState.Loaded) {
-            final movie = provider.tvDetail;
             return SafeArea(
               child: DetailContent(
-                movie,
-                provider.movieRecommendations,
+                provider.tvDetail,
+                provider.tvDetailRecommendations,
                 provider.isAddedToWatchlist,
               ),
             );
@@ -61,7 +60,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
 
 class DetailContent extends StatelessWidget {
   final TvSeriesDetail tvDetail;
-  final List<Movie> recommendations;
+  final List<TvSeries> recommendations;
   final bool isAddedWatchlist;
 
   DetailContent(this.tvDetail, this.recommendations, this.isAddedWatchlist);

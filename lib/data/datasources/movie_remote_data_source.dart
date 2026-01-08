@@ -155,8 +155,9 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<List<TvSeriesModel>> getTvSeriesRecommendations(int id) async{
+    String url = '$BASE_URL/tv/$id/recommendations?$API_KEY';
     final response =
-        await client.get(Uri.parse('$BASE_URL/tv/$id/recommendations?$API_KEY'));
+        await client.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
       return TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
