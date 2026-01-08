@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv/tv_list_notifier.dart';
+import 'package:ditonton/presentation/widgets/sub_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -66,12 +66,12 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.airingTodayTvSeries);
+                  return TvSeriesListWidget(data.airingTodayTvSeries);
                 } else {
                   return Text('Failed');
                 }
               }),
-              _buildSubHeading(
+              SubHeading(
                 title: 'Popular',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
@@ -83,12 +83,12 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.popularTvSeries);
+                  return TvSeriesListWidget(data.popularTvSeries);
                 } else {
                   return Text('Failed');
                 }
               }),
-              _buildSubHeading(
+              SubHeading(
                 title: 'Top Rated',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
@@ -100,7 +100,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.topRatedTvSeries);
+                  return TvSeriesListWidget(data.topRatedTvSeries);
                 } else {
                   return Text('Failed');
                 }
@@ -111,33 +111,12 @@ class _HomeTvPageState extends State<HomeTvPage> {
       ),
     );
   }
-
-  Row _buildSubHeading({required String title, required Function() onTap}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: kHeading6,
-        ),
-        InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }
 
-class MovieList extends StatelessWidget {
+class TvSeriesListWidget extends StatelessWidget {
   final List<TvSeries> tvSeries;
 
-  MovieList(this.tvSeries);
+  TvSeriesListWidget(this.tvSeries);
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +132,7 @@ class MovieList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage.ROUTE_NAME,
+                  TvDetailPage.ROUTE_NAME,
                   arguments: movie.id,
                 );
               },
