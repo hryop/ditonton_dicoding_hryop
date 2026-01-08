@@ -1,3 +1,4 @@
+import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeries extends Equatable {
@@ -51,4 +52,11 @@ class TvSeries extends Equatable {
     voteAverage,
     voteCount,
   ];
+
+  Movie toMovieEntity() => Movie.watchlist(
+    id: id,
+    overview: overview,
+    posterPath: posterPath,
+    title: title,
+  );
 }
