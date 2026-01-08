@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_detail.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart';
@@ -13,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../../../dummy_data/dummy_objects.dart';
 import 'movie_detail_notifier_test.mocks.dart';
 
 @GenerateMocks([
@@ -66,7 +65,6 @@ void main() {
     video: false,
     voteAverage: 1,
     voteCount: 1,
-    contentType: DatabaseHelper.CONTENT_TYPE_MOVIE
   );
   final tMovies = <Movie>[tMovie];
 

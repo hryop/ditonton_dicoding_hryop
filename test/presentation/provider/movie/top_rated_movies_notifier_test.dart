@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/usecases/movie/get_top_rated_movies.dart';
 import 'package:ditonton/presentation/provider/movie/top_rated_movies_notifier.dart';
@@ -9,7 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'top_rated_movies_notifier_test.mocks.dart';
+import 'movie_list_notifier_test.mocks.dart';
+
 
 @GenerateMocks([GetTopRatedMovies])
 void main() {
@@ -40,7 +40,7 @@ void main() {
       video: false,
       voteAverage: 1,
       voteCount: 1,
-      contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+  );
 
   final tMovieList = <Movie>[tMovie];
 

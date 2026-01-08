@@ -1,4 +1,3 @@
-import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:equatable/equatable.dart';
 
@@ -80,7 +79,6 @@ class MovieModel extends Equatable {
       video: this.video,
       voteAverage: this.voteAverage,
       voteCount: this.voteCount,
-      contentType: DatabaseHelper.CONTENT_TYPE_MOVIE
     );
   }
 

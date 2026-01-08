@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/usecases/movie/search_movies.dart';
 import 'package:ditonton/presentation/provider/movie/movie_search_notifier.dart';
@@ -10,6 +9,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'movie_search_notifier_test.mocks.dart';
+
 
 @GenerateMocks([SearchMovies])
 void main() {
@@ -41,7 +41,7 @@ void main() {
       video: false,
       voteAverage: 7.2,
       voteCount: 13507,
-      contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+  );
   final tMovieList = <Movie>[tMovieModel];
   final tQuery = 'spiderman';
 

@@ -66,7 +66,7 @@ void main() {
       video: false,
       voteAverage: 7.2,
       voteCount: 13507,
-      contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+  );
 
   final testMovieCache = MovieTable(
       id: 557,

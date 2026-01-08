@@ -1,4 +1,3 @@
-import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/models/movie/movie_model.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,7 +33,6 @@ void main() {
     video: false,
     voteAverage: 1,
     voteCount: 1,
-    contentType: DatabaseHelper.CONTENT_TYPE_MOVIE
   );
 
   test('should be a subclass of Movie entity', () async {
