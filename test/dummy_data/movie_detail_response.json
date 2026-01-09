@@ -1,0 +1,28 @@
+{
+  "adult": false,
+  "backdrop_path": "backdropPath",
+  "genres": [
+    {
+      "id": 1,
+      "name": "Action"
+    }
+  ],
+  "id": 1,
+  "original_title": "originalTitle",
+  "overview": "overview",
+  "poster_path": "posterPath",
+  "title": "title",
+  "vote_average": 1,
+  "vote_count": 1,
+  "homepage": "homepage",
+  "original_language": "originalLanguage",
+  "popularity": 326.0995,
+  "status": "status",
+  "tagline": "tagline",
+  "budget": 1000,
+  "imdb_id": "1",
+  "release_date": "1999-10-15",
+  "revenue": 1000,
+  "runtime": 1000,
+  "video": true
+}

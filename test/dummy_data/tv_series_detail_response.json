@@ -1,0 +1,22 @@
+{
+  "adult": false,
+  "backdrop_path": "backdropPath",
+  "genres": [
+    {
+      "id": 1,
+      "name": "Action"
+    }
+  ],
+  "id": 1,
+  "original_name": "originalTitle",
+  "overview": "overview",
+  "poster_path": "posterPath",
+  "name": "title",
+  "vote_average": 1,
+  "vote_count": 1,
+  "homepage": "homepage",
+  "original_language": "originalLanguage",
+  "popularity": 326.0995,
+  "status": "status",
+  "tagline": "tagline"
+}

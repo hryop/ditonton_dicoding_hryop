@@ -77,14 +77,14 @@ class TvSeriesDetailResponse extends Equatable {
         "id": id,
 
         "original_language": originalLanguage,
-        "original_title": originalTitle,
+        "original_name": originalTitle,
         "overview": overview,
         "popularity": popularity,
         "poster_path": posterPath,
 
         "status": status,
         "tagline": tagline,
-        "title": title,
+        "name": title,
 
         "vote_average": voteAverage,
         "vote_count": voteCount,
