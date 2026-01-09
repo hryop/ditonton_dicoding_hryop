@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ditonton/data/models/movie/genre_model.dart';
 import 'package:ditonton/data/models/tv/tv_series_detail_model.dart';
+import 'package:ditonton/data/models/tv/tv_series_season_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../json_reader.dart';
@@ -23,6 +24,13 @@ void main() {
     popularity: 326.0995,
     status: 'status',
     tagline: 'tagline',
+    seasons: [
+      TvSeriesSeasonModel(
+          airDate: '2012-08-26',
+          episodeCount: 6,
+          seasonName: 'Specials',
+          posterPath: "posterPath")
+    ],
   );
 
   group('fromJson', () {
@@ -45,23 +53,31 @@ void main() {
       final result = tTvSeriesDetailResponse.toJson();
       // assert
       final expectedJsonMap = {
-          "adult": false,
-          "backdrop_path": "backdropPath",
-          "genres": [
-            {"id": 1, "name": "Action"}
-          ],
-          "id": 1,
-          "original_name": "originalTitle",
-          "overview": "overview",
-          "poster_path": "posterPath",
-          "name": "title",
-          "vote_average": 1,
-          "vote_count": 1,
-          "homepage": "homepage",
-          "original_language": "originalLanguage",
-          "popularity": 326.0995,
-          "status": "status",
-          "tagline": "tagline"
+        "adult": false,
+        "backdrop_path": "backdropPath",
+        "genres": [
+          {"id": 1, "name": "Action"}
+        ],
+        "id": 1,
+        "original_name": "originalTitle",
+        "overview": "overview",
+        "poster_path": "posterPath",
+        "name": "title",
+        "vote_average": 1,
+        "vote_count": 1,
+        "homepage": "homepage",
+        "original_language": "originalLanguage",
+        "popularity": 326.0995,
+        "status": "status",
+        "tagline": "tagline",
+        "seasons": [
+          {
+            "air_date": "2012-08-26",
+            "episode_count": 6,
+            "name": "Specials",
+            "poster_path": "posterPath"
+          }
+        ],
       };
       expect(result, expectedJsonMap);
     });

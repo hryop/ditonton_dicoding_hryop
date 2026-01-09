@@ -5,6 +5,7 @@ import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv/tv_detail_notifier.dart';
+import 'package:ditonton/presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,7 @@ class TvDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv_detail';
 
   final int id;
+
   TvDetailPage({required this.id});
 
   @override
@@ -107,21 +109,19 @@ class DetailContent extends StatelessWidget {
                             FilledButton(
                               onPressed: () async {
                                 if (!isAddedWatchlist) {
-                                  await Provider.of<TvDetailNotifier>(
-                                          context,
+                                  await Provider.of<TvDetailNotifier>(context,
                                           listen: false)
                                       .addWatchlist(tvDetail);
                                 } else {
-                                  await Provider.of<TvDetailNotifier>(
-                                          context,
+                                  await Provider.of<TvDetailNotifier>(context,
                                           listen: false)
                                       .removeFromWatchlist(tvDetail);
                                 }
 
-                                final message =
-                                    Provider.of<TvDetailNotifier>(context,
-                                            listen: false)
-                                        .watchlistMessage;
+                                final message = Provider.of<TvDetailNotifier>(
+                                        context,
+                                        listen: false)
+                                    .watchlistMessage;
 
                                 if (message ==
                                         TvDetailNotifier
@@ -181,6 +181,19 @@ class DetailContent extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             Text(
+                              'Seasons',
+                              style: kHeading6,
+                            ),
+                            SizedBox(height: 8),
+                            ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: tvDetail.seasons.length,
+                                itemBuilder: (context, index) {
+                                  return SeasonCard(tvDetail.seasons[index]);
+                                }),
+                            SizedBox(height: 16),
+                            Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
@@ -201,7 +214,8 @@ class DetailContent extends StatelessWidget {
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        final tvRecommendation = recommendations[index];
+                                        final tvRecommendation =
+                                            recommendations[index];
                                         return Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
@@ -240,6 +254,7 @@ class DetailContent extends StatelessWidget {
                                 }
                               },
                             ),
+                            SizedBox(height: 16),
                           ],
                         ),
                       ),

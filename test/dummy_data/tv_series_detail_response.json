@@ -18,5 +18,13 @@
   "original_language": "originalLanguage",
   "popularity": 326.0995,
   "status": "status",
-  "tagline": "tagline"
+  "tagline": "tagline",
+  "seasons": [
+    {
+      "air_date": "2012-08-26",
+      "episode_count": 6,
+      "name": "Specials",
+      "poster_path": "posterPath"
+    }
+  ]
 }

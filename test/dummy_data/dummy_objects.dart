@@ -4,6 +4,7 @@ import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
+import 'package:ditonton/domain/entities/tv/tv_series_season.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -41,17 +42,23 @@ final testMovieDetail = MovieDetail(
 );
 
 final testTvDetail = TvSeriesDetail(
-  adult: false,
-  backdropPath: 'backdropPath',
-  genres: [Genre(id: 1, name: 'Action')],
-  id: 1,
-  originalTitle: 'originalTitle',
-  overview: 'overview',
-  posterPath: 'posterPath',
-  title: 'title',
-  voteAverage: 1,
-  voteCount: 1,
-);
+    adult: false,
+    backdropPath: 'backdropPath',
+    genres: [Genre(id: 1, name: 'Action')],
+    id: 1,
+    originalTitle: 'originalTitle',
+    overview: 'overview',
+    posterPath: 'posterPath',
+    title: 'title',
+    voteAverage: 1,
+    voteCount: 1,
+    seasons: [
+      TvSeriesSeason(
+          airDate: '2012-08-26',
+          episodeCount: 6,
+          seasonName: 'Specials',
+          posterPath: "posterPath")
+    ]);
 
 final testWatchlistMovie = Movie.watchlist(
   id: 1,
@@ -60,18 +67,20 @@ final testWatchlistMovie = Movie.watchlist(
   overview: 'overview',
 );
 
-final testWatchlistMovieTable = MovieTable(id: 1,
-  title: 'title',
-  posterPath: 'posterPath',
-  overview: 'overview', contentType: DatabaseHelper.CONTENT_TYPE_MOVIE,);
-
-final testMovieTable = MovieTable(
+final testWatchlistMovieTable = MovieTable(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
-  contentType: DatabaseHelper.CONTENT_TYPE_MOVIE
+  contentType: DatabaseHelper.CONTENT_TYPE_MOVIE,
 );
+
+final testMovieTable = MovieTable(
+    id: 1,
+    title: 'title',
+    posterPath: 'posterPath',
+    overview: 'overview',
+    contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
 
 final testMovieMap = {
   'id': 1,
