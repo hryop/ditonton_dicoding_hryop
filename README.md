@@ -13,7 +13,7 @@ This repository was developed based on [starter project a199-flutter-expert-proj
 4. Add watchlist of selected movie and tv series
 
 ## Build App Setup Recomendation
-- Flutter 3.38.1
+- Flutter 3.38.6
 - Dart 3.10.0
 - JBR 21
 
