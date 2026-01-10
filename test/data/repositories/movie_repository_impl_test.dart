@@ -534,7 +534,7 @@ void main() {
       final result = await repository.getWatchlistMovies();
       // assert
       final resultList = result.getOrElse(() => []);
-      expect(resultList, [testWatchlistMovie]);
+      expect(resultList, [testMovieTable]);
     });
   });
 }

@@ -22,6 +22,6 @@ void main() {
     // act
     final result = await usecase.execute();
     // assert
-    expect(result, Right(testMovieList));
+    expect(result, Right(testMovieTableList));
   });
 }

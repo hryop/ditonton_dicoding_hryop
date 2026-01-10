@@ -25,7 +25,7 @@ void main() {
     tagline: 'tagline',
     budget: 1000,
     imdbId: '1',
-    releaseDate: '',
+    releaseDate: '1999-10-15',
     revenue: 1000,
     runtime: 1000,
     video: true,
