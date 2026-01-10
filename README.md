@@ -13,9 +13,9 @@ This repository was developed based on [starter project a199-flutter-expert-proj
 4. Add watchlist of selected movie and tv series
 
 ## Build App Setup Recomendation
-- Flutter 3.24.0
-- Dart 3.5.0
-- JDK 17
+- Flutter 3.38.1
+- Dart 3.10.0
+- JBR 21
 
 ## Code Design & Structure
 This project is using Proivider State Management and Clean Architecture Pattern
