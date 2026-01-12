@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/domain/entities/movie/movie.dart';
+import 'package:core/styles/text_styles.dart';
+import 'package:core/utils/constants.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_season.dart';
-import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/tv/tv_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,7 +13,7 @@ class SeasonCard extends StatelessWidget {
   String getAirDate() {
     String result = "First airing (No Info)";
 
-    if (season.airDate == null || season.airDate.isEmpty) return result;
+    if (season.airDate.isEmpty) return result;
 
     DateFormat dateFormat = DateFormat("yyyy-MM-dd");
     DateTime dateTime = dateFormat.parse(season.airDate);
@@ -43,7 +40,7 @@ class SeasonCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    season.seasonName ?? '-',
+                    season.seasonName.isEmpty? '-' : season.seasonName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: kHeading6,

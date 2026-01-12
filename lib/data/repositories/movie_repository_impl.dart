@@ -10,8 +10,8 @@ import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
 import 'package:ditonton/domain/entities/movie_table.dart';
 import 'package:ditonton/domain/repositories/movie_repository.dart';
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/common/failure.dart';
+import 'package:core/utils/exception.dart';
+import 'package:core/utils/failure.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -112,8 +112,8 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<Either<Failure, String>> saveWatchlist(MovieDetail movie) async {
     try {
-      final result =
-          await localDataSource.insertWatchlist(MovieTableModel.fromEntity(movie));
+      final result = await localDataSource
+          .insertWatchlist(MovieTableModel.fromEntity(movie));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -125,8 +125,8 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<Either<Failure, String>> removeWatchlist(MovieDetail movie) async {
     try {
-      final result =
-          await localDataSource.removeWatchlist(MovieTableModel.fromEntity(movie));
+      final result = await localDataSource
+          .removeWatchlist(MovieTableModel.fromEntity(movie));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -135,7 +135,8 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<bool> isAddedToWatchlist(int id) async {
-    final result = await localDataSource.getMovieById(id, DatabaseHelper.CONTENT_TYPE_MOVIE);
+    final result = await localDataSource.getMovieById(
+        id, DatabaseHelper.CONTENT_TYPE_MOVIE);
     return result != null;
   }
 

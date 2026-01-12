@@ -1,5 +1,4 @@
-
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/usecases/tv/get_airing_today_tv_series.dart';
 import 'package:ditonton/domain/usecases/tv/get_popular_tv_series.dart';
@@ -18,24 +17,31 @@ class TvListNotifier extends ChangeNotifier {
   });
 
   var _airingTodayTvSeries = <TvSeries>[];
+
   List<TvSeries> get airingTodayTvSeries => _airingTodayTvSeries;
 
   RequestState _airingTodayState = RequestState.Empty;
+
   RequestState get airingTodayState => _airingTodayState;
 
   var _popularTvSeries = <TvSeries>[];
+
   List<TvSeries> get popularTvSeries => _popularTvSeries;
 
   RequestState _popularTvSeriesState = RequestState.Empty;
+
   RequestState get popularTvSeriesState => _popularTvSeriesState;
 
   var _topRatedTvSeries = <TvSeries>[];
+
   List<TvSeries> get topRatedTvSeries => _topRatedTvSeries;
 
   RequestState _topRatedTvSeriesState = RequestState.Empty;
+
   RequestState get topRatedTvSeriesState => _topRatedTvSeriesState;
 
   String _message = '';
+
   String get message => _message;
 
   Future<void> fetchAiringTodayTvSeries() async {

@@ -1,10 +1,9 @@
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/presentation/provider/tv/tv_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:core/core.dart';
 
 class SearchTvPage extends StatelessWidget {
   static const ROUTE_NAME = '/search_tv';
@@ -50,7 +49,10 @@ class SearchTvPage extends StatelessWidget {
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
                         final tvSeries = data.searchResult[index];
-                        return MovieCard(tvSeries.toMovieEntity(), contentType: DatabaseHelper.CONTENT_TYPE_TV,);
+                        return MovieCard(
+                          tvSeries.toMovieEntity(),
+                          contentType: DatabaseHelper.CONTENT_TYPE_TV,
+                        );
                       },
                       itemCount: result.length,
                     ),

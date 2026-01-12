@@ -6,7 +6,7 @@
 import 'dart:async' as _i7;
 import 'dart:ui' as _i8;
 
-import 'package:ditonton/common/state_enum.dart' as _i4;
+import 'package:core/utils/state_enum.dart' as _i4;
 import 'package:ditonton/domain/entities/tv/tv_series.dart' as _i5;
 import 'package:ditonton/domain/usecases/tv/get_top_rated_tv_series.dart'
     as _i2;

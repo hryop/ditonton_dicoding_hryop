@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/usecases/tv/get_popular_tv_series.dart';
 import 'package:flutter/foundation.dart';
@@ -9,12 +9,15 @@ class PopularTvNotifier extends ChangeNotifier {
   PopularTvNotifier(this.getPopularTvSeries);
 
   RequestState _state = RequestState.Empty;
+
   RequestState get state => _state;
 
   List<TvSeries> _tvSeries = [];
+
   List<TvSeries> get tvSeries => _tvSeries;
 
   String _message = '';
+
   String get message => _message;
 
   Future<void> fetchPopularTvSeries() async {

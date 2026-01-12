@@ -1,13 +1,18 @@
-import 'package:ditonton/common/exception.dart';
+import 'package:core/utils/exception.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/models/movie_table_model.dart';
 
 abstract class MovieLocalDataSource {
   Future<String> insertWatchlist(MovieTableModel movie);
+
   Future<String> removeWatchlist(MovieTableModel movie);
+
   Future<MovieTableModel?> getMovieById(int id, String contentType);
+
   Future<List<MovieTableModel>> getWatchlistMovies();
+
   Future<void> cacheNowPlayingMovies(List<MovieTableModel> movies);
+
   Future<List<MovieTableModel>> getCachedNowPlayingMovies();
 
   Future<List<MovieTableModel>> getCachedAiringTodayTvSeries();

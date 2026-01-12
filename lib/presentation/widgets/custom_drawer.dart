@@ -1,5 +1,5 @@
+import 'package:about/about.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/tv/home_tv_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
@@ -84,8 +84,6 @@ class _CustomDrawerState extends State<CustomDrawer>
             ),
             accountName: Text('hryop'),
             accountEmail: Text('https://github.com/hryop'),
-            // accountName: Text('Haryo Pramanto'),
-            // accountEmail: Text('haryopramanto@gmail.com'),
             decoration: BoxDecoration(
               color: Colors.grey.shade900,
             ),

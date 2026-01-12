@@ -1,6 +1,6 @@
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/utils/state_enum.dart';
 import 'package:ditonton/domain/usecases/tv/remove_tv_watchlist.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_series_detail.dart';
@@ -28,21 +28,27 @@ class TvDetailNotifier extends ChangeNotifier {
   });
 
   late TvSeriesDetail _tvDetail;
+
   TvSeriesDetail get tvDetail => _tvDetail;
 
   RequestState _tvDetailState = RequestState.Empty;
+
   RequestState get tvDetailState => _tvDetailState;
 
   List<TvSeries> _tvDetailRecommendations = [];
+
   List<TvSeries> get tvDetailRecommendations => _tvDetailRecommendations;
 
   RequestState _recommendationState = RequestState.Empty;
+
   RequestState get recommendationState => _recommendationState;
 
   String _message = '';
+
   String get message => _message;
 
   bool _isAddedtoWatchlist = false;
+
   bool get isAddedToWatchlist => _isAddedtoWatchlist;
 
   Future<void> fetchTvSeriesDetail(int id) async {
@@ -78,6 +84,7 @@ class TvDetailNotifier extends ChangeNotifier {
   }
 
   String _watchlistMessage = '';
+
   String get watchlistMessage => _watchlistMessage;
 
   Future<void> addWatchlist(TvSeriesDetail tvSeriesDetail) async {
