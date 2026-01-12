@@ -1,5 +1,5 @@
 import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/data/models/movie/movie_table.dart';
+import 'package:ditonton/data/models/movie_table_model.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie/movie.dart';
 import 'package:ditonton/domain/entities/movie/movie_detail.dart';
@@ -24,7 +24,7 @@ final testMovie = Movie(
 );
 
 final testMovieList = [testMovie];
-final testMovieTableList = [testWatchlistMovieTable];
+final testMovieTableList = [testWatchlistMovieTable.toMovieTableEntity()];
 
 final testMovieDetail = MovieDetail(
   adult: false,
@@ -67,7 +67,7 @@ final testWatchlistMovie = Movie.watchlist(
   overview: 'overview',
 );
 
-final testWatchlistMovieTable = MovieTable(
+final testWatchlistMovieTable = MovieTableModel(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
@@ -75,7 +75,7 @@ final testWatchlistMovieTable = MovieTable(
   contentType: DatabaseHelper.CONTENT_TYPE_MOVIE,
 );
 
-final testMovieTable = MovieTable(
+final testMovieTable = MovieTableModel(
     id: 1,
     title: 'title',
     posterPath: 'posterPath',

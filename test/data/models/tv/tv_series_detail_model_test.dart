@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:ditonton/data/models/movie/genre_model.dart';
+import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/tv/tv_series_detail_model.dart';
 import 'package:ditonton/data/models/tv/tv_series_season_model.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -7,7 +7,7 @@ import 'package:ditonton/common/network_info.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
-import 'package:ditonton/data/models/movie/movie_table.dart';
+import 'package:ditonton/data/models/movie_table_model.dart';
 import 'package:ditonton/domain/entities/tv/tv_series.dart';
 import 'package:ditonton/domain/entities/tv/tv_series_detail.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
@@ -30,7 +30,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository{
         final result = await remoteDataSource.getAiringTodayTvSeries();
 
         localDataSource.cacheNowPlayingMovies(
-            result.map((tvSeries) => MovieTable.fromTvDTO(tvSeries)).toList());
+            result.map((tvSeries) => MovieTableModel.fromTvDTO(tvSeries)).toList());
 
         return Right(result.map((model) => model.toEntity()).toList());
       } on ServerException {
@@ -99,7 +99,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository{
   Future<Either<Failure, String>> saveWatchlist(TvSeriesDetail tvSeriesDetail) async{
     try {
       final result =
-          await localDataSource.insertWatchlist(MovieTable.fromTvEntity(tvSeriesDetail));
+          await localDataSource.insertWatchlist(MovieTableModel.fromTvEntity(tvSeriesDetail));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -118,7 +118,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository{
   Future<Either<Failure, String>> removeWatchlist(TvSeriesDetail tvSeriesDetail) async{
     try {
       final result =
-          await localDataSource.removeWatchlist(MovieTable.fromTvEntity(tvSeriesDetail));
+          await localDataSource.removeWatchlist(MovieTableModel.fromTvEntity(tvSeriesDetail));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));

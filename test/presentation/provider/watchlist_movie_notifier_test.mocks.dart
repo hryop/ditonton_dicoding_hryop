@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:ditonton/common/failure.dart' as _i5;
-import 'package:ditonton/data/models/movie/movie_table.dart' as _i6;
+import 'package:ditonton/domain/entities/movie_table.dart' as _i6;
 import 'package:ditonton/domain/usecases/get_watchlist_movies.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 

@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/data/models/movie/genre_model.dart';
+import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie/movie_model.dart';
-import 'package:ditonton/data/models/movie/movie_table.dart';
+import 'package:ditonton/data/models/movie_table_model.dart';
 import 'package:ditonton/data/repositories/movie_repository_impl.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
@@ -68,7 +68,7 @@ void main() {
       voteCount: 13507,
   );
 
-  final testMovieCache = MovieTable(
+  final testMovieCache = MovieTableModel(
       id: 557,
       overview:
           'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
@@ -534,7 +534,7 @@ void main() {
       final result = await repository.getWatchlistMovies();
       // assert
       final resultList = result.getOrElse(() => []);
-      expect(resultList, [testMovieTable]);
+      expect(resultList, [testMovieTable.toMovieTableEntity()]);
     });
   });
 }
