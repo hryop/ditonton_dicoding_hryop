@@ -13,15 +13,3 @@ fvm-cgg:
 fvm-run:
 	@echo "==RUN APP=="
 	fvm flutter run
-
-fvm-lcov:
-	@echo "==GENERATE LCOV INFO=="
-	fvm flutter test --coverage
-
-gen-lcov:
-	@echo "==GENERATE CODE COVERAGE REPORT=="
-	perl C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml -o coverage\html coverage\lcov.info
-
-	@echo ""
-	@echo "==OPEN CODE COVERAGE REPORT=="
-	start coverage\html\index.html

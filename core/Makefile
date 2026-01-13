@@ -9,3 +9,15 @@ fvm-cgg:
 	@echo ""
 	@echo "==BUILD AND DELETE CONFLICTING OUTPUTS=="
 	fvm flutter pub run build_runner build --delete-conflicting-outputs
+
+fvm-lcov:
+	@echo "==GENERATE LCOV INFO=="
+	fvm flutter test --coverage
+
+gen-lcov:
+	@echo "==GENERATE CODE COVERAGE REPORT=="
+	perl C:\ProgramData\chocolatey\lib\lcov\tools\bin\genhtml -o coverage\html coverage\lcov.info
+
+	@echo ""
+	@echo "==OPEN CODE COVERAGE REPORT=="
+	start coverage\html\index.html
