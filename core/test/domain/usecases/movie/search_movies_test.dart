@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/usecases/movie/search_movies.dart';
+import '../../../../../search/lib/domain/usecases/search_movies.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

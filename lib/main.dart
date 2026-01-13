@@ -3,19 +3,15 @@ import 'package:core/utils/utils.dart';
 import 'package:about/about.dart';
 import 'package:core/presentation/pages/movie/movie_detail_page.dart';
 import 'package:core/presentation/pages/movie/popular_movies_page.dart';
-import 'package:core/presentation/pages/movie/search_page.dart';
 import 'package:core/presentation/pages/movie/top_rated_movies_page.dart';
 import 'package:core/presentation/pages/tv/popular_tv_page.dart';
-import 'package:core/presentation/pages/tv/search_tv_page.dart';
 import 'package:core/presentation/pages/tv/top_rated_tv_page.dart';
 import 'package:core/presentation/pages/tv/tv_detail_page.dart';
 import 'package:core/presentation/pages/watchlist_movies_page.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:core/presentation/provider/movie/movie_search_notifier.dart';
 import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
 import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'package:core/presentation/provider/tv/tv_search_notifier.dart';
 import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/tv/popular_tv_notifier.dart';
 import 'package:core/presentation/provider/tv/top_rated_tv_notifier.dart';
@@ -26,6 +22,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:search/presentation/pages/search_movie_page.dart';
+import 'package:search/presentation/pages/search_tv_page.dart';
+import 'package:search/presentation/provider/movie_search_notifier.dart';
+import 'package:search/presentation/provider/tv_search_notifier.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -99,8 +99,8 @@ class MyApp extends StatelessWidget {
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
-            case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => SearchPage());
+            case SEARCH_MOVIE_ROUTE:
+              return CupertinoPageRoute(builder: (_) => SearchMoviePage());
 
             case PopularTvPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularTvPage());
@@ -112,12 +112,12 @@ class MyApp extends StatelessWidget {
                 builder: (_) => TvDetailPage(id: id),
                 settings: settings,
               );
-            case SearchTvPage.ROUTE_NAME:
+            case SEARCH_TV_SERIES_ROUTE:
               return CupertinoPageRoute(builder: (_) => SearchTvPage());
 
             case WatchlistMoviesPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
-            case AboutPage.ROUTE_NAME:
+            case ABOUT_ROUTE:
               return MaterialPageRoute(builder: (_) => AboutPage());
             default:
               return MaterialPageRoute(builder: (_) {

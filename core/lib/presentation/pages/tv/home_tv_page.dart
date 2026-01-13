@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/presentation/pages/tv/popular_tv_page.dart';
-import 'package:core/presentation/pages/tv/search_tv_page.dart';
 import 'package:core/presentation/pages/tv/top_rated_tv_page.dart';
 import 'package:core/presentation/pages/tv/tv_detail_page.dart';
 import 'package:core/presentation/provider/tv/tv_list_notifier.dart';
@@ -38,7 +37,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchTvPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SEARCH_TV_SERIES_ROUTE);
             },
             icon: Icon(Icons.search),
           )

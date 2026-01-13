@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
-import 'package:core/presentation/provider/movie/movie_search_notifier.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:search/presentation/provider/movie_search_notifier.dart';
 
-class SearchPage extends StatelessWidget {
-  static const ROUTE_NAME = '/search';
+class SearchMoviePage extends StatelessWidget {
+  static const ROUTE_NAME = '/search_movie';
 
   @override
   Widget build(BuildContext context) {

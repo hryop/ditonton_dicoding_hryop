@@ -1,30 +1,30 @@
 import 'package:core/utils/state_enum.dart';
-import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/domain/usecases/movie/search_movies.dart';
+import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:flutter/foundation.dart';
+import 'package:search/domain/usecases/search_tv_series.dart';
 
-class MovieSearchNotifier extends ChangeNotifier {
-  final SearchMovies searchMovies;
+class TvSearchNotifier extends ChangeNotifier {
+  final SearchTvSeries searchTvSeries;
 
-  MovieSearchNotifier({required this.searchMovies});
+  TvSearchNotifier({required this.searchTvSeries});
 
   RequestState _state = RequestState.Empty;
 
   RequestState get state => _state;
 
-  List<Movie> _searchResult = [];
+  List<TVSeries> _searchResult = [];
 
-  List<Movie> get searchResult => _searchResult;
+  List<TVSeries> get searchResult => _searchResult;
 
   String _message = '';
 
   String get message => _message;
 
-  Future<void> fetchMovieSearch(String query) async {
+  Future<void> fetchTvSearch(String query) async {
     _state = RequestState.Loading;
     notifyListeners();
 
-    final result = await searchMovies.execute(query);
+    final result = await searchTvSeries.execute(query);
     result.fold(
       (failure) {
         _message = failure.message;
