@@ -15,12 +15,6 @@ class MovieCard extends StatelessWidget {
       {this.showContentType = false,
       this.contentType = DatabaseHelper.CONTENT_TYPE_MOVIE});
 
-  String getContentType() {
-    return contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
-        ? 'Movie'
-        : 'TV Series';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,11 +46,14 @@ class MovieCard extends StatelessWidget {
                       movie.title ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: kHeading6,
+                      style: heading6,
                     ),
                     showContentType
                         ? Text(
-                            getContentType(),
+                            contentType.split(' ').map((word) {
+                              if (word.isEmpty) return '';
+                              return '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}';
+                            }).join(' '),
                             overflow: TextOverflow.ellipsis,
                           )
                         : SizedBox(),

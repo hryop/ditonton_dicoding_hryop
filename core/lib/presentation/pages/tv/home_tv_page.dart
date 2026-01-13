@@ -55,7 +55,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
             children: [
               Text(
                 'Airing Today',
-                style: kHeading6,
+                style: heading6,
               ),
               Consumer<TvListNotifier>(builder: (context, data, child) {
                 final state = data.airingTodayState;

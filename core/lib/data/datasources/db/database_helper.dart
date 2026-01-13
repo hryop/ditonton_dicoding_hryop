@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
   static const int databaseVersion = 2;
-  static const String CONTENT_TYPE_TV = 'tv';
+  static const String CONTENT_TYPE_TV = 'tv series';
   static const String CONTENT_TYPE_MOVIE = 'movie';
   static const String CATEGORY_AIRING_TODAY = 'airing today';
   static const String CATEGORY_NOW_PLAYING = 'now playing';
@@ -20,9 +20,7 @@ class DatabaseHelper {
   static Database? _database;
 
   Future<Database?> get database async {
-    if (_database == null) {
-      _database = await _initDb();
-    }
+    _database ??= await _initDb();
     return _database;
   }
 

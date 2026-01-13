@@ -34,7 +34,7 @@ class SearchTvPage extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               'Search Result',
-              style: kHeading6,
+              style: heading6,
             ),
             Consumer<TvSearchNotifier>(
               builder: (context, data, child) {
@@ -59,7 +59,7 @@ class SearchTvPage extends StatelessWidget {
                   );
                 } else {
                   return Expanded(
-                    child: Container(),
+                    child: SizedBox(),
                   );
                 }
               },

@@ -43,7 +43,7 @@ class SeasonCard extends StatelessWidget {
                     season.seasonName.isEmpty? '-' : season.seasonName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: kHeading6,
+                    style: heading6,
                   ),
                   Text(
                     getAirDate(),

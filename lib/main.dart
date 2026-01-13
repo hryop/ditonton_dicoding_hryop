@@ -75,10 +75,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData.dark().copyWith(
-          colorScheme: kColorScheme,
-          primaryColor: kRichBlack,
-          scaffoldBackgroundColor: kRichBlack,
-          textTheme: kTextTheme,
+          colorScheme: colorScheme,
+          primaryColor: richBlack,
+          scaffoldBackgroundColor: richBlack,
+          textTheme: textTheme,
           drawerTheme: kDrawerTheme,
         ),
         home: Material(child: CustomDrawer()),

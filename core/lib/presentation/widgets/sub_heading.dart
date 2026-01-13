@@ -15,7 +15,7 @@ class SubHeading extends StatelessWidget {
       children: [
         Text(
           title,
-          style: kHeading6,
+          style: heading6,
         ),
         InkWell(
           onTap: onTap,

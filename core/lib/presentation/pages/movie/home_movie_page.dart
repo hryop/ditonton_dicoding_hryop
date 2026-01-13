@@ -55,7 +55,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
             children: [
               Text(
                 'Now Playing',
-                style: kHeading6,
+                style: heading6,
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
