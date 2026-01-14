@@ -32,3 +32,8 @@ migrate_working_dir/
 
 # FVM
 .fvm/
+
+# generated
+**/*.mocks.dart
+**/*.g.dart
+**/*.freezed.dart
