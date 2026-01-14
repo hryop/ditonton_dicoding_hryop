@@ -14,7 +14,7 @@ This repository was developed based on [starter project a199-flutter-expert-proj
 
 ## Build App Setup Recomendation
 - Flutter 3.38.6
-- Dart 3.10.0
+- Dart 3.10.7
 - JBR 21
 
 ## Code Design & Structure

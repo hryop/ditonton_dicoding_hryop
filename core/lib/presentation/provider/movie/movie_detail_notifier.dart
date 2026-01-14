@@ -5,7 +5,7 @@ import 'package:core/domain/usecases/movie/get_movie_recommendations.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/usecases/movie/get_watchlist_status.dart';
 import 'package:core/domain/usecases/movie/remove_watchlist.dart';
-import 'package:core/domain/usecases/movie/save_watchlist.dart';
+import 'package:core/domain/usecases/movie/save_movie_watchlist.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   final GetMovieDetail getMovieDetail;
   final GetMovieRecommendations getMovieRecommendations;
   final GetWatchListStatus getWatchListStatus;
-  final SaveWatchlist saveWatchlist;
+  final SaveMovieWatchlist saveWatchlist;
   final RemoveWatchlist removeWatchlist;
 
   MovieDetailNotifier({

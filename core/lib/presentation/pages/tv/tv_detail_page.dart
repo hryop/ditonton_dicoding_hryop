@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/domain/entities/tv/tv_series_detail.dart';
-import 'package:core/presentation/provider/tv/tv_detail_notifier.dart';
 import 'package:core/presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -45,7 +44,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
             return Center(child: CircularProgressIndicator());
           } else if (provider.tvDetailState == RequestState.Loaded) {
             return SafeArea(
-              child: DetailContent(
+              child: TVSeriesDetailContent(
                 provider.tvDetail,
                 provider.tvDetailRecommendations,
                 provider.isAddedToWatchlist,
@@ -60,12 +59,12 @@ class _TvDetailPageState extends State<TvDetailPage> {
   }
 }
 
-class DetailContent extends StatelessWidget {
+class TVSeriesDetailContent extends StatelessWidget {
   final TvSeriesDetail tvDetail;
   final List<TVSeries> recommendations;
   final bool isAddedWatchlist;
 
-  DetailContent(this.tvDetail, this.recommendations, this.isAddedWatchlist);
+  TVSeriesDetailContent(this.tvDetail, this.recommendations, this.isAddedWatchlist);
 
   @override
   Widget build(BuildContext context) {

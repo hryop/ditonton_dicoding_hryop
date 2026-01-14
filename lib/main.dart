@@ -1,31 +1,17 @@
 import 'package:core/styles/styles.dart';
 import 'package:core/utils/utils.dart';
-import 'package:about/about.dart';
-import 'package:core/presentation/pages/movie/movie_detail_page.dart';
-import 'package:core/presentation/pages/movie/popular_movies_page.dart';
-import 'package:core/presentation/pages/movie/top_rated_movies_page.dart';
-import 'package:core/presentation/pages/tv/popular_tv_page.dart';
-import 'package:core/presentation/pages/tv/top_rated_tv_page.dart';
-import 'package:core/presentation/pages/tv/tv_detail_page.dart';
-import 'package:core/presentation/pages/watchlist_movies_page.dart';
-import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
-import 'package:core/presentation/provider/movie/movie_list_notifier.dart';
-import 'package:core/presentation/provider/movie/popular_movies_notifier.dart';
-import 'package:core/presentation/provider/movie/top_rated_movies_notifier.dart';
-import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:core/presentation/provider/tv/popular_tv_notifier.dart';
-import 'package:core/presentation/provider/tv/top_rated_tv_notifier.dart';
-import 'package:core/presentation/provider/tv/tv_detail_notifier.dart';
-import 'package:core/presentation/provider/tv/tv_list_notifier.dart';
-import 'package:core/presentation/widgets/custom_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
-import 'package:search/presentation/pages/search_movie_page.dart';
-import 'package:search/presentation/pages/search_tv_page.dart';
-import 'package:search/presentation/provider/movie_search_notifier.dart';
-import 'package:search/presentation/provider/tv_search_notifier.dart';
+import 'package:about/about.dart';
+import 'package:core/presentation/pages/pages.dart';
+import 'package:core/presentation/provider/provider.dart';
+import 'package:core/presentation/widgets/custom_drawer.dart';
+import 'package:search/presentation/bloc/movie/search_bloc.dart';
+import 'package:search/presentation/pages/pages.dart';
+import 'package:search/presentation/provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,15 +24,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
+        ChangeNotifierProvider(create: (_) => di.locator<MovieListNotifier>()),
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (_) => di.locator<MovieSearchNotifier>(),
+        // ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedMoviesNotifier>(),
         ),
@@ -56,21 +40,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularTvNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvSearchNotifier>(),
-        ),
+        ChangeNotifierProvider(create: (_) => di.locator<TvListNotifier>()),
+        ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
+        ChangeNotifierProvider(create: (_) => di.locator<PopularTvNotifier>()),
+        ChangeNotifierProvider(create: (_) => di.locator<TopRatedTvNotifier>()),
+        ChangeNotifierProvider(create: (_) => di.locator<TvSearchNotifier>()),
+        BlocProvider(create: (_) => di.locator<SearchBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -87,7 +62,8 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case '/home':
               return MaterialPageRoute(
-                  builder: (_) => Material(child: CustomDrawer()));
+                builder: (_) => Material(child: CustomDrawer()),
+              );
 
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
@@ -120,13 +96,13 @@ class MyApp extends StatelessWidget {
             case ABOUT_ROUTE:
               return MaterialPageRoute(builder: (_) => AboutPage());
             default:
-              return MaterialPageRoute(builder: (_) {
-                return Scaffold(
-                  body: Center(
-                    child: Text('Page not found :('),
-                  ),
-                );
-              });
+              return MaterialPageRoute(
+                builder: (_) {
+                  return Scaffold(
+                    body: Center(child: Text('Page not found :(')),
+                  );
+                },
+              );
           }
         },
       ),

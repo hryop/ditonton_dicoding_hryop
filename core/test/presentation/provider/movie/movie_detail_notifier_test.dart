@@ -5,7 +5,7 @@ import 'package:core/domain/usecases/movie/get_movie_recommendations.dart';
 import 'package:core/utils/failure.dart';
 import 'package:core/domain/usecases/movie/get_watchlist_status.dart';
 import 'package:core/domain/usecases/movie/remove_watchlist.dart';
-import 'package:core/domain/usecases/movie/save_watchlist.dart';
+import 'package:core/domain/usecases/movie/save_movie_watchlist.dart';
 import 'package:core/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -19,7 +19,7 @@ import 'movie_detail_notifier_test.mocks.dart';
   GetMovieDetail,
   GetMovieRecommendations,
   GetWatchListStatus,
-  SaveWatchlist,
+  SaveMovieWatchlist,
   RemoveWatchlist,
 ])
 void main() {
@@ -27,7 +27,7 @@ void main() {
   late MockGetMovieDetail mockGetMovieDetail;
   late MockGetMovieRecommendations mockGetMovieRecommendations;
   late MockGetWatchListStatus mockGetWatchlistStatus;
-  late MockSaveWatchlist mockSaveWatchlist;
+  late MockSaveMovieWatchlist mockSaveWatchlist;
   late MockRemoveWatchlist mockRemoveWatchlist;
   late int listenerCallCount;
 
@@ -36,7 +36,7 @@ void main() {
     mockGetMovieDetail = MockGetMovieDetail();
     mockGetMovieRecommendations = MockGetMovieRecommendations();
     mockGetWatchlistStatus = MockGetWatchListStatus();
-    mockSaveWatchlist = MockSaveWatchlist();
+    mockSaveWatchlist = MockSaveMovieWatchlist();
     mockRemoveWatchlist = MockRemoveWatchlist();
     provider = MovieDetailNotifier(
       getMovieDetail: mockGetMovieDetail,
