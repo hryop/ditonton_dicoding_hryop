@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/entities/movie/movie_detail.dart';
+import 'package:core/presentation/widgets/recomendation_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -216,27 +217,15 @@ class MovieDetailContent extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final movie = recommendations[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          MovieDetailPage.ROUTE_NAME,
-                          arguments: movie.id,
-                        );
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        child: CachedNetworkImage(
-                          imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                          placeholder: (context, url) =>
-                              Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        ),
-                      ),
-                    ),
+                  return RecomendationCard(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        MovieDetailPage.ROUTE_NAME,
+                        arguments: movie.id,
+                      );
+                    },
+                    posterPath: movie.posterPath ?? "",
                   );
                 },
                 itemCount: recommendations.length,

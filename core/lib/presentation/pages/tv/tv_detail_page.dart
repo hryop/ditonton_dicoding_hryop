@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/domain/entities/tv/tv_series_detail.dart';
+import 'package:core/presentation/widgets/recomendation_card.dart';
 import 'package:core/presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -64,7 +65,11 @@ class TVSeriesDetailContent extends StatelessWidget {
   final List<TVSeries> recommendations;
   final bool isAddedWatchlist;
 
-  TVSeriesDetailContent(this.tvDetail, this.recommendations, this.isAddedWatchlist);
+  TVSeriesDetailContent(
+    this.tvDetail,
+    this.recommendations,
+    this.isAddedWatchlist,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -232,28 +237,15 @@ class TVSeriesDetailContent extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final tvRecommendation = recommendations[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          TvDetailPage.ROUTE_NAME,
-                          arguments: tvRecommendation.id,
-                        );
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              '$BASE_IMAGE_URL${tvRecommendation.posterPath}',
-                          placeholder: (context, url) =>
-                              Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        ),
-                      ),
-                    ),
+                  return RecomendationCard(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        TvDetailPage.ROUTE_NAME,
+                        arguments: tvRecommendation.id,
+                      );
+                    },
+                    posterPath: tvRecommendation.posterPath ?? "",
                   );
                 },
                 itemCount: recommendations.length,
@@ -269,7 +261,7 @@ class TVSeriesDetailContent extends StatelessWidget {
   }
 
   String _showGenres(List<Genre> genres) {
-    if(genres.isEmpty) return '';
+    if (genres.isEmpty) return '';
     return genres.map((e) => e.name).toList().join(',');
   }
 }
