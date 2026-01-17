@@ -20,6 +20,18 @@ import 'package:core/domain/repositories/tv_series_repository.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';
 import 'package:search/presentation/bloc/bloc.dart';
+import 'package:tv_series/domain/usecase/get_airing_today_tv_series.dart';
+import 'package:tv_series/domain/usecase/get_popular_tv_series.dart';
+import 'package:tv_series/domain/usecase/get_top_rated_tv_series.dart';
+import 'package:tv_series/domain/usecase/get_tv_series_detail.dart';
+import 'package:tv_series/domain/usecase/get_tv_series_recommendations.dart';
+import 'package:tv_series/domain/usecase/get_tv_watchlist_status.dart';
+import 'package:tv_series/domain/usecase/remove_tv_watchlist.dart';
+import 'package:tv_series/domain/usecase/save_tv_watchlist.dart';
+import 'package:tv_series/presentation/provider/popular_tv_notifier.dart';
+import 'package:tv_series/presentation/provider/top_rated_tv_notifier.dart';
+import 'package:tv_series/presentation/provider/tv_detail_notifier.dart';
+import 'package:tv_series/presentation/provider/tv_list_notifier.dart';
 import 'package:watchlist/domain/usecase/get_watchlist.dart';
 import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 
@@ -81,7 +93,6 @@ void init() {
   locator.registerLazySingleton(() => GetTopRatedMovies(locator()));
   locator.registerLazySingleton(() => GetMovieDetail(locator()));
   locator.registerLazySingleton(() => GetMovieRecommendations(locator()));
-  locator.registerLazySingleton(() => SearchMovies(locator()));
   locator.registerLazySingleton(() => GetWatchListStatus(locator()));
   locator.registerLazySingleton(() => SaveMovieWatchlist(locator()));
   locator.registerLazySingleton(() => RemoveWatchlist(locator()));
@@ -95,6 +106,8 @@ void init() {
   locator.registerLazySingleton(() => SaveTvWatchlist(locator()));
   locator.registerLazySingleton(() => GetTvWatchlistStatus(locator()));
   locator.registerLazySingleton(() => RemoveTvWatchlist(locator()));
+
+  locator.registerLazySingleton(() => SearchMovies(locator()));
   locator.registerLazySingleton(() => SearchTvSeries(locator()));
 
   // repository

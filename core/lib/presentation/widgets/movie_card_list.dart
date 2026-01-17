@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/presentation/pages/movie/movie_detail_page.dart';
-import 'package:core/presentation/pages/tv/tv_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
@@ -25,7 +24,7 @@ class MovieCard extends StatelessWidget {
             context,
             contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
                 ? MovieDetailPage.ROUTE_NAME
-                : TvDetailPage.ROUTE_NAME,
+                : DETAIL_TV_SERIES_ROUTE,
             arguments: movie.id,
           );
         },

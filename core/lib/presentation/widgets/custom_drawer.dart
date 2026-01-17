@@ -2,12 +2,13 @@ import 'package:core/core.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/presentation/pages/movie/home_movie_page.dart';
 import 'package:core/presentation/pages/tv/home_tv_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomDrawer extends StatefulWidget {
-  CustomDrawer();
+  Widget homeTVSeriesPageContent;
+
+  CustomDrawer({required this.homeTVSeriesPageContent});
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -55,15 +56,14 @@ class _CustomDrawerState extends State<CustomDrawer>
               children: [
                 _buildDrawer(),
                 Transform(
-                    transform: Matrix4.identity()
-                      ..translate(slide)
-                      ..scale(scale),
-                    alignment: Alignment.centerLeft,
-                    child: SELECTED_HOME == DatabaseHelper.CONTENT_TYPE_MOVIE
-                        ? HomeMoviePage(
-                            toggleDrawer: toggle,
-                          )
-                        : HomeTvPage(toggleDrawer: toggle))
+                  transform: Matrix4.identity()
+                    ..translate(slide)
+                    ..scale(scale),
+                  alignment: Alignment.centerLeft,
+                  child: SELECTED_HOME == DatabaseHelper.CONTENT_TYPE_MOVIE
+                      ? HomeMoviePage(toggleDrawer: toggle)
+                      : HomeTvPage(toggleDrawer: toggle, homeTVSereisPageContent: widget.homeTVSeriesPageContent,),
+                ),
               ],
             );
           },
@@ -83,9 +83,7 @@ class _CustomDrawerState extends State<CustomDrawer>
             ),
             accountName: Text('hryop'),
             accountEmail: Text('https://github.com/hryop'),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade900,
-            ),
+            decoration: BoxDecoration(color: Colors.grey.shade900),
           ),
           ListTile(
             leading: Icon(Icons.movie),
