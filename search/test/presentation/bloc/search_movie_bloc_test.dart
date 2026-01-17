@@ -6,12 +6,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:search/domain/usecases/search_movies.dart';
-import 'package:search/domain/usecases/search_tv_series.dart';
 import 'package:search/presentation/bloc/movie/search_bloc.dart';
 
-import 'search_bloc_test.mocks.dart';
+import 'search_movie_bloc_test.mocks.dart';
 
-@GenerateMocks([SearchMovies, SearchTvSeries])
+
+@GenerateMocks([SearchMovies])
 void main() {
   late SearchBloc searchBloc;
   late MockSearchMovies mockSearchMovies;

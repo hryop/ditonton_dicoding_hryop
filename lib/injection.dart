@@ -19,8 +19,7 @@ import 'package:core/utils/network_info_impl.dart';
 import 'package:core/domain/repositories/tv_series_repository.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';
-import 'package:search/presentation/bloc/movie/search_bloc.dart';
-import 'package:search/presentation/provider/provider.dart';
+import 'package:search/presentation/bloc/bloc.dart';
 import 'package:watchlist/domain/usecase/get_watchlist.dart';
 import 'package:watchlist/presentataion/provider/provider.dart';
 
@@ -73,10 +72,10 @@ void init() {
   locator.registerFactory(
     () => TopRatedTvNotifier(getTopRatedTvSeries: locator()),
   );
-  locator.registerFactory(() => TvSearchNotifier(searchTvSeries: locator()));
 
   //bloc
   locator.registerFactory(() => SearchBloc(locator()));
+  locator.registerFactory(() => SearchTvSeriesBloc(locator()));
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
