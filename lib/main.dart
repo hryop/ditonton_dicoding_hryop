@@ -11,8 +11,8 @@ import 'package:core/presentation/widgets/custom_drawer.dart';
 import 'package:search/presentation/bloc/bloc.dart';
 import 'package:search/presentation/pages/pages.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentataion/pages/pages.dart';
-import 'package:watchlist/presentataion/provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,13 +38,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
-        ChangeNotifierProvider(create: (_) => di.locator<WatchlistNotifier>()),
         ChangeNotifierProvider(create: (_) => di.locator<TvListNotifier>()),
         ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
         ChangeNotifierProvider(create: (_) => di.locator<PopularTvNotifier>()),
         ChangeNotifierProvider(create: (_) => di.locator<TopRatedTvNotifier>()),
         BlocProvider(create: (_) => di.locator<SearchBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
+        BlocProvider(create: (_) => di.locator<WatchlistBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

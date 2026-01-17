@@ -21,7 +21,7 @@ import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';
 import 'package:search/presentation/bloc/bloc.dart';
 import 'package:watchlist/domain/usecase/get_watchlist.dart';
-import 'package:watchlist/presentataion/provider/provider.dart';
+import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -48,9 +48,6 @@ void init() {
   locator.registerFactory(
     () => TopRatedMoviesNotifier(getTopRatedMovies: locator()),
   );
-  locator.registerFactory(
-    () => WatchlistNotifier(getWatchlistMovies: locator()),
-  );
 
   locator.registerFactory(
     () => TvListNotifier(
@@ -76,6 +73,7 @@ void init() {
   //bloc
   locator.registerFactory(() => SearchBloc(locator()));
   locator.registerFactory(() => SearchTvSeriesBloc(locator()));
+  locator.registerFactory(() => WatchlistBloc(locator()));
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
