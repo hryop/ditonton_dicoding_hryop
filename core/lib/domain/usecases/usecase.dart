@@ -15,5 +15,3 @@ export 'tv/get_tv_series_recommendations.dart';
 export 'tv/get_tv_watchlist_status.dart';
 export 'tv/remove_tv_watchlist.dart';
 export 'tv/save_tv_watchlist.dart';
-
-export 'get_watchlist_movies.dart';

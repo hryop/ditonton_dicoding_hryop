@@ -9,7 +9,6 @@ import 'package:core/data/datasources/movie/movie_remote_data_source.dart';
 import 'package:core/data/models/watchlist_model.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/entities/movie/movie_detail.dart';
-import 'package:core/domain/entities/watchlist.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/utils/failure.dart';
@@ -143,9 +142,4 @@ class MovieRepositoryImpl implements MovieRepository {
     return result != null;
   }
 
-  @override
-  Future<Either<Failure, List<Watchlist>>> getWatchlistMovies() async {
-    final result = await watchlistLocalDataSource.getWatchlistMovies();
-    return Right(result.map((model) => model.toMovieTableEntity()).toList());
-  }
 }

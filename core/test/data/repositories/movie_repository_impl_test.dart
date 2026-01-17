@@ -595,17 +595,5 @@ void main() {
     });
   });
 
-  group('get watchlist movies', () {
-    test('should return list of Movies', () async {
-      // arrange
-      when(
-        mockWatchlistLocalDataSource.getWatchlistMovies(),
-      ).thenAnswer((_) async => [testMovieTable]);
-      // act
-      final result = await repository.getWatchlistMovies();
-      // assert
-      final resultList = result.getOrElse(() => []);
-      expect(resultList, [testMovieTable.toMovieTableEntity()]);
-    });
-  });
+
 }

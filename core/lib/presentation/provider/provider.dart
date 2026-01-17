@@ -8,4 +8,3 @@ export 'tv/top_rated_tv_notifier.dart';
 export 'tv/tv_detail_notifier.dart';
 export 'tv/tv_list_notifier.dart';
 
-export 'watchlist_movie_notifier.dart';

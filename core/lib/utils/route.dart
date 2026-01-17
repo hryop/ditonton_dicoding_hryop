@@ -8,3 +8,4 @@ const MOVIE_DETAIL_ROUTE = '/detail';
 const SEARCH_MOVIE_ROUTE = '/search_movie';
 const SEARCH_TV_SERIES_ROUTE = '/search_tv';
 const ABOUT_ROUTE = '/about';
+const WATCHLIST_ROUTE = '/watchlist-movie';

@@ -12,6 +12,8 @@ import 'package:search/presentation/bloc/movie/search_bloc.dart';
 import 'package:search/presentation/pages/pages.dart';
 import 'package:search/presentation/provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/presentataion/pages/pages.dart';
+import 'package:watchlist/presentataion/provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+          create: (_) => di.locator<WatchlistNotifier>(),
         ),
         ChangeNotifierProvider(create: (_) => di.locator<TvListNotifier>()),
         ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
@@ -91,8 +93,8 @@ class MyApp extends StatelessWidget {
             case SEARCH_TV_SERIES_ROUTE:
               return CupertinoPageRoute(builder: (_) => SearchTvPage());
 
-            case WatchlistMoviesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
+            case WATCHLIST_ROUTE:
+              return MaterialPageRoute(builder: (_) => WatchlistPage());
             case ABOUT_ROUTE:
               return MaterialPageRoute(builder: (_) => AboutPage());
             default:

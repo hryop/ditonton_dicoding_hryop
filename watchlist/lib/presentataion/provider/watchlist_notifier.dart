@@ -1,9 +1,9 @@
 import 'package:core/utils/state_enum.dart';
 import 'package:core/domain/entities/watchlist.dart';
-import 'package:core/domain/usecases/get_watchlist_movies.dart';
 import 'package:flutter/foundation.dart';
+import 'package:watchlist/domain/usecase/get_watchlist.dart';
 
-class WatchlistMovieNotifier extends ChangeNotifier {
+class WatchlistNotifier extends ChangeNotifier {
   var _watchlistMovies = <Watchlist>[];
   List<Watchlist> get watchlistMovies => _watchlistMovies;
 
@@ -13,11 +13,11 @@ class WatchlistMovieNotifier extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  WatchlistMovieNotifier({required this.getWatchlistMovies});
+  WatchlistNotifier({required this.getWatchlistMovies});
 
-  final GetWatchlistMovies getWatchlistMovies;
+  final GetWatchlist getWatchlistMovies;
 
-  Future<void> fetchWatchlistMovies() async {
+  Future<void> fetchWatchlist() async {
     _watchlistState = RequestState.Loading;
     notifyListeners();
 

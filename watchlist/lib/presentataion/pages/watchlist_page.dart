@@ -2,26 +2,26 @@ import 'package:core/utils/route.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:core/utils/utils.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
-import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
+import '../provider/watchlist_notifier.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class WatchlistMoviesPage extends StatefulWidget {
+class WatchlistPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
 
   @override
-  _WatchlistMoviesPageState createState() => _WatchlistMoviesPageState();
+  _WatchlistPageState createState() => _WatchlistPageState();
 }
 
-class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
+class _WatchlistPageState extends State<WatchlistPage>
     with RouteAware {
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
+        Provider.of<WatchlistNotifier>(context, listen: false)
+            .fetchWatchlist());
   }
 
   @override
@@ -31,8 +31,8 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    Provider.of<WatchlistNotifier>(context, listen: false)
+        .fetchWatchlist();
   }
 
   @override
@@ -43,7 +43,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<WatchlistMovieNotifier>(
+        child: Consumer<WatchlistNotifier>(
           builder: (context, data, child) {
             if (data.watchlistState == RequestState.Loading) {
               return Center(

@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/presentation/pages/movie/home_movie_page.dart';
 import 'package:core/presentation/pages/tv/home_tv_page.dart';
-import 'package:core/presentation/pages/watchlist_movies_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -108,7 +107,7 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.save_alt),
             title: Text('Watchlist'),
             onTap: () {
-              Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              Navigator.pushNamed(context, WATCHLIST_ROUTE);
             },
           ),
           ListTile(
