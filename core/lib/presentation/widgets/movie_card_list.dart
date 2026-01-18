@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/domain/entities/movie/movie.dart';
-import 'package:core/presentation/pages/movie/movie_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
@@ -23,7 +22,7 @@ class MovieCard extends StatelessWidget {
           Navigator.pushNamed(
             context,
             contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
-                ? MovieDetailPage.ROUTE_NAME
+                ? DETAIL_MOVIE_ROUTE
                 : DETAIL_TV_SERIES_ROUTE,
             arguments: movie.id,
           );

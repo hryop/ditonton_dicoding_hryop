@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 
 class HomeTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/home-tv';
+
   final VoidCallback toggleDrawer;
   final Widget homeTVSereisPageContent;
 

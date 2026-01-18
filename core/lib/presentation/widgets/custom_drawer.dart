@@ -7,8 +7,12 @@ import 'package:flutter/services.dart';
 
 class CustomDrawer extends StatefulWidget {
   Widget homeTVSeriesPageContent;
+  Widget homeMoviePageContent;
 
-  CustomDrawer({required this.homeTVSeriesPageContent});
+  CustomDrawer({
+    required this.homeTVSeriesPageContent,
+    required this.homeMoviePageContent,
+  });
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -61,8 +65,15 @@ class _CustomDrawerState extends State<CustomDrawer>
                     ..scale(scale),
                   alignment: Alignment.centerLeft,
                   child: SELECTED_HOME == DatabaseHelper.CONTENT_TYPE_MOVIE
-                      ? HomeMoviePage(toggleDrawer: toggle)
-                      : HomeTvPage(toggleDrawer: toggle, homeTVSereisPageContent: widget.homeTVSeriesPageContent,),
+                      ? HomeMoviePage(
+                          toggleDrawer: toggle,
+                          homeMoviePageContent: widget.homeMoviePageContent,
+                        )
+                      : HomeTvPage(
+                          toggleDrawer: toggle,
+                          homeTVSereisPageContent:
+                              widget.homeTVSeriesPageContent,
+                        ),
                 ),
               ],
             );

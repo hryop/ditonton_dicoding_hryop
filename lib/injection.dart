@@ -10,13 +10,23 @@ import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/data/repositories/tv_series_repository_impl.dart';
 import 'package:core/data/repositories/watchlist_repository_impl.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
-import 'package:core/domain/usecases/usecase.dart';
-import 'package:core/presentation/provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:core/utils/network_info.dart';
 import 'package:core/utils/network_info_impl.dart';
 import 'package:core/domain/repositories/tv_series_repository.dart';
+import 'package:movie/domain/usecase/get_movie_detail.dart';
+import 'package:movie/domain/usecase/get_movie_recommendations.dart';
+import 'package:movie/domain/usecase/get_now_playing_movies.dart';
+import 'package:movie/domain/usecase/get_popular_movies.dart';
+import 'package:movie/domain/usecase/get_top_rated_movies.dart';
+import 'package:movie/domain/usecase/get_watchlist_status.dart';
+import 'package:movie/domain/usecase/remove_watchlist.dart';
+import 'package:movie/domain/usecase/save_movie_watchlist.dart';
+import 'package:movie/presentation/provider/movie_detail_notifier.dart';
+import 'package:movie/presentation/provider/movie_list_notifier.dart';
+import 'package:movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';
 import 'package:search/presentation/bloc/bloc.dart';
@@ -96,6 +106,7 @@ void init() {
   locator.registerLazySingleton(() => GetWatchListStatus(locator()));
   locator.registerLazySingleton(() => SaveMovieWatchlist(locator()));
   locator.registerLazySingleton(() => RemoveWatchlist(locator()));
+
   locator.registerLazySingleton(() => GetWatchlist(locator()));
 
   locator.registerLazySingleton(() => GetAiringTodayTvSeries(locator()));

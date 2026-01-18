@@ -2,9 +2,10 @@ import 'package:flutter/widgets.dart';
 
 final routeObserver = RouteObserver<ModalRoute>();
 
+const HOME_MOVIE_ROUTE = '/home-movie';
 const POPULAR_MOVIES_ROUTE = '/popular-movie';
-const TOP_RATED_ROUTE = '/top-rated-movie';
-const MOVIE_DETAIL_ROUTE = '/detail';
+const TOP_RATED_MOVIE_ROUTE = '/top-rated-movie';
+const DETAIL_MOVIE_ROUTE = '/movie_detail';
 
 const SEARCH_MOVIE_ROUTE = '/search_movie';
 const SEARCH_TV_SERIES_ROUTE = '/search_tv';

@@ -2,11 +2,17 @@ import 'package:core/styles/styles.dart';
 import 'package:core/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/presentation/pages/home_movie_page_content.dart';
+import 'package:movie/presentation/pages/movie_detail_page.dart';
+import 'package:movie/presentation/pages/popular_movies_page.dart';
+import 'package:movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:movie/presentation/provider/movie_detail_notifier.dart';
+import 'package:movie/presentation/provider/movie_list_notifier.dart';
+import 'package:movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:about/about.dart';
-import 'package:core/presentation/pages/pages.dart';
-import 'package:core/presentation/provider/provider.dart';
 import 'package:core/presentation/widgets/custom_drawer.dart';
 import 'package:search/presentation/bloc/bloc.dart';
 import 'package:search/presentation/pages/pages.dart';
@@ -37,9 +43,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<MovieSearchNotifier>(),
-        // ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedMoviesNotifier>(),
         ),
@@ -64,7 +67,10 @@ class MyApp extends StatelessWidget {
           drawerTheme: kDrawerTheme,
         ),
         home: Material(
-          child: CustomDrawer(homeTVSeriesPageContent: HomeTvPageContent()),
+          child: CustomDrawer(
+            homeTVSeriesPageContent: HomeTvPageContent(),
+            homeMoviePageContent: HomeMoviePageContent(),
+          ),
         ),
         navigatorObservers: [routeObserver],
         onGenerateRoute: (RouteSettings settings) {
@@ -74,15 +80,16 @@ class MyApp extends StatelessWidget {
                 builder: (_) => Material(
                   child: CustomDrawer(
                     homeTVSeriesPageContent: HomeTvPageContent(),
+                      homeMoviePageContent: HomeMoviePageContent(),
                   ),
                 ),
               );
 
-            case PopularMoviesPage.ROUTE_NAME:
+            case POPULAR_MOVIES_ROUTE:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            case TopRatedMoviesPage.ROUTE_NAME:
+            case TOP_RATED_MOVIE_ROUTE:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
-            case MovieDetailPage.ROUTE_NAME:
+            case DETAIL_MOVIE_ROUTE:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),

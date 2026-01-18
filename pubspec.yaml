@@ -49,6 +49,8 @@ dependencies:
     path: watchlist
   tv_series:
     path: tv_series
+  movie:
+    path: movie
 
 dev_dependencies:
   mockito: ^5.0.8
