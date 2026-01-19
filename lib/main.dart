@@ -17,6 +17,7 @@ import 'package:core/presentation/widgets/custom_drawer.dart';
 import 'package:search/presentation/bloc/bloc.dart';
 import 'package:search/presentation/pages/pages.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:tv_series/presentation/pages/home_tv_page_content.dart';
 import 'package:tv_series/presentation/pages/popular_tv_page.dart';
 import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<SearchBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<WatchlistBloc>()),
+        BlocProvider(create: (_) => di.locator<TVListBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

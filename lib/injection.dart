@@ -38,6 +38,7 @@ import 'package:tv_series/domain/usecase/get_tv_series_recommendations.dart';
 import 'package:tv_series/domain/usecase/get_tv_watchlist_status.dart';
 import 'package:tv_series/domain/usecase/remove_tv_watchlist.dart';
 import 'package:tv_series/domain/usecase/save_tv_watchlist.dart';
+import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:tv_series/presentation/provider/popular_tv_notifier.dart';
 import 'package:tv_series/presentation/provider/top_rated_tv_notifier.dart';
 import 'package:tv_series/presentation/provider/tv_detail_notifier.dart';
@@ -96,6 +97,13 @@ void init() {
   locator.registerFactory(() => SearchBloc(locator()));
   locator.registerFactory(() => SearchTvSeriesBloc(locator()));
   locator.registerFactory(() => WatchlistBloc(locator()));
+  locator.registerFactory(
+    () => TVListBloc(
+      getAiringTodayTvSeries: locator(),
+      getPopularTvSeries: locator(),
+      getTopRatedTvSeries: locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));

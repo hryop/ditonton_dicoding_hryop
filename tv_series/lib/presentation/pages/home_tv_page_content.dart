@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/presentation/widgets/sub_heading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:core/core.dart';
+import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:tv_series/presentation/pages/popular_tv_page.dart';
 import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv_series/presentation/pages/tv_detail_page.dart';
-import 'package:tv_series/presentation/provider/tv_list_notifier.dart';
 
 class HomeTvPageContent extends StatefulWidget {
   const HomeTvPageContent({Key? key}) : super(key: key);
@@ -17,14 +18,21 @@ class HomeTvPageContent extends StatefulWidget {
 }
 
 class _HomeTvPageContentState extends State<HomeTvPageContent> {
+  List<TVSeries> airingToday = [];
+  String airingTodayMessage = "";
+  List<TVSeries> popular = [];
+  String popularMessage = "";
+  List<TVSeries> topRated = [];
+  String topRatedMessage = "";
+
   @override
   void initState() {
     super.initState();
     Future.microtask(
-      () => Provider.of<TvListNotifier>(context, listen: false)
-        ..fetchAiringTodayTvSeries()
-        ..fetchPopularTvSeries()
-        ..fetchTopRatedTvSeries(),
+      () => context.read<TVListBloc>()
+        ..add(OnGetAiringTodayTVSeries())
+        ..add(OnGetPopularAiringTVSeries())
+        ..add(OnGetTopRatedTVSeries()),
     );
   }
 
@@ -37,16 +45,29 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Airing Today', style: heading6),
-            Consumer<TvListNotifier>(
-              builder: (context, data, child) {
-                final state = data.airingTodayState;
-                if (state == RequestState.Loading) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (state == RequestState.Loaded) {
-                  return TvSeriesListWidget(data.airingTodayTvSeries);
-                } else {
-                  return Text('Failed');
+            BlocConsumer<TVListBloc, TVListState>(
+              listener: (context, state) {
+                if (state is AiringTodayTVSeriesHasDataState) {
+                  airingToday = state.result;
+                } else if (state is AiringTodayTVSeriesErrorState) {
+                  airingToday = [];
+                  airingTodayMessage = state.message;
+                } else if (state is AiringTodayTVSeriesEmptyState) {
+                  airingToday = [];
+                  airingTodayMessage = "There isn't any tv series airing today";
                 }
+              },
+              builder: (context, state) {
+                if (state is AiringTodayTVSeriesLoadingState) {
+                  return Center(child: CircularProgressIndicator());
+                }
+
+                if(airingToday.isEmpty){
+                  return EmptyResultWidget(airingTodayMessage);
+                }else{
+                  return TvSeriesListWidget(airingToday);
+                }
+
               },
             ),
             SubHeading(
@@ -54,16 +75,29 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
               onTap: () =>
                   Navigator.pushNamed(context, PopularTvPage.ROUTE_NAME),
             ),
-            Consumer<TvListNotifier>(
-              builder: (context, data, child) {
-                final state = data.popularTvSeriesState;
-                if (state == RequestState.Loading) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (state == RequestState.Loaded) {
-                  return TvSeriesListWidget(data.popularTvSeries);
-                } else {
-                  return Text('Failed');
+            BlocConsumer<TVListBloc, TVListState>(
+              listener: (context, state) {
+                if (state is PopularTVSeriesHasDataState) {
+                  popular = state.result;
+                } else if (state is PopularTVSeriesErrorState) {
+                  popular = [];
+                  popularMessage = state.message;
+                } else if (state is PopularTVSeriesEmptyState) {
+                  popular = [];
+                  popularMessage = "There isn't any popular tv series";
                 }
+              },
+              builder: (context, state) {
+                if (state is AiringTodayTVSeriesLoadingState) {
+                  return Center(child: CircularProgressIndicator());
+                }
+
+                if(popular.isEmpty){
+                  return EmptyResultWidget(popularMessage);
+                }else{
+                  return TvSeriesListWidget(popular);
+                }
+
               },
             ),
             SubHeading(
@@ -71,21 +105,48 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
               onTap: () =>
                   Navigator.pushNamed(context, TopRatedTvPage.ROUTE_NAME),
             ),
-            Consumer<TvListNotifier>(
-              builder: (context, data, child) {
-                final state = data.topRatedTvSeriesState;
-                if (state == RequestState.Loading) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (state == RequestState.Loaded) {
-                  return TvSeriesListWidget(data.topRatedTvSeries);
-                } else {
-                  return Text('Failed');
+            BlocConsumer<TVListBloc, TVListState>(
+              listener: (context, state) {
+                if (state is TopRatedTVSeriesHasDataState) {
+                  topRated = state.result;
+                } else if (state is TopRatedTVSeriesErrorState) {
+                  topRated = [];
+                  topRatedMessage = state.message;
+                } else if (state is TopRatedTVSeriesEmptyState) {
+                  topRated = [];
+                  topRatedMessage = "There isn't any top rated tv series";
                 }
+              },
+              builder: (context, state) {
+                if (state is TopRatedTVSeriesLoadingState) {
+                  return Center(child: CircularProgressIndicator());
+                }
+
+                if(topRated.isEmpty){
+                  return EmptyResultWidget(topRatedMessage);
+                }else{
+                  return TvSeriesListWidget(topRated);
+                }
+
               },
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class EmptyResultWidget extends StatelessWidget {
+  final String message;
+
+  EmptyResultWidget(this.message);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      child: Center(child: Text(message, textAlign: TextAlign.center)),
     );
   }
 }
