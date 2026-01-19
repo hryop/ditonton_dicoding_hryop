@@ -1,9 +1,9 @@
-import 'package:core/utils/state_enum.dart';
+import 'package:core/presentation/widgets/empty_result_widget.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tv_series/presentation/provider/top_rated_tv_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 
 class TopRatedTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tv';
@@ -16,42 +16,38 @@ class _TopRatedTvPageState extends State<TopRatedTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<TopRatedTvNotifier>(context, listen: false)
-            .fetchTopRatedTvSeries());
+    Future.microtask(
+      () => context.read<TVListBloc>().add(OnGetTopRatedTVSeries()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Top Rated Tv Series'),
-      ),
+      appBar: AppBar(title: Text('Top Rated Tv Series')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedTvNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.state == RequestState.Loaded) {
+        child: BlocBuilder<TVListBloc, TVListState>(
+          builder: (context, state) {
+            if (state is TopRatedTVSeriesLoadingState) {
+              return Center(child: CircularProgressIndicator());
+            } else if (state is TopRatedTVSeriesHasDataState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tvSeries = data.tvSeries[index];
+                  final tvSeries = state.result[index];
                   return MovieCard(
                     tvSeries.toMovieEntity(),
                     contentType: DatabaseHelper.CONTENT_TYPE_TV,
                   );
                 },
-                itemCount: data.tvSeries.length,
+                itemCount: state.result.length,
               );
-            } else {
-              return Center(
-                key: Key('error_message'),
-                child: Text(data.message),
-              );
+            } else if (state is TopRatedTVSeriesErrorState) {
+              return EmptyResultWidget(state.message);
             }
+
+            return EmptyResultWidget("There isn't any top rated tv series");
+
           },
         ),
       ),

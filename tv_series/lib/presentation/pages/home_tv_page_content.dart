@@ -3,12 +3,12 @@ import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/presentation/widgets/sub_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:core/core.dart';
 import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:tv_series/presentation/pages/popular_tv_page.dart';
 import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv_series/presentation/pages/tv_detail_page.dart';
+import 'package:core/presentation/widgets/empty_result_widget.dart';
 
 class HomeTvPageContent extends StatefulWidget {
   const HomeTvPageContent({Key? key}) : super(key: key);
@@ -133,20 +133,6 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class EmptyResultWidget extends StatelessWidget {
-  final String message;
-
-  EmptyResultWidget(this.message);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      child: Center(child: Text(message, textAlign: TextAlign.center)),
     );
   }
 }

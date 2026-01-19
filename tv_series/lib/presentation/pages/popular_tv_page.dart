@@ -1,6 +1,7 @@
-import 'package:core/utils/state_enum.dart';
+import 'package:core/presentation/widgets/empty_result_widget.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
-import 'package:tv_series/presentation/provider/popular_tv_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,39 +17,38 @@ class _PopularTvPageState extends State<PopularTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<PopularTvNotifier>(context, listen: false)
-            .fetchPopularTvSeries());
+    Future.microtask(
+      () => context.read<TVListBloc>().add(OnGetPopularAiringTVSeries()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Popular TV Series'),
-      ),
+      appBar: AppBar(title: Text('Popular TV Series')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<PopularTvNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.state == RequestState.Loaded) {
+        child: BlocBuilder<TVListBloc, TVListState>(
+          builder: (context, state) {
+            if (state is PopularTVSeriesLoadingState) {
+              return Center(child: CircularProgressIndicator());
+            } else if (state is PopularTVSeriesHasDataState) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final tvSeries = data.tvSeries[index];
-                  return MovieCard(tvSeries.toMovieEntity(), contentType: DatabaseHelper.CONTENT_TYPE_TV,);
+                  final tvSeries = state.result[index];
+                  return MovieCard(
+                    tvSeries.toMovieEntity(),
+                    contentType: DatabaseHelper.CONTENT_TYPE_TV,
+                  );
                 },
-                itemCount: data.tvSeries.length,
+                itemCount: state.result.length,
               );
-            } else {
-              return Center(
-                key: Key('error_message'),
-                child: Text(data.message),
-              );
+            } else if (state is PopularTVSeriesErrorState) {
+              return EmptyResultWidget(state.message);
             }
+
+            return EmptyResultWidget("There isn't any popular tv series");
+
           },
         ),
       ),
