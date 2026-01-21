@@ -54,69 +54,95 @@ class _TvDetailPageState extends State<TvDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<TVDetailBloc, TVDetailState>(
-            listener: (context, state) {
-              if (state is GetTVSeriesDetailHasDataState) {
-                tvDetail = state.result;
-                isLoadingTVDetail = false;
-              } else if (state is GetTVSeriesDetailErrorState) {
-                tvDetailMessage = state.message.isEmpty
-                    ? "Server error"
-                    : state.message;
-                isLoadingTVDetail = false;
-              }
-            },
-          ),
-          BlocListener<TVWatchlistBloc, TVWatchlistState>(
-            listener: (context, state) {
-              if (state is GetTvWatchlistStatusResultState) {
-                isAddedWatchlist = state.result;
-              } else if (state is SaveTvWatchlistSuccessState) {
-                isAddedWatchlist = true;
-                watchlistMessage = state.saveSuccessMessage;
-              } else if (state is SaveTvWatchlistErrorState) {
-                watchlistMessage = state.saveErrorMessage.isEmpty
-                    ? "Server error"
-                    : state.saveErrorMessage;
-              } else if (state is RemoveTvWatchlistSuccessState) {
-                isAddedWatchlist = false;
-                watchlistMessage = state.removeSuccessMessage;
-              } else if (state is RemoveTvWatchlistErrorState) {
-                watchlistMessage = state.removeErrorMessage.isEmpty
-                    ? "Server error"
-                    : state.removeErrorMessage;
-              }
-            },
-          ),
-          BlocListener<TVRecommendationsBloc, TVRecommendationsState>(
-            listener: (context, state) {
-              print("state_recommend: ${state.toString()}");
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<TVDetailBloc, TVDetailState>(
+          listener: (context, state) {
+            print("state_TVDetailState: " + state.toString());
 
-              if (state is GetTvSeriesRecommendationsLoadingState) {
-                isLoadingRecommendations = true;
-                recommendations = [];
-              } else if (state is GetTvSeriesRecommendationsHasDataState) {
-                isLoadingRecommendations = false;
-                recommendations = state.result;
-              } else if (state is GetTvSeriesRecommendationsErrorState) {
-                isLoadingRecommendations = false;
-                recommendations = [];
-                recommendationsMessage = state.message.isEmpty
-                    ? "Server error"
-                    : state.message;
-              } else if (state is GetTvSeriesRecommendationsEmptyState) {
-                isLoadingRecommendations = false;
-                recommendations = [];
-                recommendationsMessage =
-                    "There isn't any tv series recommendations";
-              }
-            },
-          ),
-        ],
-        child: BlocBuilder<TVDetailBloc, TVDetailState>(
+            if (state is GetTVSeriesDetailHasDataState) {
+              tvDetail = state.result;
+              isLoadingTVDetail = false;
+            } else if (state is GetTVSeriesDetailErrorState) {
+              tvDetailMessage = state.message.isEmpty
+                  ? "Server error"
+                  : state.message;
+              isLoadingTVDetail = false;
+            }
+          },
+        ),
+        BlocListener<TVWatchlistBloc, TVWatchlistState>(
+          listener: (context, state) {
+            print("state_TVWatchlistState: " + state.toString());
+
+            if (state is GetTvWatchlistStatusResultState) {
+              isAddedWatchlist = state.result;
+            } else if (state is SaveTvWatchlistSuccessState) {
+              isAddedWatchlist = true;
+              watchlistMessage = state.saveSuccessMessage;
+
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(watchlistMessage)));
+            } else if (state is SaveTvWatchlistErrorState) {
+              watchlistMessage = state.saveErrorMessage.isEmpty
+                  ? "Server error"
+                  : state.saveErrorMessage;
+
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(content: Text(watchlistMessage));
+                },
+              );
+            } else if (state is RemoveTvWatchlistSuccessState) {
+              isAddedWatchlist = false;
+              watchlistMessage = state.removeSuccessMessage;
+
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(watchlistMessage)));
+            } else if (state is RemoveTvWatchlistErrorState) {
+              watchlistMessage = state.removeErrorMessage.isEmpty
+                  ? "Server error"
+                  : state.removeErrorMessage;
+
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(content: Text(watchlistMessage));
+                },
+              );
+            }
+          },
+        ),
+        BlocListener<TVRecommendationsBloc, TVRecommendationsState>(
+          listener: (context, state) {
+            print("state_TVRecommendationsState: ${state.toString()}");
+
+            if (state is GetTvSeriesRecommendationsLoadingState) {
+              isLoadingRecommendations = true;
+              recommendations = [];
+            } else if (state is GetTvSeriesRecommendationsHasDataState) {
+              isLoadingRecommendations = false;
+              recommendations = state.result;
+            } else if (state is GetTvSeriesRecommendationsErrorState) {
+              isLoadingRecommendations = false;
+              recommendations = [];
+              recommendationsMessage = state.message.isEmpty
+                  ? "Server error"
+                  : state.message;
+            } else if (state is GetTvSeriesRecommendationsEmptyState) {
+              isLoadingRecommendations = false;
+              recommendations = [];
+              recommendationsMessage =
+                  "There isn't any tv series recommendations";
+            }
+          },
+        ),
+      ],
+      child: Scaffold(
+        body: BlocBuilder<TVDetailBloc, TVDetailState>(
           builder: (context, state) {
             if (isLoadingTVDetail) {
               return Center(child: CircularProgressIndicator());
@@ -229,39 +255,27 @@ class _TvDetailPageState extends State<TvDetailPage> {
   }
 
   Widget watchlistButton(BuildContext context) {
-    return BlocBuilder<TVWatchlistBloc, TVWatchlistState>(
-      builder: (context, state) {
-        return FilledButton(
-          onPressed: () async {
-            if (tvDetail != null) {
-              if (isAddedWatchlist) {
-                context.read<TVWatchlistBloc>().add(
-                  OnRemoveTvWatchlistEvent(tvDetail!),
-                );
-              } else {
-                context.read<TVWatchlistBloc>().add(
-                  OnSaveTvWatchlistEvent(tvDetail!),
-                );
-              }
-
-              context.read<TVDetailBloc>().add(
-                OnGetTvSeriesDetailEvent(widget.id),
-              );
-
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(watchlistMessage)));
-            }
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              isAddedWatchlist ? Icon(Icons.check) : Icon(Icons.add),
-              Text('Watchlist'),
-            ],
-          ),
-        );
+    return FilledButton(
+      onPressed: () async {
+        if (tvDetail != null) {
+          if (isAddedWatchlist) {
+            context.read<TVWatchlistBloc>().add(
+              OnRemoveTvWatchlistEvent(tvDetail!),
+            );
+          } else {
+            context.read<TVWatchlistBloc>().add(
+              OnSaveTvWatchlistEvent(tvDetail!),
+            );
+          }
+        }
       },
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          isAddedWatchlist ? Icon(Icons.check) : Icon(Icons.add),
+          Text('Watchlist'),
+        ],
+      ),
     );
   }
 
@@ -284,40 +298,36 @@ class _TvDetailPageState extends State<TvDetailPage> {
   }
 
   Widget recomendations() {
-    return BlocBuilder<TVRecommendationsBloc, TVRecommendationsState>(
-      builder: (context, state) {
-        if (isLoadingRecommendations) {
-          return Container(
-            margin: EdgeInsets.symmetric(vertical: 16),
-            child: Center(child: CircularProgressIndicator()),
-          );
-        }
+    if (isLoadingRecommendations) {
+      return Container(
+        margin: EdgeInsets.symmetric(vertical: 16),
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
 
-        if (recommendations.isEmpty) {
-          return EmptyResultWidget(recommendationsMessage);
-        }
+    if (recommendations.isEmpty) {
+      return EmptyResultWidget(recommendationsMessage);
+    }
 
-        return Container(
-          height: 150,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final tvRecommendation = recommendations[index];
-              return RecomendationCard(
-                onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    TvDetailPage.ROUTE_NAME,
-                    arguments: tvRecommendation.id,
-                  );
-                },
-                posterPath: tvRecommendation.posterPath ?? "",
+    return Container(
+      height: 150,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          final tvRecommendation = recommendations[index];
+          return RecomendationCard(
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                context,
+                TvDetailPage.ROUTE_NAME,
+                arguments: tvRecommendation.id,
               );
             },
-            itemCount: recommendations.length,
-          ),
-        );
-      },
+            posterPath: tvRecommendation.posterPath ?? "",
+          );
+        },
+        itemCount: recommendations.length,
+      ),
     );
   }
 
