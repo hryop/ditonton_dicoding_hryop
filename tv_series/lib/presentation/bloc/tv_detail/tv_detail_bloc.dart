@@ -9,20 +9,11 @@ part 'tv_detail_state.dart';
 
 class TVDetailBloc extends Bloc<TVDetailEvent, TVDetailState> {
   final GetTvSeriesDetail getTvSeriesDetail;
-  final GetTvWatchlistStatus getTvWatchListStatus;
-  final SaveTvWatchlist saveTvWatchlist;
-  final RemoveTvWatchlist removeTvWatchlist;
 
   TVDetailBloc({
     required this.getTvSeriesDetail,
-    required this.getTvWatchListStatus,
-    required this.saveTvWatchlist,
-    required this.removeTvWatchlist,
   }) : super(GetTVSeriesDetailLoadingState()) {
     on<OnGetTvSeriesDetailEvent>(_onGetTvSeriesDetailEvent);
-    on<OnGetTvWatchlistStatusEvent>(_onGetTvWatchlistStatusEvent);
-    on<OnSaveTvWatchlistEvent>(_onSaveTvWatchlistEvent);
-    on<OnRemoveTvWatchlistEvent>(_onRemoveTvWatchlistEvent);
   }
 
   Future<void> _onGetTvSeriesDetailEvent( OnGetTvSeriesDetailEvent event, Emitter<TVDetailState> emit) async {
@@ -35,40 +26,6 @@ class TVDetailBloc extends Bloc<TVDetailEvent, TVDetailState> {
       },
       (data) {
         emit(GetTVSeriesDetailHasDataState(data));
-      },
-    );
-  }
-
-  Future<void> _onGetTvWatchlistStatusEvent(OnGetTvWatchlistStatusEvent event, Emitter<TVDetailState> emit) async {
-    emit(GetTvWatchlistStatusLoadingState());
-
-    final result = await getTvWatchListStatus.execute(event.id);
-
-    emit(GetTvWatchlistStatusResultState(result));
-  }
-
-  Future<void> _onSaveTvWatchlistEvent(OnSaveTvWatchlistEvent event, Emitter<TVDetailState> emit) async {
-    final result = await saveTvWatchlist.execute(event.detail);
-
-    result.fold(
-      (failure) {
-        SaveTvWatchlistErrorState(failure.message);
-      },
-      (data) {
-        SaveTvWatchlistErrorState(data);
-      },
-    );
-  }
-
-  Future<void> _onRemoveTvWatchlistEvent(OnRemoveTvWatchlistEvent event, Emitter<TVDetailState> emit) async {
-    final result = await saveTvWatchlist.execute(event.detail);
-
-    result.fold(
-      (failure) {
-        RemoveTvWatchlistErrorState(failure.message);
-      },
-      (data) {
-        RemoveTvWatchlistSuccessState(data);
       },
     );
   }

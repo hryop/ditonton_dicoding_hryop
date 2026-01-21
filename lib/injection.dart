@@ -41,6 +41,7 @@ import 'package:tv_series/domain/usecase/save_tv_watchlist.dart';
 import 'package:tv_series/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendations_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_watchlist/watchlist_bloc.dart';
 import 'package:tv_series/presentation/provider/popular_tv_notifier.dart';
 import 'package:tv_series/presentation/provider/top_rated_tv_notifier.dart';
 import 'package:tv_series/presentation/provider/tv_detail_notifier.dart';
@@ -99,6 +100,7 @@ void init() {
   locator.registerFactory(() => SearchBloc(locator()));
   locator.registerFactory(() => SearchTvSeriesBloc(locator()));
   locator.registerFactory(() => WatchlistBloc(locator()));
+  locator.registerFactory(() => TVRecommendationsBloc(locator()));
   locator.registerFactory(
     () => TVListBloc(
       getAiringTodayTvSeries: locator(),
@@ -109,12 +111,15 @@ void init() {
   locator.registerFactory(
     () => TVDetailBloc(
       getTvSeriesDetail: locator(),
-      getTvWatchListStatus: locator(),
-      removeTvWatchlist: locator(),
-      saveTvWatchlist: locator(),
     ),
   );
-  locator.registerFactory(() => TVRecommendationsBloc(locator()));
+  locator.registerFactory(
+    () => TVWatchlistBloc(
+      removeTvWatchlist: locator(),
+      saveTvWatchlist: locator(),
+      getTvWatchListStatus: locator(),
+    ),
+  );
 
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));

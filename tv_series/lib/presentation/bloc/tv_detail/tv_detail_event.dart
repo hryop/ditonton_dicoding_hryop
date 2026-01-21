@@ -15,31 +15,3 @@ class OnGetTvSeriesDetailEvent extends TVDetailEvent {
   @override
   List<Object?> get props => [id];
 }
-
-class OnGetTvWatchlistStatusEvent extends TVDetailEvent {
-  final int id;
-
-  const OnGetTvWatchlistStatusEvent(this.id);
-
-  @override
-  List<Object?> get props => [id];
-}
-
-class OnSaveTvWatchlistEvent extends TVDetailEvent {
-  final TvSeriesDetail detail;
-
-  const OnSaveTvWatchlistEvent(this.detail);
-
-  @override
-  List<Object?> get props => [detail];
-}
-
-class OnRemoveTvWatchlistEvent extends TVDetailEvent {
-  final TvSeriesDetail detail;
-
-  const OnRemoveTvWatchlistEvent(this.detail);
-
-  @override
-  List<Object?> get props => [detail];
-
-}

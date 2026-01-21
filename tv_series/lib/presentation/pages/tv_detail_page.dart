@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tv_series/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendations_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_watchlist/watchlist_bloc.dart';
 
 class TvDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv_detail';
@@ -32,14 +33,18 @@ class _TvDetailPageState extends State<TvDetailPage> {
   List<TVSeries> recommendations = [];
   String recommendationsMessage = '';
 
+  bool isAddedWatchlist = false;
+  String watchlistMessage = "";
 
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<TVDetailBloc>()
-        ..add(OnGetTvSeriesDetailEvent(widget.id))
-        ..add(OnGetTvWatchlistStatusEvent(widget.id));
+      context.read<TVDetailBloc>().add(OnGetTvSeriesDetailEvent(widget.id));
+
+      context.read<TVWatchlistBloc>().add(
+        OnGetTvWatchlistStatusEvent(widget.id),
+      );
 
       context.read<TVRecommendationsBloc>().add(
         OnGetTvSeriesRecommendationsEvent(widget.id),
@@ -65,6 +70,27 @@ class _TvDetailPageState extends State<TvDetailPage> {
               }
             },
           ),
+          BlocListener<TVWatchlistBloc, TVWatchlistState>(
+            listener: (context, state) {
+              if (state is GetTvWatchlistStatusResultState) {
+                isAddedWatchlist = state.result;
+              } else if (state is SaveTvWatchlistSuccessState) {
+                isAddedWatchlist = true;
+                watchlistMessage = state.saveSuccessMessage;
+              } else if (state is SaveTvWatchlistErrorState) {
+                watchlistMessage = state.saveErrorMessage.isEmpty
+                    ? "Server error"
+                    : state.saveErrorMessage;
+              } else if (state is RemoveTvWatchlistSuccessState) {
+                isAddedWatchlist = false;
+                watchlistMessage = state.removeSuccessMessage;
+              } else if (state is RemoveTvWatchlistErrorState) {
+                watchlistMessage = state.removeErrorMessage.isEmpty
+                    ? "Server error"
+                    : state.removeErrorMessage;
+              }
+            },
+          ),
           BlocListener<TVRecommendationsBloc, TVRecommendationsState>(
             listener: (context, state) {
               print("state_recommend: ${state.toString()}");
@@ -72,22 +98,20 @@ class _TvDetailPageState extends State<TvDetailPage> {
               if (state is GetTvSeriesRecommendationsLoadingState) {
                 isLoadingRecommendations = true;
                 recommendations = [];
-              }
-              if (state is GetTvSeriesRecommendationsHasDataState) {
+              } else if (state is GetTvSeriesRecommendationsHasDataState) {
                 isLoadingRecommendations = false;
                 recommendations = state.result;
-              }
-              if (state is GetTvSeriesRecommendationsErrorState) {
+              } else if (state is GetTvSeriesRecommendationsErrorState) {
                 isLoadingRecommendations = false;
                 recommendations = [];
                 recommendationsMessage = state.message.isEmpty
                     ? "Server error"
                     : state.message;
-              }
-              if (state is GetTvSeriesRecommendationsEmptyState) {
+              } else if (state is GetTvSeriesRecommendationsEmptyState) {
                 isLoadingRecommendations = false;
                 recommendations = [];
-                recommendationsMessage = "There isn't any tv series recommendations";
+                recommendationsMessage =
+                    "There isn't any tv series recommendations";
               }
             },
           ),
@@ -205,58 +229,28 @@ class _TvDetailPageState extends State<TvDetailPage> {
   }
 
   Widget watchlistButton(BuildContext context) {
-    bool isAddedWatchlist = false;
-    return BlocConsumer<TVDetailBloc, TVDetailState>(
-      listener: (context, state) {
-        if (state is GetTvWatchlistStatusResultState) {
-          isAddedWatchlist = state.result;
-        }
-
-        if (state is SaveTvWatchlistSuccessState) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
-        } else if (state is SaveTvWatchlistErrorState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                state.message.isEmpty ? "Server error" : state.message,
-              ),
-            ),
-          );
-        } else if (state is RemoveTvWatchlistSuccessState) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(content: Text(state.message));
-            },
-          );
-        } else if (state is RemoveTvWatchlistErrorState) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(
-                  state.message.isEmpty ? "Server error" : state.message,
-                ),
-              );
-            },
-          );
-        }
-      },
+    return BlocBuilder<TVWatchlistBloc, TVWatchlistState>(
       builder: (context, state) {
         return FilledButton(
           onPressed: () async {
             if (tvDetail != null) {
-              if (!isAddedWatchlist) {
-                context.read<TVDetailBloc>().add(
-                  OnSaveTvWatchlistEvent(tvDetail!),
-                );
-              } else {
-                context.read<TVDetailBloc>().add(
+              if (isAddedWatchlist) {
+                context.read<TVWatchlistBloc>().add(
                   OnRemoveTvWatchlistEvent(tvDetail!),
                 );
+              } else {
+                context.read<TVWatchlistBloc>().add(
+                  OnSaveTvWatchlistEvent(tvDetail!),
+                );
               }
+
+              context.read<TVDetailBloc>().add(
+                OnGetTvSeriesDetailEvent(widget.id),
+              );
+
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(watchlistMessage)));
             }
           },
           child: Row(
