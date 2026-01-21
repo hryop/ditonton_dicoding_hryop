@@ -92,7 +92,7 @@ void main() {
   }
 
   group('Get Movie Detail', () {
-    test('should get data from the usecase', () async {
+    test('should get data from the usecase_detail.dart', () async {
       // arrange
       _arrangeUsecase();
       // act
@@ -102,7 +102,7 @@ void main() {
       verify(mockGetTvSeriesRecommendations.execute(tId));
     });
 
-    test('should change state to Loading when usecase is called', () {
+    test('should change state to Loading when usecase_detail.dart is called', () {
       // arrange
       _arrangeUsecase();
       // act
@@ -123,7 +123,7 @@ void main() {
       expect(listenerCallCount, 3);
     });
 
-    test('should change recommendation movies when data is gotten successfully',
+    test('should change recommendations movies when data is gotten successfully',
         () async {
       // arrange
       _arrangeUsecase();
@@ -136,7 +136,7 @@ void main() {
   });
 
   group('Get Movie Recommendations', () {
-    test('should get data from the usecase', () async {
+    test('should get data from the usecase_detail.dart', () async {
       // arrange
       _arrangeUsecase();
       // act
@@ -146,7 +146,7 @@ void main() {
       expect(provider.tvDetailRecommendations, tTvSeriesList);
     });
 
-    test('should update recommendation state when data is gotten successfully',
+    test('should update recommendations state when data is gotten successfully',
         () async {
       // arrange
       _arrangeUsecase();

@@ -42,7 +42,7 @@ void main() {
 
   final tTvSeriesList = <TVSeries>[tTvSeries];
 
-  test('should change state to loading when usecase is called', () async {
+  test('should change state to loading when usecase_detail.dart is called', () async {
     // arrange
     when(mockGetTopRatedTvSeries.execute())
         .thenAnswer((_) async => Right(tTvSeriesList));

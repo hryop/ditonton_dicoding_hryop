@@ -56,7 +56,7 @@ void main() {
       expect(provider.nowPlayingState, equals(RequestState.Empty));
     });
 
-    test('should get data from the usecase', () async {
+    test('should get data from the usecase_detail.dart', () async {
       // arrange
       when(mockGetNowPlayingMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
@@ -66,7 +66,7 @@ void main() {
       verify(mockGetNowPlayingMovies.execute());
     });
 
-    test('should change state to Loading when usecase is called', () {
+    test('should change state to Loading when usecase_detail.dart is called', () {
       // arrange
       when(mockGetNowPlayingMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
@@ -102,7 +102,7 @@ void main() {
   });
 
   group('popular movies', () {
-    test('should change state to loading when usecase is called', () async {
+    test('should change state to loading when usecase_detail.dart is called', () async {
       // arrange
       when(mockGetPopularMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
@@ -140,7 +140,7 @@ void main() {
   });
 
   group('top rated movies', () {
-    test('should change state to loading when usecase is called', () async {
+    test('should change state to loading when usecase_detail.dart is called', () async {
       // arrange
       when(mockGetTopRatedMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));

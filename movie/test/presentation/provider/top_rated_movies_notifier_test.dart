@@ -45,7 +45,7 @@ void main() {
 
   final tMovieList = <Movie>[tMovie];
 
-  test('should change state to loading when usecase is called', () async {
+  test('should change state to loading when usecase_detail.dart is called', () async {
     // arrange
     when(mockGetTopRatedMovies.execute())
         .thenAnswer((_) async => Right(tMovieList));

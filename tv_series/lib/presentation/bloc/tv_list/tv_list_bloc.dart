@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tv_series/domain/usecase/get_airing_today_tv_series.dart';
-import 'package:tv_series/domain/usecase/get_popular_tv_series.dart';
-import 'package:tv_series/domain/usecase/get_top_rated_tv_series.dart';
+import 'package:tv_series/domain/usecase/usecase_tv_list.dart';
 
 part 'tv_list_event.dart';
 
