@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:core/data/datasources/watchlist_local_data_source.dart';
 import 'package:dartz/dartz.dart';
-import 'package:core/utils/network_info.dart';
+import 'package:core/utils/network/network_info.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/data/datasources/movie/movie_local_data_source.dart';
 import 'package:core/data/datasources/movie/movie_remote_data_source.dart';

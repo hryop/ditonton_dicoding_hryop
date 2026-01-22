@@ -6,7 +6,7 @@ import 'package:core/data/datasources/watchlist_local_data_source.dart';
 import 'package:dartz/dartz.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/utils/failure.dart';
-import 'package:core/utils/network_info.dart';
+import 'package:core/utils/network/network_info.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/data/models/watchlist_model.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';

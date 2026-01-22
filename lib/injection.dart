@@ -2,6 +2,9 @@ import 'package:core/data/datasources/tv/tv_series_local_data_source.dart';
 import 'package:core/data/datasources/tv/tv_series_remote_data_source.dart';
 import 'package:core/data/datasources/watchlist_local_data_source.dart';
 import 'package:core/domain/repositories/watchlist_repository.dart';
+import 'package:core/utils/network/ssl_pinning.dart';
+import 'package:core/utils/network/network_info.dart';
+import 'package:core/utils/network/network_info_impl.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/data/datasources/movie/movie_local_data_source.dart';
@@ -10,10 +13,7 @@ import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/data/repositories/tv_series_repository_impl.dart';
 import 'package:core/data/repositories/watchlist_repository_impl.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
-import 'package:core/utils/network_info.dart';
-import 'package:core/utils/network_info_impl.dart';
 import 'package:core/domain/repositories/tv_series_repository.dart';
 import 'package:movie/domain/usecase/get_movie_detail.dart';
 import 'package:movie/domain/usecase/get_movie_recommendations.dart';
@@ -207,8 +207,8 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
   locator.registerLazySingleton(() => DataConnectionChecker());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 
   // network info
   locator.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(locator()));

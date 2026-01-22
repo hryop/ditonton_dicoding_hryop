@@ -36,7 +36,7 @@ import 'package:tv_series/presentation/provider/tv_list_notifier.dart';
 import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentataion/pages/pages.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   di.init();
   runApp(MyApp());
