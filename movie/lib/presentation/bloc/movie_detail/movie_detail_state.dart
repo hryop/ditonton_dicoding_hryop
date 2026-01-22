@@ -8,21 +8,21 @@ class MovieDetailState extends Equatable {
 }
 
 //detail
-class GetMovieLoadingState extends MovieDetailState {}
+class GetMovieDetailLoadingState extends MovieDetailState {}
 
-class GetMovieHasDataState extends MovieDetailState {
+class GetMovieDetailHasDataState extends MovieDetailState {
   final MovieDetail result;
 
-  const GetMovieHasDataState(this.result);
+  const GetMovieDetailHasDataState(this.result);
 
   @override
   List<Object?> get props => [result];
 }
 
-class GetMovieErrorState extends MovieDetailState {
+class GetMovieDetailErrorState extends MovieDetailState {
   final String message;
 
-  const GetMovieErrorState(this.message);
+  const GetMovieDetailErrorState(this.message);
 
   @override
   List<Object?> get props => [message];

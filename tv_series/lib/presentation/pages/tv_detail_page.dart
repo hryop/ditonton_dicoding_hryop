@@ -73,8 +73,6 @@ class _TvDetailPageState extends State<TvDetailPage> {
         ),
         BlocListener<TVWatchlistBloc, TVWatchlistState>(
           listener: (context, state) {
-            print("state_TVWatchlistState: " + state.toString());
-
             if (state is GetTvWatchlistStatusResultState) {
               isAddedWatchlist = state.result;
             } else if (state is SaveTvWatchlistSuccessState) {
@@ -118,8 +116,6 @@ class _TvDetailPageState extends State<TvDetailPage> {
         ),
         BlocListener<TVRecommendationsBloc, TVRecommendationsState>(
           listener: (context, state) {
-            print("state_TVRecommendationsState: ${state.toString()}");
-
             if (state is GetTvSeriesRecommendationsLoadingState) {
               isLoadingRecommendations = true;
               recommendations = [];
@@ -190,7 +186,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(tvDetail?.title ?? "", style: heading5),
-                            watchlistButton(context),
+                            watchlistButton(),
                             Text(
                               tvDetail?.genres == null
                                   ? ""
@@ -254,7 +250,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
     );
   }
 
-  Widget watchlistButton(BuildContext context) {
+  Widget watchlistButton() {
     return BlocBuilder<TVWatchlistBloc, TVWatchlistState>(
       builder: (context, state) {
         return FilledButton(

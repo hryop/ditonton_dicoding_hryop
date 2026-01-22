@@ -12,20 +12,20 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
 
   MovieDetailBloc({
     required this.getMovieDetail,
-  }) : super(GetMovieLoadingState()) {
+  }) : super(GetMovieDetailLoadingState()) {
     on<OnGetMovieDetailEvent>(_onGetMovieDetailEvent);
   }
 
   Future<void> _onGetMovieDetailEvent(event, emit) async{
-    emit(GetMovieLoadingState());
+    emit(GetMovieDetailLoadingState());
 
     final result = await getMovieDetail.execute(event.id);
     result.fold(
           (failure) {
-        emit(GetMovieErrorState(failure.message));
+        emit(GetMovieDetailErrorState(failure.message));
       },
           (data) {
-        emit(GetMovieHasDataState(data));
+        emit(GetMovieDetailHasDataState(data));
       },
     );
   }
