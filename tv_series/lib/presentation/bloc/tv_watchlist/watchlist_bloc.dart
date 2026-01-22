@@ -43,10 +43,10 @@ class TVWatchlistBloc extends Bloc<TVWatchlistEvent, TVWatchlistState> {
 
     result.fold(
       (failure) {
-        SaveTvWatchlistErrorState(failure.message);
+        emit(SaveTvWatchlistErrorState(failure.message));
       },
       (data) {
-        SaveTvWatchlistErrorState(data);
+        emit(SaveTvWatchlistSuccessState(data));
       },
     );
   }
@@ -59,10 +59,10 @@ class TVWatchlistBloc extends Bloc<TVWatchlistEvent, TVWatchlistState> {
 
     result.fold(
       (failure) {
-        RemoveTvWatchlistErrorState(failure.message);
+        emit(RemoveTvWatchlistErrorState(failure.message));
       },
       (data) {
-        RemoveTvWatchlistSuccessState(data);
+        emit(RemoveTvWatchlistSuccessState(data));
       },
     );
   }

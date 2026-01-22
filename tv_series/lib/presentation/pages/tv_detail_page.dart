@@ -214,7 +214,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
                             SizedBox(height: 16),
                             ...seasons(),
                             Text('Recommendations', style: heading6),
-                            recomendations(),
+                            recommendationsWidget(),
                             SizedBox(height: 16),
                           ],
                         ),
@@ -255,27 +255,31 @@ class _TvDetailPageState extends State<TvDetailPage> {
   }
 
   Widget watchlistButton(BuildContext context) {
-    return FilledButton(
-      onPressed: () async {
-        if (tvDetail != null) {
-          if (isAddedWatchlist) {
-            context.read<TVWatchlistBloc>().add(
-              OnRemoveTvWatchlistEvent(tvDetail!),
-            );
-          } else {
-            context.read<TVWatchlistBloc>().add(
-              OnSaveTvWatchlistEvent(tvDetail!),
-            );
-          }
-        }
+    return BlocBuilder<TVWatchlistBloc, TVWatchlistState>(
+      builder: (context, state) {
+        return FilledButton(
+          onPressed: () async {
+            if (tvDetail != null) {
+              if (isAddedWatchlist) {
+                context.read<TVWatchlistBloc>().add(
+                  OnRemoveTvWatchlistEvent(tvDetail!),
+                );
+              } else {
+                context.read<TVWatchlistBloc>().add(
+                  OnSaveTvWatchlistEvent(tvDetail!),
+                );
+              }
+            }
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              isAddedWatchlist ? Icon(Icons.check) : Icon(Icons.add),
+              Text('Watchlist'),
+            ],
+          ),
+        );
       },
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          isAddedWatchlist ? Icon(Icons.check) : Icon(Icons.add),
-          Text('Watchlist'),
-        ],
-      ),
     );
   }
 
@@ -297,37 +301,41 @@ class _TvDetailPageState extends State<TvDetailPage> {
     ];
   }
 
-  Widget recomendations() {
-    if (isLoadingRecommendations) {
-      return Container(
-        margin: EdgeInsets.symmetric(vertical: 16),
-        child: Center(child: CircularProgressIndicator()),
-      );
-    }
+  Widget recommendationsWidget() {
+    return BlocBuilder<TVRecommendationsBloc, TVRecommendationsState>(
+      builder: (context, state) {
+        if (isLoadingRecommendations) {
+          return Container(
+            margin: EdgeInsets.symmetric(vertical: 16),
+            child: Center(child: CircularProgressIndicator()),
+          );
+        }
 
-    if (recommendations.isEmpty) {
-      return EmptyResultWidget(recommendationsMessage);
-    }
+        if (recommendations.isEmpty) {
+          return EmptyResultWidget(recommendationsMessage);
+        }
 
-    return Container(
-      height: 150,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          final tvRecommendation = recommendations[index];
-          return RecomendationCard(
-            onTap: () {
-              Navigator.pushReplacementNamed(
-                context,
-                TvDetailPage.ROUTE_NAME,
-                arguments: tvRecommendation.id,
+        return Container(
+          height: 150,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              final tvRecommendation = recommendations[index];
+              return RecomendationCard(
+                onTap: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    TvDetailPage.ROUTE_NAME,
+                    arguments: tvRecommendation.id,
+                  );
+                },
+                posterPath: tvRecommendation.posterPath ?? "",
               );
             },
-            posterPath: tvRecommendation.posterPath ?? "",
-          );
-        },
-        itemCount: recommendations.length,
-      ),
+            itemCount: recommendations.length,
+          ),
+        );
+      },
     );
   }
 

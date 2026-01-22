@@ -27,6 +27,12 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
+  void didPopNext() {
+    super.didPopNext();
+    Future.microtask(callGetWatchlist);
+  }
+
   void callGetWatchlist() {
     context.read<WatchlistBloc>().add(OnGetWatchListEvent());
   }
