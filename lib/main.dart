@@ -2,6 +2,7 @@ import 'package:core/styles/styles.dart';
 import 'package:core/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/presentation/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie/presentation/pages/home_movie_page_content.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.locator<TVDetailBloc>()),
         BlocProvider(create: (_) => di.locator<TVRecommendationsBloc>()),
         BlocProvider(create: (_) => di.locator<TVWatchlistBloc>()),
+        BlocProvider(create: (_) => di.locator<MovieListBloc>()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

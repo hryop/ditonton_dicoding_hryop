@@ -88,7 +88,7 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
                 }
               },
               builder: (context, state) {
-                if (state is AiringTodayTVSeriesLoadingState) {
+                if (state is PopularTVSeriesLoadingState) {
                   return Center(child: CircularProgressIndicator());
                 }
 

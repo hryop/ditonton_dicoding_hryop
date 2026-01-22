@@ -23,6 +23,7 @@ import 'package:movie/domain/usecase/get_top_rated_movies.dart';
 import 'package:movie/domain/usecase/get_watchlist_status.dart';
 import 'package:movie/domain/usecase/remove_watchlist.dart';
 import 'package:movie/domain/usecase/save_movie_watchlist.dart';
+import 'package:movie/presentation/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:movie/presentation/provider/movie_list_notifier.dart';
 import 'package:movie/presentation/provider/popular_movies_notifier.dart';
@@ -118,6 +119,13 @@ void init() {
       removeTvWatchlist: locator(),
       saveTvWatchlist: locator(),
       getTvWatchListStatus: locator(),
+    ),
+  );
+  locator.registerFactory(
+        () => MovieListBloc(
+      getNowPlayingMovies: locator(),
+      getPopularMovies: locator(),
+      getTopRatedMovies: locator(),
     ),
   );
 
