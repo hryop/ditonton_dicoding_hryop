@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "638023799679",
+    "project_id": "ditonton-dicoding-hryop",
+    "storage_bucket": "ditonton-dicoding-hryop.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638023799679:android:4bf265335cbc2d6468c04a",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJNfNR3HZx02N1kpr1ZD9WjSAsY5Sj5t4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
