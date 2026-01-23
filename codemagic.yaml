@@ -1,6 +1,6 @@
 workflows:
   android-workflow-release:
-    name: Android Workflow
+    name: Android Workflow Release
     max_build_duration: 120
     environment:
       android_signing:
@@ -71,7 +71,7 @@ workflows:
         submit_as_draft: true
 
   android-workflow-debug:
-    name: Android Workflow
+    name: Android Workflow Debug
     max_build_duration: 120
     environment:
       android_signing:
