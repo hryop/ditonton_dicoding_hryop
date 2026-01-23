@@ -1,4 +1,6 @@
 cgg:
+	@echo "==CORE MODULE=="
+	@echo ""
 	@echo "==CLEAN THE REPOSITORY=="
 	flutter clean
 

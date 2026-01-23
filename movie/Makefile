@@ -1,4 +1,6 @@
 cgg:
+	@echo "==MOVIE MODULE=="
+	@echo ""
 	@echo "==CLEAN THE REPOSITORY=="
 	flutter clean
 

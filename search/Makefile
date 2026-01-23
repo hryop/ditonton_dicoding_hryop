@@ -1,4 +1,5 @@
 cgg:
+	@echo "==SEARCH MODULE=="
 	@echo "==CLEAN THE REPOSITORY=="
 	flutter clean
 

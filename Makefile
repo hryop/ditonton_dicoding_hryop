@@ -1,4 +1,5 @@
 cgg:
+	@echo "==APP=="
 	@echo "==CLEAN THE REPOSITORY=="
 	flutter clean
 
@@ -25,3 +26,4 @@ fvm-cgg:
 fvm-run:
 	@echo "==RUN APP=="
 	fvm flutter run
+

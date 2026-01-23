@@ -1,4 +1,5 @@
 cgg:
+	@echo "==WATCHLIST MODULE=="
 	@echo "==CLEAN THE REPOSITORY=="
 	flutter clean
 
