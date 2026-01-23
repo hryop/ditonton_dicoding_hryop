@@ -46,10 +46,6 @@ import 'package:tv_series/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendations_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_watchlist/watchlist_bloc.dart';
-import 'package:tv_series/presentation/provider/popular_tv_notifier.dart';
-import 'package:tv_series/presentation/provider/top_rated_tv_notifier.dart';
-import 'package:tv_series/presentation/provider/tv_detail_notifier.dart';
-import 'package:tv_series/presentation/provider/tv_list_notifier.dart';
 import 'package:watchlist/domain/usecase/get_watchlist.dart';
 import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 
@@ -77,27 +73,6 @@ void init() {
   locator.registerFactory(() => PopularMoviesNotifier(locator()));
   locator.registerFactory(
     () => TopRatedMoviesNotifier(getTopRatedMovies: locator()),
-  );
-
-  locator.registerFactory(
-    () => TvListNotifier(
-      getAiringTodayTvSeries: locator(),
-      getPopularTvSeries: locator(),
-      getTopRatedTvSeries: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvSeriesDetail: locator(),
-      getTvSeriesRecommendations: locator(),
-      getTvWatchListStatus: locator(),
-      saveTvWatchlist: locator(),
-      removeTvWatchlist: locator(),
-    ),
-  );
-  locator.registerFactory(() => PopularTvNotifier(locator()));
-  locator.registerFactory(
-    () => TopRatedTvNotifier(getTopRatedTvSeries: locator()),
   );
 
   //bloc

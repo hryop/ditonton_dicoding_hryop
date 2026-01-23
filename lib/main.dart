@@ -29,10 +29,6 @@ import 'package:tv_series/presentation/pages/home_tv_page_content.dart';
 import 'package:tv_series/presentation/pages/popular_tv_page.dart';
 import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv_series/presentation/pages/tv_detail_page.dart';
-import 'package:tv_series/presentation/provider/popular_tv_notifier.dart';
-import 'package:tv_series/presentation/provider/top_rated_tv_notifier.dart';
-import 'package:tv_series/presentation/provider/tv_detail_notifier.dart';
-import 'package:tv_series/presentation/provider/tv_list_notifier.dart';
 import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentataion/pages/pages.dart';
 
@@ -57,10 +53,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
-        ChangeNotifierProvider(create: (_) => di.locator<TvListNotifier>()),
-        ChangeNotifierProvider(create: (_) => di.locator<TvDetailNotifier>()),
-        ChangeNotifierProvider(create: (_) => di.locator<PopularTvNotifier>()),
-        ChangeNotifierProvider(create: (_) => di.locator<TopRatedTvNotifier>()),
         BlocProvider(create: (_) => di.locator<SearchBloc>()),
         BlocProvider(create: (_) => di.locator<SearchTvSeriesBloc>()),
         BlocProvider(create: (_) => di.locator<WatchlistBloc>()),
