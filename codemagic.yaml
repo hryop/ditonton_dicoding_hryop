@@ -90,34 +90,55 @@ workflows:
         script: |
           cd watchlist
           make cgg
+      - name: test watchlist module
+        script: |
+          cd watchlist
+          flutter test
+        ignore_failure: false
       - name: cgg search module
         script: |
           cd search
           make cgg
+      - name: test search module
+        script: |
+          cd search
+          flutter test
+        ignore_failure: false
       - name: cgg tv_series module
         script: |
           cd tv_series
           make cgg
+      - name: test tv_series module
+        script: |
+          cd tv_series
+          flutter test
+        ignore_failure: false
       - name: cgg movie module
         script: |
           cd movie
           make cgg
+      - name: test movie module
+        script: |
+          cd movie
+          flutter test
+        ignore_failure: false
       - name: cgg core module
         script: |
           cd core
           make cgg
+          echo "==test core=="
+          flutter test
+      - name: test core module
+        script: |
+          cd core
+          flutter test
+        ignore_failure: false
       - name: cgg host app
         script: |
           make cgg
-      - name: Get Flutter packages
+      - name: Flutter analyze
         script: |
-          flutter pub get
-#      - name: Flutter analyze
-#        script: |
-#          flutter analyze
-      - name: Flutter unit tests
-        script: |
-          flutter test
+          flutter analyze
         ignore_failure: true
       - name: Build APK with Flutter
         script: |
