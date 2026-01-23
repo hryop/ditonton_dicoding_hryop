@@ -1,6 +1,9 @@
 workflows:
   android-workflow-release:
     name: Android Workflow Release
+    triggering:
+      events:
+        - push
     max_build_duration: 120
     environment:
       android_signing:
@@ -72,6 +75,9 @@ workflows:
 
   android-workflow-debug:
     name: Android Workflow Debug
+    triggering:
+      events:
+        - push
     max_build_duration: 120
     environment:
       android_signing:
@@ -136,10 +142,10 @@ workflows:
       - name: cgg host app
         script: |
           make cgg
-      - name: Flutter analyze
-        script: |
-          flutter analyze
-        ignore_failure: true
+#      - name: Flutter analyze
+#        script: |
+#          flutter analyze
+#        ignore_failure: true
       - name: Build APK with Flutter
         script: |
           flutter build apk --debug
