@@ -1,9 +1,6 @@
 workflows:
   android-workflow-release:
     name: Android Workflow Release
-    triggering:
-      events:
-        - push
     max_build_duration: 120
     environment:
       android_signing:
