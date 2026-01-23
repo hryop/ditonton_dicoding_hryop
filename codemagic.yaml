@@ -142,10 +142,7 @@ workflows:
         ignore_failure: true
       - name: Build APK with Flutter
         script: |
-          BUILD_NUMBER=$(($(google-play get-latest-build-number --package-name "$PACKAGE_NAME" --tracks="$GOOGLE_PLAY_TRACK") + 1))      
-          flutter build apk --debug \
-            --build-name=1.0.$BUILD_NUMBER \
-            --build-number=$BUILD_NUMBER
+          flutter build apk --debug
     artifacts:
       - build/**/outputs/**/*.aab
       - build/**/outputs/**/mapping.txt
