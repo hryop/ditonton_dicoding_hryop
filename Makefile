@@ -1,3 +1,15 @@
+cgg:
+	@echo "==CLEAN THE REPOSITORY=="
+	flutter clean
+
+	@echo ""
+	@echo "==GETTING THE DEPENDENCIES=="
+	flutter pub get
+
+	@echo ""
+	@echo "==BUILD AND DELETE CONFLICTING OUTPUTS=="
+	flutter pub run build_runner build --delete-conflicting-outputs
+
 fvm-cgg:
 	@echo "==CLEAN THE REPOSITORY=="
 	fvm flutter clean
