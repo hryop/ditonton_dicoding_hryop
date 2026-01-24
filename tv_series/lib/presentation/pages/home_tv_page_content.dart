@@ -11,13 +11,13 @@ import 'package:tv_series/presentation/pages/tv_detail_page.dart';
 import 'package:core/presentation/widgets/empty_result_widget.dart';
 
 class HomeTVPageContent extends StatefulWidget {
-  const HomeTVPageContent({Key? key}) : super(key: key);
+  const HomeTVPageContent({super.key});
 
   @override
-  _HomeTVPageContentState createState() => _HomeTVPageContentState();
+  HomeTVPageContentState createState() => HomeTVPageContentState();
 }
 
-class _HomeTVPageContentState extends State<HomeTVPageContent> {
+class HomeTVPageContentState extends State<HomeTVPageContent> {
   List<TVSeries> airingToday = [];
   String airingTodayMessage = "";
   List<TVSeries> popular = [];
@@ -28,12 +28,14 @@ class _HomeTVPageContentState extends State<HomeTVPageContent> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-      () => context.read<TVListBloc>()
-        ..add(OnGetAiringTodayTVSeries())
-        ..add(OnGetPopularAiringTVSeries())
-        ..add(OnGetTopRatedTVSeries()),
-    );
+    Future.microtask(() {
+      if (mounted) {
+        context.read<TVListBloc>()
+          ..add(OnGetAiringTodayTVSeries())
+          ..add(OnGetPopularAiringTVSeries())
+          ..add(OnGetTopRatedTVSeries());
+      }
+    });
   }
 
   @override
@@ -62,12 +64,11 @@ class _HomeTVPageContentState extends State<HomeTVPageContent> {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if(airingToday.isEmpty){
+                if (airingToday.isEmpty) {
                   return EmptyResultWidget(airingTodayMessage);
-                }else{
+                } else {
                   return TvSeriesListWidget(airingToday);
                 }
-
               },
             ),
             SubHeading(
@@ -92,12 +93,11 @@ class _HomeTVPageContentState extends State<HomeTVPageContent> {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if(popular.isEmpty){
+                if (popular.isEmpty) {
                   return EmptyResultWidget(popularMessage);
-                }else{
+                } else {
                   return TvSeriesListWidget(popular);
                 }
-
               },
             ),
             SubHeading(
@@ -122,12 +122,11 @@ class _HomeTVPageContentState extends State<HomeTVPageContent> {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if(topRated.isEmpty){
+                if (topRated.isEmpty) {
                   return EmptyResultWidget(topRatedMessage);
-                }else{
+                } else {
                   return TvSeriesListWidget(topRated);
                 }
-
               },
             ),
           ],
@@ -140,11 +139,11 @@ class _HomeTVPageContentState extends State<HomeTVPageContent> {
 class TvSeriesListWidget extends StatelessWidget {
   final List<TVSeries> tvSeries;
 
-  TvSeriesListWidget(this.tvSeries);
+  const TvSeriesListWidget(this.tvSeries, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

@@ -3,7 +3,7 @@ import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/movie/movie.dart';
 import 'package:core/domain/entities/movie/movie_detail.dart';
 import 'package:core/presentation/widgets/empty_result_widget.dart';
-import 'package:core/presentation/widgets/recomendation_card.dart';
+import 'package:core/presentation/widgets/recommendation_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -298,7 +298,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final tvRecommendation = recommendations[index];
-              return RecomendationCard(
+              return RecommendationCard(
                 onTap: () {
                   Navigator.pushReplacementNamed(
                     context,

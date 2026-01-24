@@ -4,7 +4,7 @@ import 'package:core/domain/entities/genre.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/domain/entities/tv/tv_series_detail.dart';
 import 'package:core/presentation/widgets/empty_result_widget.dart';
-import 'package:core/presentation/widgets/recomendation_card.dart';
+import 'package:core/presentation/widgets/recommendation_card.dart';
 import 'package:core/presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,13 +18,13 @@ class TVDetailPage extends StatefulWidget {
 
   final int id;
 
-  TVDetailPage({required this.id});
+  const TVDetailPage({super.key, required this.id});
 
   @override
-  _TVDetailPageState createState() => _TVDetailPageState();
+  TVDetailPageState createState() => TVDetailPageState();
 }
 
-class _TVDetailPageState extends State<TVDetailPage> {
+class TVDetailPageState extends State<TVDetailPage> {
   TVSeriesDetail? tvDetail;
   String tvDetailMessage = '';
   bool isLoadingTVDetail = true;
@@ -40,15 +40,17 @@ class _TVDetailPageState extends State<TVDetailPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<TVDetailBloc>().add(OnGetTVSeriesDetailEvent(widget.id));
+      if (mounted) {
+        context.read<TVDetailBloc>().add(OnGetTVSeriesDetailEvent(widget.id));
 
-      context.read<TVWatchlistBloc>().add(
-        OnGetTVWatchlistStatusEvent(widget.id),
-      );
+        context.read<TVWatchlistBloc>().add(
+          OnGetTVWatchlistStatusEvent(widget.id),
+        );
 
-      context.read<TVRecommendationsBloc>().add(
-        OnGetTVSeriesRecommendationsEvent(widget.id),
-      );
+        context.read<TVRecommendationsBloc>().add(
+          OnGetTVSeriesRecommendationsEvent(widget.id),
+        );
+      }
     });
   }
 
@@ -58,8 +60,6 @@ class _TVDetailPageState extends State<TVDetailPage> {
       listeners: [
         BlocListener<TVDetailBloc, TVDetailState>(
           listener: (context, state) {
-            print("state_TVDetailState: " + state.toString());
-
             if (state is GetTVSeriesDetailHasDataState) {
               tvDetail = state.result;
               isLoadingTVDetail = false;
@@ -148,14 +148,14 @@ class _TVDetailPageState extends State<TVDetailPage> {
               return EmptyResultWidget(tvDetailMessage);
             }
 
-            return SafeArea(child: TVSeriesDetailContent());
+            return SafeArea(child: tvSeriesDetailContent());
           },
         ),
       ),
     );
   }
 
-  Widget TVSeriesDetailContent() {
+  Widget tvSeriesDetailContent() {
     final screenWidth = MediaQuery.of(context).size.width;
     return Stack(
       children: [
@@ -311,13 +311,13 @@ class _TVDetailPageState extends State<TVDetailPage> {
           return EmptyResultWidget(recommendationsMessage);
         }
 
-        return Container(
+        return SizedBox(
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               final tvRecommendation = recommendations[index];
-              return RecomendationCard(
+              return RecommendationCard(
                 onTap: () {
                   Navigator.pushReplacementNamed(
                     context,

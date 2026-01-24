@@ -8,17 +8,19 @@ import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 class TopRatedTVPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tv';
 
+  const TopRatedTVPage({super.key});
+
   @override
-  _TopRatedTVPageState createState() => _TopRatedTVPageState();
+  TopRatedTVPageState createState() => TopRatedTVPageState();
 }
 
-class _TopRatedTVPageState extends State<TopRatedTVPage> {
+class TopRatedTVPageState extends State<TopRatedTVPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-      () => context.read<TVListBloc>().add(OnGetTopRatedTVSeries()),
-    );
+    Future.microtask((){
+      if(mounted) context.read<TVListBloc>().add(OnGetTopRatedTVSeries());
+    });
   }
 
   @override

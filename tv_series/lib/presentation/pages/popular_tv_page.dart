@@ -8,17 +8,19 @@ import 'package:flutter/material.dart';
 class PopularTVPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tv';
 
+  const PopularTVPage({super.key});
+
   @override
-  _PopularTVPageState createState() => _PopularTVPageState();
+  PopularTVPageState createState() => PopularTVPageState();
 }
 
-class _PopularTVPageState extends State<PopularTVPage> {
+class PopularTVPageState extends State<PopularTVPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-      () => context.read<TVListBloc>().add(OnGetPopularAiringTVSeries()),
-    );
+    Future.microtask((){
+      if(mounted) context.read<TVListBloc>().add(OnGetPopularAiringTVSeries());
+    });
   }
 
   @override

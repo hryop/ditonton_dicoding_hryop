@@ -1,4 +1,4 @@
-library watchlist;
+library;
 
 export 'domain/usecase/usecase.dart';
 export 'presentataion/pages/pages.dart';

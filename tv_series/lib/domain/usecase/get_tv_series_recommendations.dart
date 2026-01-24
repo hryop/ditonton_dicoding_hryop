@@ -8,7 +8,7 @@ class GetTVSeriesRecommendations {
 
   GetTVSeriesRecommendations(this.repository);
 
-  Future<Either<Failure, List<TVSeries>>> execute(id) {
+  Future<Either<Failure, List<TVSeries>>> execute(int id) {
     return repository.getTvSeriesRecommendations(id);
   }
 }

@@ -1,6 +1,7 @@
 name: tv_series
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -28,6 +29,7 @@ dependencies:
   core:
     path: ../core
   flutter_bloc: ^9.1.1
+  bloc: ^9.2.0
   rxdart: ^0.28.0
 
 dev_dependencies:
