@@ -18,7 +18,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     );
   }
 
-  Future<void> _onQueryChanged(event, emit) async {
+  Future<void> _onQueryChanged(
+    OnQueryChanged event,
+    Emitter<SearchState> emit,
+  ) async {
     emit(SearchLoadingState());
 
     final String query = event.query;

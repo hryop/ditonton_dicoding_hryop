@@ -19,7 +19,7 @@ class SearchTvSeriesBloc
     );
   }
 
-  Future<void> _onQueryTVSeriesChanged(event, emit) async{
+  Future<void> _onQueryTVSeriesChanged(OnQueryTVSeriesChanged event, Emitter<SearchTvSeriesState> emit) async{
     emit(SearchTvSeriesLoadingState());
 
     final String query = event.query;

@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/movie/search_bloc.dart';
 
 class SearchMoviePage extends StatelessWidget {
-  static const ROUTE_NAME = '/search_movie';
+  static const routeName = '/search_movie';
+
+  const SearchMoviePage({super.key});
 
   @override
   Widget build(BuildContext context) {
