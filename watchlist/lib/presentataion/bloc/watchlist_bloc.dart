@@ -14,7 +14,10 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
     on<WatchlistEvent>(_onGetWatchlist);
   }
 
-  Future<void> _onGetWatchlist(event, emit) async {
+  Future<void> _onGetWatchlist(
+    WatchlistEvent event,
+    Emitter<WatchlistState> emit,
+  ) async {
     emit(WatchlistLoadingState());
 
     final result = await _getWatchlist.execute();

@@ -4,17 +4,18 @@ import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WatchlistPage extends StatefulWidget {
-  static const ROUTE_NAME = '/watchlist-movie';
+  static const routeName = '/watchlist-movie';
+
+  const WatchlistPage({super.key});
 
   @override
-  _WatchlistPageState createState() => _WatchlistPageState();
+  WatchlistPageState createState() => WatchlistPageState();
 }
 
-class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
+class WatchlistPageState extends State<WatchlistPage> with RouteAware {
   @override
   void initState() {
     super.initState();

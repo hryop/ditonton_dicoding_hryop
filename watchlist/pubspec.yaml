@@ -1,6 +1,7 @@
 name: watchlist
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -29,6 +30,7 @@ dependencies:
     path: ../core
   flutter_bloc: ^9.1.1
   rxdart: ^0.28.0
+  bloc: ^9.2.0
 
 dev_dependencies:
   flutter_test:
