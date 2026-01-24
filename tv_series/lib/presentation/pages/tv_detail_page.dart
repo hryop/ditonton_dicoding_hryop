@@ -14,7 +14,7 @@ import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendation
 import 'package:tv_series/presentation/bloc/tv_watchlist/watchlist_bloc.dart';
 
 class TVDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/tv_detail';
+  static const routeName = '/tv_detail';
 
   final int id;
 
@@ -321,7 +321,7 @@ class TVDetailPageState extends State<TVDetailPage> {
                 onTap: () {
                   Navigator.pushReplacementNamed(
                     context,
-                    TVDetailPage.ROUTE_NAME,
+                    TVDetailPage.routeName,
                     arguments: tvRecommendation.id,
                   );
                 },

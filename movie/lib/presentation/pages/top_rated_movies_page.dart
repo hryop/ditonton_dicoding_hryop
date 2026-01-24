@@ -3,36 +3,37 @@ import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/movie_list_bloc.dart';
-import 'package:provider/provider.dart';
 
 class TopRatedMoviesPage extends StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-movie';
+  static const routeName = '/top-rated-movie';
+
+  const TopRatedMoviesPage({super.key});
 
   @override
-  _TopRatedMoviesPageState createState() => _TopRatedMoviesPageState();
+  TopRatedMoviesPageState createState() => TopRatedMoviesPageState();
 }
 
-class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
+class TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => context.read<MovieListBloc>().add(OnGetTopRatedMovies()));
+    Future.microtask(() {
+      if (mounted) {
+        context.read<MovieListBloc>().add(OnGetTopRatedMovies());
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Top Rated Movies'),
-      ),
+      appBar: AppBar(title: Text('Top Rated Movies')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<MovieListBloc, MovieListState>(
           builder: (context, state) {
             if (state is TopRatedMoviesLoadingState) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
+              return Center(child: CircularProgressIndicator());
             } else if (state is TopRatedMoviesHasDataState) {
               return ListView.builder(
                 itemBuilder: (context, index) {

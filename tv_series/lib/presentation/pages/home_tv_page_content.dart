@@ -74,7 +74,7 @@ class HomeTVPageContentState extends State<HomeTVPageContent> {
             SubHeading(
               title: 'Popular',
               onTap: () =>
-                  Navigator.pushNamed(context, PopularTVPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, PopularTVPage.routeName),
             ),
             BlocConsumer<TVListBloc, TVListState>(
               listener: (context, state) {
@@ -103,7 +103,7 @@ class HomeTVPageContentState extends State<HomeTVPageContent> {
             SubHeading(
               title: 'Top Rated',
               onTap: () =>
-                  Navigator.pushNamed(context, TopRatedTVPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, TopRatedTVPage.routeName),
             ),
             BlocConsumer<TVListBloc, TVListState>(
               listener: (context, state) {
@@ -155,7 +155,7 @@ class TvSeriesListWidget extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  TVDetailPage.ROUTE_NAME,
+                  TVDetailPage.routeName,
                   arguments: movie.id,
                 );
               },

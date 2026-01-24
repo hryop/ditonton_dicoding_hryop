@@ -7,19 +7,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/movie_list_bloc.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
-import 'package:provider/provider.dart';
 import 'package:core/core.dart';
 
 import 'movie_detail_page.dart';
 
 class HomeMoviePageContent extends StatefulWidget {
-  const HomeMoviePageContent({Key? key}) : super(key: key);
+  const HomeMoviePageContent({super.key});
 
   @override
-  _HomeMoviePageContentState createState() => _HomeMoviePageContentState();
+  HomeMoviePageContentState createState() => HomeMoviePageContentState();
 }
 
-class _HomeMoviePageContentState extends State<HomeMoviePageContent> {
+class HomeMoviePageContentState extends State<HomeMoviePageContent> {
   List<Movie> nowPlaying = [];
   String nowPlayingMessage = "";
   List<Movie> popular = [];
@@ -30,12 +29,14 @@ class _HomeMoviePageContentState extends State<HomeMoviePageContent> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(
-          () => context.read<MovieListBloc>()
-        ..add(OnGetNowPlayingMovies())
-        ..add(OnGetPopularMoies())
-        ..add(OnGetTopRatedMovies()),
-    );
+    Future.microtask(() {
+      if (mounted) {
+        context.read<MovieListBloc>()
+          ..add(OnGetNowPlayingMovies())
+          ..add(OnGetPopularMoies())
+          ..add(OnGetTopRatedMovies());
+      }
+    });
   }
 
   @override
@@ -64,18 +65,17 @@ class _HomeMoviePageContentState extends State<HomeMoviePageContent> {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if(nowPlaying.isEmpty){
+                if (nowPlaying.isEmpty) {
                   return EmptyResultWidget(nowPlayingMessage);
-                }else{
+                } else {
                   return MovieListWidget(nowPlaying);
                 }
-
               },
             ),
             SubHeading(
               title: 'Popular',
               onTap: () =>
-                  Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, PopularMoviesPage.routeName),
             ),
             BlocConsumer<MovieListBloc, MovieListState>(
               listener: (context, state) {
@@ -94,18 +94,17 @@ class _HomeMoviePageContentState extends State<HomeMoviePageContent> {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if(popular.isEmpty){
+                if (popular.isEmpty) {
                   return EmptyResultWidget(popularMessage);
-                }else{
+                } else {
                   return MovieListWidget(popular);
                 }
-
               },
             ),
             SubHeading(
               title: 'Top Rated',
               onTap: () =>
-                  Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, TopRatedMoviesPage.routeName),
             ),
             BlocConsumer<MovieListBloc, MovieListState>(
               listener: (context, state) {
@@ -124,12 +123,11 @@ class _HomeMoviePageContentState extends State<HomeMoviePageContent> {
                   return Center(child: CircularProgressIndicator());
                 }
 
-                if(topRated.isEmpty){
+                if (topRated.isEmpty) {
                   return EmptyResultWidget(topRatedMessage);
-                }else{
+                } else {
                   return MovieListWidget(topRated);
                 }
-
               },
             ),
           ],
@@ -142,11 +140,11 @@ class _HomeMoviePageContentState extends State<HomeMoviePageContent> {
 class MovieListWidget extends StatelessWidget {
   final List<Movie> movies;
 
-  MovieListWidget(this.movies);
+  const MovieListWidget(this.movies, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -158,7 +156,7 @@ class MovieListWidget extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage.ROUTE_NAME,
+                  MovieDetailPage.routeName,
                   arguments: movie.id,
                 );
               },

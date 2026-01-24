@@ -13,17 +13,17 @@ import 'package:movie/presentation/bloc/movie_watchlist/movie_watchlist_bloc.dar
 import 'package:core/core.dart';
 
 class MovieDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/movie_detail';
+  static const routeName = '/movie_detail';
 
   final int id;
 
-  MovieDetailPage({required this.id});
+  const MovieDetailPage({super.key, required this.id});
 
   @override
-  _MovieDetailPageState createState() => _MovieDetailPageState();
+  MovieDetailPageState createState() => MovieDetailPageState();
 }
 
-class _MovieDetailPageState extends State<MovieDetailPage> {
+class MovieDetailPageState extends State<MovieDetailPage> {
   MovieDetail? movieDetail;
   String movieDetailMessage = '';
   bool isLoadingMovieDetail = true;
@@ -39,13 +39,15 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<MovieDetailBloc>().add(OnGetMovieDetailEvent(widget.id));
-      context.read<MovieWatchlistBloc>().add(
-        OnGetTvWatchlistStatusEvent(widget.id),
-      );
-      context.read<MovieRecommendationsBloc>().add(
-        OnGetMoviesRecommendationsEvent(widget.id),
-      );
+      if (mounted) {
+        context.read<MovieDetailBloc>().add(OnGetMovieDetailEvent(widget.id));
+        context.read<MovieWatchlistBloc>().add(
+          OnGetTvWatchlistStatusEvent(widget.id),
+        );
+        context.read<MovieRecommendationsBloc>().add(
+          OnGetMoviesRecommendationsEvent(widget.id),
+        );
+      }
     });
   }
 
@@ -143,14 +145,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               return EmptyResultWidget(movieDetailMessage);
             }
 
-            return SafeArea(child: MovieDetailContent());
+            return SafeArea(child: movieDetailContent());
           },
         ),
       ),
     );
   }
 
-  MovieDetailContent() {
+  Stack movieDetailContent() {
     final screenWidth = MediaQuery.of(context).size.width;
     return Stack(
       children: [
@@ -292,7 +294,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           return EmptyResultWidget(recommendationsMessage);
         }
 
-        return Container(
+        return SizedBox(
           height: 150,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -302,7 +304,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
                 onTap: () {
                   Navigator.pushReplacementNamed(
                     context,
-                    MovieDetailPage.ROUTE_NAME,
+                    MovieDetailPage.routeName,
                     arguments: tvRecommendation.id,
                   );
                 },
