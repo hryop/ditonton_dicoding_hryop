@@ -20,4 +20,4 @@ This repository was developed based on [starter project a199-flutter-expert-proj
 - JBR 21
 
 ## Code Design & Structure
-This project is using Proivider State Management and Clean Architecture Pattern
+This project is using BLoC State Management and Clean Architecture Pattern
