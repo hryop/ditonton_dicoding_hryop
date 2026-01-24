@@ -11,7 +11,7 @@ class TVDetailState extends Equatable {
 class GetTVSeriesDetailLoadingState extends TVDetailState {}
 
 class GetTVSeriesDetailHasDataState extends TVDetailState {
-  final TvSeriesDetail result;
+  final TVSeriesDetail result;
 
   const GetTVSeriesDetailHasDataState(this.result);
 

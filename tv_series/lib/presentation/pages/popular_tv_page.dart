@@ -4,16 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class PopularTvPage extends StatefulWidget {
+class PopularTVPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tv';
 
   @override
-  _PopularTvPageState createState() => _PopularTvPageState();
+  _PopularTVPageState createState() => _PopularTVPageState();
 }
 
-class _PopularTvPageState extends State<PopularTvPage> {
+class _PopularTVPageState extends State<PopularTVPage> {
   @override
   void initState() {
     super.initState();

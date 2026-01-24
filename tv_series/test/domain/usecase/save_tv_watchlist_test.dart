@@ -8,12 +8,12 @@ import '../../helper/test_helper.mocks.dart';
 
 
 void main() {
-  late SaveTvWatchlist usecase;
+  late SaveTVWatchlist usecase;
   late MockTvSeriesRepository mockTvSeriesRepository;
 
   setUp(() {
     mockTvSeriesRepository = MockTvSeriesRepository();
-    usecase = SaveTvWatchlist(mockTvSeriesRepository);
+    usecase = SaveTVWatchlist(mockTvSeriesRepository);
   });
 
   test('should save movie to the repository', () async {

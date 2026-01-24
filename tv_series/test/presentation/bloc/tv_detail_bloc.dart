@@ -9,14 +9,14 @@ import 'package:tv_series/presentation/bloc/tv_detail/tv_detail_bloc.dart';
 import '../../dummy_data/dummy_objects.dart';
 import 'tv_detail_bloc.mocks.dart';
 
-@GenerateMocks([GetTvSeriesDetail])
+@GenerateMocks([GetTVSeriesDetail])
 void main() {
   late TVDetailBloc tvDetailBloc;
-  late MockGetTvSeriesDetail mockGetTvSeriesDetail;
+  late MockGetTVSeriesDetail mockGetTVSeriesDetail;
 
   setUp(() {
-    mockGetTvSeriesDetail = MockGetTvSeriesDetail();
-    tvDetailBloc = TVDetailBloc(getTvSeriesDetail: mockGetTvSeriesDetail);
+    mockGetTVSeriesDetail = MockGetTVSeriesDetail();
+    tvDetailBloc = TVDetailBloc(getTVSeriesDetail: mockGetTVSeriesDetail);
   });
 
   final tId = 1;
@@ -24,20 +24,20 @@ void main() {
   blocTest<TVDetailBloc, TVDetailState>(
     "should change tv seriesdetail data when data is gotten successfully",
     build: (){
-      when(mockGetTvSeriesDetail.execute(tId)).thenAnswer(
+      when(mockGetTVSeriesDetail.execute(tId)).thenAnswer(
             (_) async => Right(testTvDetail),
       );
 
       return tvDetailBloc;
     },
-    act: (bloc)=>bloc.add(OnGetTvSeriesDetailEvent(tId)),
+    act: (bloc)=>bloc.add(OnGetTVSeriesDetailEvent(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => <TVDetailState>[
       GetTVSeriesDetailLoadingState(),
       GetTVSeriesDetailHasDataState(testTvDetail)
     ],
     verify: (bloc){
-      verify(mockGetTvSeriesDetail.execute(tId));
+      verify(mockGetTVSeriesDetail.execute(tId));
     }
   );
 }

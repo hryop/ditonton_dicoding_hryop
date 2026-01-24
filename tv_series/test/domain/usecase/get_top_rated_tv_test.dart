@@ -8,12 +8,12 @@ import '../../helper/test_helper.mocks.dart';
 
 
 void main() {
-  late GetTopRatedTvSeries usecase;
+  late GetTopRatedTVSeries usecase;
   late MockTvSeriesRepository mockTvSeriesRepository;
 
   setUp(() {
     mockTvSeriesRepository = MockTvSeriesRepository();
-    usecase = GetTopRatedTvSeries(mockTvSeriesRepository);
+    usecase = GetTopRatedTVSeries(mockTvSeriesRepository);
   });
 
   final tTvSeries = <TVSeries>[];

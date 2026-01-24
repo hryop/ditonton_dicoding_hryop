@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 
-class TopRatedTvPage extends StatefulWidget {
+class TopRatedTVPage extends StatefulWidget {
   static const ROUTE_NAME = '/top-rated-tv';
 
   @override
-  _TopRatedTvPageState createState() => _TopRatedTvPageState();
+  _TopRatedTVPageState createState() => _TopRatedTVPageState();
 }
 
-class _TopRatedTvPageState extends State<TopRatedTvPage> {
+class _TopRatedTVPageState extends State<TopRatedTVPage> {
   @override
   void initState() {
     super.initState();

@@ -12,28 +12,28 @@ import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
 import 'tv_list_bloc.mocks.dart';
 
 @GenerateMocks([
-  GetAiringTodayTvSeries,
-  GetPopularTvSeries,
-  GetTopRatedTvSeries,
+  GetAiringTodayTVSeries,
+  GetPopularTVSeries,
+  GetTopRatedTVSeries,
 ])
 void main() {
   late TVListBloc tvListBloc;
-  late MockGetAiringTodayTvSeries mockGetAiringTodayTvSeries;
-  late MockGetPopularTvSeries mockGetPopularTvSeries;
-  late MockGetTopRatedTvSeries mockGetTopRatedTvSeries;
+  late MockGetAiringTodayTVSeries mockGetAiringTodayTVSeries;
+  late MockGetPopularTVSeries mockGetPopularTVSeries;
+  late MockGetTopRatedTVSeries mockGetTopRatedTVSeries;
 
   setUp(() {
-    mockGetAiringTodayTvSeries = MockGetAiringTodayTvSeries();
-    mockGetPopularTvSeries = MockGetPopularTvSeries();
-    mockGetTopRatedTvSeries = MockGetTopRatedTvSeries();
+    mockGetAiringTodayTVSeries = MockGetAiringTodayTVSeries();
+    mockGetPopularTVSeries = MockGetPopularTVSeries();
+    mockGetTopRatedTVSeries = MockGetTopRatedTVSeries();
     tvListBloc = TVListBloc(
-      getAiringTodayTvSeries: mockGetAiringTodayTvSeries,
-      getPopularTvSeries: mockGetPopularTvSeries,
-      getTopRatedTvSeries: mockGetTopRatedTvSeries,
+      getAiringTodayTVSeries: mockGetAiringTodayTVSeries,
+      getPopularTVSeries: mockGetPopularTVSeries,
+      getTopRatedTVSeries: mockGetTopRatedTVSeries,
     );
   });
 
-  final tTvSeries = TVSeries(
+  final tTVSeries = TVSeries(
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],
@@ -47,22 +47,22 @@ void main() {
     voteAverage: 1,
     voteCount: 1,
   );
-  final tTvSeriesList = <TVSeries>[tTvSeries];
+  final tTVSeriesList = <TVSeries>[tTVSeries];
 
   blocTest<TVListBloc, TVListState>(
     "should change movies data when data is gotten successfully",
     build: () {
       when(
-        mockGetAiringTodayTvSeries.execute(),
-      ).thenAnswer((_) async => Right(tTvSeriesList));
+        mockGetAiringTodayTVSeries.execute(),
+      ).thenAnswer((_) async => Right(tTVSeriesList));
 
       when(
-        mockGetPopularTvSeries.execute(),
-      ).thenAnswer((_) async => Right(tTvSeriesList));
+        mockGetPopularTVSeries.execute(),
+      ).thenAnswer((_) async => Right(tTVSeriesList));
 
       when(
-        mockGetTopRatedTvSeries.execute(),
-      ).thenAnswer((_) async => Right(tTvSeriesList));
+        mockGetTopRatedTVSeries.execute(),
+      ).thenAnswer((_) async => Right(tTVSeriesList));
 
       return tvListBloc;
     },
@@ -74,16 +74,16 @@ void main() {
     wait: const Duration(milliseconds: 100),
     expect: () => <TVListState>[
       AiringTodayTVSeriesLoadingState(),
-      AiringTodayTVSeriesHasDataState(tTvSeriesList),
+      AiringTodayTVSeriesHasDataState(tTVSeriesList),
       PopularTVSeriesLoadingState(),
-      PopularTVSeriesHasDataState(tTvSeriesList),
+      PopularTVSeriesHasDataState(tTVSeriesList),
       TopRatedTVSeriesLoadingState(),
-      TopRatedTVSeriesHasDataState(tTvSeriesList),
+      TopRatedTVSeriesHasDataState(tTVSeriesList),
     ],
     verify: (bloc) {
-      verify(mockGetAiringTodayTvSeries.execute());
-      verify(mockGetPopularTvSeries.execute());
-      verify(mockGetTopRatedTvSeries.execute());
+      verify(mockGetAiringTodayTVSeries.execute());
+      verify(mockGetPopularTVSeries.execute());
+      verify(mockGetTopRatedTVSeries.execute());
     },
   );
 }

@@ -8,27 +8,27 @@ part 'tv_list_event.dart';
 part 'tv_list_state.dart';
 
 class TVListBloc extends Bloc<TVListEvent, TVListState> {
-  GetAiringTodayTvSeries getAiringTodayTvSeries;
-  GetPopularTvSeries getPopularTvSeries;
-  GetTopRatedTvSeries getTopRatedTvSeries;
+  GetAiringTodayTVSeries getAiringTodayTVSeries;
+  GetPopularTVSeries getPopularTVSeries;
+  GetTopRatedTVSeries getTopRatedTVSeries;
 
   TVListBloc({
-    required this.getAiringTodayTvSeries,
-    required this.getPopularTvSeries,
-    required this.getTopRatedTvSeries,
+    required this.getAiringTodayTVSeries,
+    required this.getPopularTVSeries,
+    required this.getTopRatedTVSeries,
   }) : super(AiringTodayTVSeriesLoadingState()) {
-    on<OnGetAiringTodayTVSeries>(_onGetAiringTodayTvSeries);
-    on<OnGetPopularAiringTVSeries>(_onGetPopularTvSeries);
-    on<OnGetTopRatedTVSeries>(_onGetTopRatedTvSeries);
+    on<OnGetAiringTodayTVSeries>(_onGetAiringTodayTVSeries);
+    on<OnGetPopularAiringTVSeries>(_onGetPopularTVSeries);
+    on<OnGetTopRatedTVSeries>(_onGetTopRatedTVSeries);
   }
 
-  Future<void> _onGetAiringTodayTvSeries(
+  Future<void> _onGetAiringTodayTVSeries(
     OnGetAiringTodayTVSeries event,
     Emitter<TVListState> emit,
   ) async {
     emit(AiringTodayTVSeriesLoadingState());
 
-    final result = await getAiringTodayTvSeries.execute();
+    final result = await getAiringTodayTVSeries.execute();
 
     result.fold(
       (failure) {
@@ -44,13 +44,13 @@ class TVListBloc extends Bloc<TVListEvent, TVListState> {
     );
   }
 
-  Future<void> _onGetPopularTvSeries(
+  Future<void> _onGetPopularTVSeries(
     OnGetPopularAiringTVSeries event,
     Emitter<TVListState> emit,
   ) async {
     emit(PopularTVSeriesLoadingState());
 
-    final result = await getPopularTvSeries.execute();
+    final result = await getPopularTVSeries.execute();
 
     result.fold(
       (failure) {
@@ -66,13 +66,13 @@ class TVListBloc extends Bloc<TVListEvent, TVListState> {
     );
   }
 
-  Future<void> _onGetTopRatedTvSeries(
+  Future<void> _onGetTopRatedTVSeries(
     OnGetTopRatedTVSeries event,
     Emitter<TVListState> emit,
   ) async {
     emit(TopRatedTVSeriesLoadingState());
 
-    final result = await getTopRatedTvSeries.execute();
+    final result = await getTopRatedTVSeries.execute();
 
     result.fold(
       (failure) {

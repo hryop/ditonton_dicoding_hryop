@@ -9,29 +9,29 @@ part 'tv_recommendations_state.dart';
 
 class TVRecommendationsBloc
     extends Bloc<TVRecommendationsEvent, TVRecommendationsState> {
-  final GetTvSeriesRecommendations getTvSeriesRecommendations;
+  final GetTVSeriesRecommendations getTVSeriesRecommendations;
 
-  TVRecommendationsBloc(this.getTvSeriesRecommendations)
-    : super(GetTvSeriesRecommendationsLoadingState()) {
-    on<OnGetTvSeriesRecommendationsEvent>(_onGetTvSeriesRecommendationsEvent);
+  TVRecommendationsBloc(this.getTVSeriesRecommendations)
+    : super(GetTVSeriesRecommendationsLoadingState()) {
+    on<OnGetTVSeriesRecommendationsEvent>(_onGetTVSeriesRecommendationsEvent);
   }
 
-  Future<void> _onGetTvSeriesRecommendationsEvent(
-    OnGetTvSeriesRecommendationsEvent event,
+  Future<void> _onGetTVSeriesRecommendationsEvent(
+    OnGetTVSeriesRecommendationsEvent event,
     Emitter<TVRecommendationsState> emit,
   ) async {
-    emit(GetTvSeriesRecommendationsLoadingState());
+    emit(GetTVSeriesRecommendationsLoadingState());
 
-    final result = await getTvSeriesRecommendations.execute(event.id);
+    final result = await getTVSeriesRecommendations.execute(event.id);
     result.fold(
       (failure) {
-        emit(GetTvSeriesRecommendationsErrorState(failure.message));
+        emit(GetTVSeriesRecommendationsErrorState(failure.message));
       },
       (data) {
         if (data.isEmpty) {
-          emit(GetTvSeriesRecommendationsEmptyState());
+          emit(GetTVSeriesRecommendationsEmptyState());
         } else {
-          emit(GetTvSeriesRecommendationsHasDataState(data));
+          emit(GetTVSeriesRecommendationsHasDataState(data));
         }
       },
     );

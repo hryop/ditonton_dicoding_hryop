@@ -77,7 +77,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, TvSeriesDetail>> getTvDetail(int id) async {
+  Future<Either<Failure, TVSeriesDetail>> getTvDetail(int id) async {
     try {
       final result = await remoteDataSource.getTvSeriesDetail(id);
       return Right(result.toEntity());
@@ -103,7 +103,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
 
   @override
   Future<Either<Failure, String>> saveWatchlist(
-      TvSeriesDetail tvSeriesDetail) async {
+      TVSeriesDetail tvSeriesDetail) async {
     try {
       final result = await watchlistLocalDataSource
           .insertWatchlist(WatchlistModel.fromTvEntity(tvSeriesDetail));
@@ -124,7 +124,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
 
   @override
   Future<Either<Failure, String>> removeWatchlist(
-      TvSeriesDetail tvSeriesDetail) async {
+      TVSeriesDetail tvSeriesDetail) async {
     try {
       final result = await watchlistLocalDataSource
           .removeWatchlist(WatchlistModel.fromTvEntity(tvSeriesDetail));

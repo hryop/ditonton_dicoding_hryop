@@ -9,21 +9,21 @@ import 'package:tv_series/presentation/bloc/tv_watchlist/watchlist_bloc.dart';
 
 import 'tv_watchlist_bloc.mocks.dart';
 
-@GenerateMocks([GetTvWatchlistStatus, SaveTvWatchlist, RemoveTvWatchlist])
+@GenerateMocks([GetTVWatchlistStatus, SaveTVWatchlist, RemoveTVWatchlist])
 void main() {
   late TVWatchlistBloc tvWatchlistBloc;
-  late MockGetTvWatchlistStatus mockGetTvWatchlistStatus;
-  late MockSaveTvWatchlist mockSaveTvWatchlist;
-  late MockRemoveTvWatchlist mockRemoveTvWatchlist;
+  late MockGetTVWatchlistStatus mockGetTVWatchlistStatus;
+  late MockSaveTVWatchlist mockSaveTVWatchlist;
+  late MockRemoveTVWatchlist mockRemoveTVWatchlist;
 
   setUp(() {
-    mockGetTvWatchlistStatus = MockGetTvWatchlistStatus();
-    mockSaveTvWatchlist = MockSaveTvWatchlist();
-    mockRemoveTvWatchlist = MockRemoveTvWatchlist();
+    mockGetTVWatchlistStatus = MockGetTVWatchlistStatus();
+    mockSaveTVWatchlist = MockSaveTVWatchlist();
+    mockRemoveTVWatchlist = MockRemoveTVWatchlist();
     tvWatchlistBloc = TVWatchlistBloc(
-      removeTvWatchlist: mockRemoveTvWatchlist,
-      saveTvWatchlist: mockSaveTvWatchlist,
-      getTvWatchListStatus: mockGetTvWatchlistStatus,
+      removeTVWatchlist: mockRemoveTVWatchlist,
+      saveTVWatchlist: mockSaveTVWatchlist,
+      getTVWatchListStatus: mockGetTVWatchlistStatus,
     );
   });
 
@@ -34,21 +34,21 @@ void main() {
     "should change movies data when data is gotten successfully",
     build: () {
       when(
-        mockGetTvWatchlistStatus.execute(tId),
+        mockGetTVWatchlistStatus.execute(tId),
       ).thenAnswer((_) async => isAddedWatchlist);
 
       return tvWatchlistBloc;
     },
     act: (bloc) {
-      bloc.add(OnGetTvWatchlistStatusEvent(tId));
+      bloc.add(OnGetTVWatchlistStatusEvent(tId));
     },
     wait: const Duration(milliseconds: 100),
     expect: () => <TVWatchlistState>[
-      GetTvWatchlistStatusLoadingState (),
-      GetTvWatchlistStatusResultState (isAddedWatchlist),
+      GetTVWatchlistStatusLoadingState (),
+      GetTVWatchlistStatusResultState (isAddedWatchlist),
     ],
     verify: (bloc) {
-      verify(mockGetTvWatchlistStatus.execute(tId));
+      verify(mockGetTVWatchlistStatus.execute(tId));
     },
   );
 

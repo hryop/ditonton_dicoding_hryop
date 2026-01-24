@@ -9,20 +9,20 @@ import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendation
 
 import 'tv_recommendations_bloc.mocks.dart';
 
-@GenerateMocks([GetTvSeriesRecommendations])
+@GenerateMocks([GetTVSeriesRecommendations])
 void main() {
   late TVRecommendationsBloc tvRecommendationsBloc;
-  late MockGetTvSeriesRecommendations mockGetTvSeriesRecommendations;
+  late MockGetTVSeriesRecommendations mockGetTVSeriesRecommendations;
 
   setUp(() {
-    mockGetTvSeriesRecommendations = MockGetTvSeriesRecommendations();
+    mockGetTVSeriesRecommendations = MockGetTVSeriesRecommendations();
     tvRecommendationsBloc = TVRecommendationsBloc(
-      mockGetTvSeriesRecommendations,
+      mockGetTVSeriesRecommendations,
     );
   });
 
   final tId = 1;
-  final tTvSeries = TVSeries(
+  final tTVSeries = TVSeries(
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],
@@ -36,27 +36,27 @@ void main() {
     voteAverage: 1,
     voteCount: 1,
   );
-  final tTvSeriesList = <TVSeries>[tTvSeries];
+  final tTVSeriesList = <TVSeries>[tTVSeries];
 
   blocTest<TVRecommendationsBloc, TVRecommendationsState>(
     "should change movies data when data is gotten successfully",
     build: () {
       when(
-        mockGetTvSeriesRecommendations.execute(tId),
-      ).thenAnswer((_) async => Right(tTvSeriesList));
+        mockGetTVSeriesRecommendations.execute(tId),
+      ).thenAnswer((_) async => Right(tTVSeriesList));
 
       return tvRecommendationsBloc;
     },
     act: (bloc) {
-      bloc.add(OnGetTvSeriesRecommendationsEvent(tId));
+      bloc.add(OnGetTVSeriesRecommendationsEvent(tId));
     },
     wait: const Duration(milliseconds: 100),
     expect: () => <TVRecommendationsState>[
-      GetTvSeriesRecommendationsLoadingState(),
-      GetTvSeriesRecommendationsHasDataState(tTvSeriesList),
+      GetTVSeriesRecommendationsLoadingState(),
+      GetTVSeriesRecommendationsHasDataState(tTVSeriesList),
     ],
     verify: (bloc) {
-      verify(mockGetTvSeriesRecommendations.execute(tId));
+      verify(mockGetTVSeriesRecommendations.execute(tId));
     },
   );
 }

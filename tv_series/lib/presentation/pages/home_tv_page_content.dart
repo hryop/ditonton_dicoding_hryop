@@ -10,14 +10,14 @@ import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv_series/presentation/pages/tv_detail_page.dart';
 import 'package:core/presentation/widgets/empty_result_widget.dart';
 
-class HomeTvPageContent extends StatefulWidget {
-  const HomeTvPageContent({Key? key}) : super(key: key);
+class HomeTVPageContent extends StatefulWidget {
+  const HomeTVPageContent({Key? key}) : super(key: key);
 
   @override
-  _HomeTvPageContentState createState() => _HomeTvPageContentState();
+  _HomeTVPageContentState createState() => _HomeTVPageContentState();
 }
 
-class _HomeTvPageContentState extends State<HomeTvPageContent> {
+class _HomeTVPageContentState extends State<HomeTVPageContent> {
   List<TVSeries> airingToday = [];
   String airingTodayMessage = "";
   List<TVSeries> popular = [];
@@ -73,7 +73,7 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
             SubHeading(
               title: 'Popular',
               onTap: () =>
-                  Navigator.pushNamed(context, PopularTvPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, PopularTVPage.ROUTE_NAME),
             ),
             BlocConsumer<TVListBloc, TVListState>(
               listener: (context, state) {
@@ -103,7 +103,7 @@ class _HomeTvPageContentState extends State<HomeTvPageContent> {
             SubHeading(
               title: 'Top Rated',
               onTap: () =>
-                  Navigator.pushNamed(context, TopRatedTvPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, TopRatedTVPage.ROUTE_NAME),
             ),
             BlocConsumer<TVListBloc, TVListState>(
               listener: (context, state) {
@@ -156,7 +156,7 @@ class TvSeriesListWidget extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  TvDetailPage.ROUTE_NAME,
+                  TVDetailPage.ROUTE_NAME,
                   arguments: movie.id,
                 );
               },

@@ -87,8 +87,8 @@ class TvSeriesDetailResponse extends Equatable {
         "seasons": List<dynamic>.from(seasons.map((x) => x.toJson())),
       };
 
-  TvSeriesDetail toEntity() {
-    return TvSeriesDetail(
+  TVSeriesDetail toEntity() {
+    return TVSeriesDetail(
       adult: this.adult,
       backdropPath: this.backdropPath,
       genres: this.genres.map((genre) => genre.toEntity()).toList(),

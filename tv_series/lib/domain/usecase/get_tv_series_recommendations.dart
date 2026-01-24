@@ -3,10 +3,10 @@ import 'package:core/utils/failure.dart';
 import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:core/domain/repositories/tv_series_repository.dart';
 
-class GetTvSeriesRecommendations {
+class GetTVSeriesRecommendations {
   final TvSeriesRepository repository;
 
-  GetTvSeriesRecommendations(this.repository);
+  GetTVSeriesRecommendations(this.repository);
 
   Future<Either<Failure, List<TVSeries>>> execute(id) {
     return repository.getTvSeriesRecommendations(id);

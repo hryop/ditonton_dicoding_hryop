@@ -32,7 +32,7 @@ class WatchlistModel extends Equatable {
           overview: movie.overview,
           contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
 
-  factory WatchlistModel.fromTvEntity(TvSeriesDetail tvSeriesDetail) =>
+  factory WatchlistModel.fromTvEntity(TVSeriesDetail tvSeriesDetail) =>
       WatchlistModel(
           id: tvSeriesDetail.id,
           title: tvSeriesDetail.title,

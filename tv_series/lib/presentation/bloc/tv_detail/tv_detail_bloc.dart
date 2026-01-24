@@ -8,18 +8,18 @@ part 'tv_detail_event.dart';
 part 'tv_detail_state.dart';
 
 class TVDetailBloc extends Bloc<TVDetailEvent, TVDetailState> {
-  final GetTvSeriesDetail getTvSeriesDetail;
+  final GetTVSeriesDetail getTVSeriesDetail;
 
   TVDetailBloc({
-    required this.getTvSeriesDetail,
+    required this.getTVSeriesDetail,
   }) : super(GetTVSeriesDetailLoadingState()) {
-    on<OnGetTvSeriesDetailEvent>(_onGetTvSeriesDetailEvent);
+    on<OnGetTVSeriesDetailEvent>(_onGetTVSeriesDetailEvent);
   }
 
-  Future<void> _onGetTvSeriesDetailEvent( OnGetTvSeriesDetailEvent event, Emitter<TVDetailState> emit) async {
+  Future<void> _onGetTVSeriesDetailEvent( OnGetTVSeriesDetailEvent event, Emitter<TVDetailState> emit) async {
     emit(GetTVSeriesDetailLoadingState());
 
-    final result = await getTvSeriesDetail.execute(event.id);
+    final result = await getTVSeriesDetail.execute(event.id);
     result.fold(
       (failure) {
         emit(GetTVSeriesDetailErrorState(failure.message));

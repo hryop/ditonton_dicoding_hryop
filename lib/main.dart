@@ -17,14 +17,7 @@ import 'package:core/presentation/widgets/custom_drawer.dart';
 import 'package:search/presentation/bloc/bloc.dart';
 import 'package:search/presentation/pages/pages.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tv_series/presentation/bloc/tv_detail/tv_detail_bloc.dart';
-import 'package:tv_series/presentation/bloc/tv_list/tv_list_bloc.dart';
-import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendations_bloc.dart';
-import 'package:tv_series/presentation/bloc/tv_watchlist/watchlist_bloc.dart';
-import 'package:tv_series/presentation/pages/home_tv_page_content.dart';
-import 'package:tv_series/presentation/pages/popular_tv_page.dart';
-import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
-import 'package:tv_series/presentation/pages/tv_detail_page.dart';
+import 'package:tv_series/tv_series.dart';
 import 'package:watchlist/presentataion/bloc/watchlist_bloc.dart';
 import 'package:watchlist/presentataion/pages/pages.dart';
 
@@ -62,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         home: Material(
           child: CustomDrawer(
-            homeTVSeriesPageContent: HomeTvPageContent(),
+            homeTVSeriesPageContent: HomeTVPageContent(),
             homeMoviePageContent: HomeMoviePageContent(),
           ),
         ),
@@ -73,7 +66,7 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                 builder: (_) => Material(
                   child: CustomDrawer(
-                    homeTVSeriesPageContent: HomeTvPageContent(),
+                    homeTVSeriesPageContent: HomeTVPageContent(),
                     homeMoviePageContent: HomeMoviePageContent(),
                   ),
                 ),
@@ -93,13 +86,13 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(builder: (_) => SearchMoviePage());
 
             case POPULAR_TV_SERIES_ROUTE:
-              return CupertinoPageRoute(builder: (_) => PopularTvPage());
+              return CupertinoPageRoute(builder: (_) => PopularTVPage());
             case TOP_RATED_TV_SERIES_ROUTE:
-              return CupertinoPageRoute(builder: (_) => TopRatedTvPage());
+              return CupertinoPageRoute(builder: (_) => TopRatedTVPage());
             case DETAIL_TV_SERIES_ROUTE:
               final id = settings.arguments as int;
               return MaterialPageRoute(
-                builder: (_) => TvDetailPage(id: id),
+                builder: (_) => TVDetailPage(id: id),
                 settings: settings,
               );
             case SEARCH_TV_SERIES_ROUTE:

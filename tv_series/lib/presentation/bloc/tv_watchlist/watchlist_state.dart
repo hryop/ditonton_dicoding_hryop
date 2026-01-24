@@ -8,50 +8,50 @@ class TVWatchlistState extends Equatable {
 }
 
 //watchlist status
-class GetTvWatchlistStatusLoadingState extends TVWatchlistState {}
+class GetTVWatchlistStatusLoadingState extends TVWatchlistState {}
 
-class GetTvWatchlistStatusResultState extends TVWatchlistState {
+class GetTVWatchlistStatusResultState extends TVWatchlistState {
   final bool result;
 
-  const GetTvWatchlistStatusResultState(this.result);
+  const GetTVWatchlistStatusResultState(this.result);
 
   @override
   List<Object?> get props => [result];
 }
 
 //save watchlist
-class SaveTvWatchlistSuccessState extends TVWatchlistState {
+class SaveTVWatchlistSuccessState extends TVWatchlistState {
   final String saveSuccessMessage;
 
-  const SaveTvWatchlistSuccessState(this.saveSuccessMessage);
+  const SaveTVWatchlistSuccessState(this.saveSuccessMessage);
 
   @override
   List<Object?> get props => [saveSuccessMessage];
 }
 
-class SaveTvWatchlistErrorState extends TVWatchlistState {
+class SaveTVWatchlistErrorState extends TVWatchlistState {
   final String saveErrorMessage;
 
-  const SaveTvWatchlistErrorState(this.saveErrorMessage);
+  const SaveTVWatchlistErrorState(this.saveErrorMessage);
 
   @override
   List<Object?> get props => [saveErrorMessage];
 }
 
 //remove watchlist
-class RemoveTvWatchlistSuccessState extends TVWatchlistState {
+class RemoveTVWatchlistSuccessState extends TVWatchlistState {
   final String removeSuccessMessage;
 
-  const RemoveTvWatchlistSuccessState(this.removeSuccessMessage);
+  const RemoveTVWatchlistSuccessState(this.removeSuccessMessage);
 
   @override
   List<Object?> get props => [removeSuccessMessage];
 }
 
-class RemoveTvWatchlistErrorState extends TVWatchlistState {
+class RemoveTVWatchlistErrorState extends TVWatchlistState {
   final String removeErrorMessage;
 
-  const RemoveTvWatchlistErrorState(this.removeErrorMessage);
+  const RemoveTVWatchlistErrorState(this.removeErrorMessage);
 
   @override
   List<Object?> get props => [removeErrorMessage];

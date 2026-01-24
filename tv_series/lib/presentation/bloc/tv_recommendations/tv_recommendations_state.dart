@@ -8,24 +8,24 @@ class TVRecommendationsState extends Equatable{
 
 }
 
-class GetTvSeriesRecommendationsLoadingState extends TVRecommendationsState {}
+class GetTVSeriesRecommendationsLoadingState extends TVRecommendationsState {}
 
-class GetTvSeriesRecommendationsHasDataState extends TVRecommendationsState {
+class GetTVSeriesRecommendationsHasDataState extends TVRecommendationsState {
   final List<TVSeries> result;
 
-  const GetTvSeriesRecommendationsHasDataState(this.result);
+  const GetTVSeriesRecommendationsHasDataState(this.result);
 
   @override
   List<Object?> get props => [result];
 }
 
-class GetTvSeriesRecommendationsErrorState extends TVRecommendationsState {
+class GetTVSeriesRecommendationsErrorState extends TVRecommendationsState {
   final String message;
 
-  const GetTvSeriesRecommendationsErrorState(this.message);
+  const GetTVSeriesRecommendationsErrorState(this.message);
 
   @override
   List<Object?> get props => [message];
 }
 
-class GetTvSeriesRecommendationsEmptyState extends TVRecommendationsState {}
+class GetTVSeriesRecommendationsEmptyState extends TVRecommendationsState {}

@@ -41,7 +41,7 @@ final testMovieDetail = MovieDetail(
   voteCount: 1,
 );
 
-final testTvDetail = TvSeriesDetail(
+final testTvDetail = TVSeriesDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [Genre(id: 1, name: 'Action')],
