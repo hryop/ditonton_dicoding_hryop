@@ -3,7 +3,7 @@
 <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_1.png" width="200" height="355,56"> <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_2.png" width="200" height="355,56"> <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_3.png" width="200" height="355,56"> <img src="https://github.com/hryop/ditonton_dicoding_hryop/blob/main/readme_assets/screenshot_4.png" width="200" height="355,56">
 
 This repository was developed based on [starter project a199-flutter-expert-project](https://github.com/dicodingacademy/a199-flutter-expert-project) for [Flutter Expert Dicoding Indonesia](https://www.dicoding.com/academies/199-menjadi-flutter-developer-expert) class submission.
-
+ 
 [![Codemagic build status](https://api.codemagic.io/apps/697248b131e105ba021a3f41/android-workflow-debug/status_badge.svg)](https://api.codemagic.io/apps/697248b131e105ba021a3f41/android-workflow-debug/latest_build)
 
 ---
