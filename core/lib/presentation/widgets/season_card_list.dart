@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 class SeasonCard extends StatelessWidget {
   final TvSeriesSeason season;
 
-  SeasonCard(this.season);
+  const SeasonCard(this.season, {super.key});
 
   String getAirDate() {
     String result = "First airing (No Info)";
@@ -64,6 +64,7 @@ class SeasonCard extends StatelessWidget {
               bottom: 16,
             ),
             child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
               child: CachedNetworkImage(
                 imageUrl: '$BASE_IMAGE_URL${season.posterPath}',
                 width: 80,
@@ -72,7 +73,6 @@ class SeasonCard extends StatelessWidget {
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
-              borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:core/domain/entities/tv/tv_series.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesModel extends Equatable {
-  TvSeriesModel({
+  const TvSeriesModel({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -67,18 +67,18 @@ class TvSeriesModel extends Equatable {
 
   TVSeries toEntity() {
     return TVSeries(
-      adult: this.adult,
-      backdropPath: this.backdropPath,
-      genreIds: this.genreIds,
-      id: this.id,
-      originalTitle: this.originalTitle,
-      overview: this.overview,
-      popularity: this.popularity,
-      posterPath: this.posterPath,
-      releaseDate: this.releaseDate,
-      title: this.title,
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
+      adult: adult,
+      backdropPath: backdropPath,
+      genreIds: genreIds,
+      id: id,
+      originalTitle: originalTitle,
+      overview: overview,
+      popularity: popularity,
+      posterPath: posterPath,
+      releaseDate: releaseDate,
+      title: title,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
     );
   }
 

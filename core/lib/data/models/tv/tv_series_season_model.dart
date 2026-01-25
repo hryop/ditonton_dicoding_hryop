@@ -7,7 +7,7 @@ class TvSeriesSeasonModel extends Equatable {
   final String seasonName;
   final String posterPath;
 
-  TvSeriesSeasonModel(
+  const TvSeriesSeasonModel(
       {required this.airDate,
       required this.episodeCount,
       required this.seasonName,
@@ -29,10 +29,10 @@ class TvSeriesSeasonModel extends Equatable {
 
   TvSeriesSeason toEntity() {
     return TvSeriesSeason(
-        airDate: this.airDate,
-        episodeCount: this.episodeCount,
-        seasonName: this.seasonName,
-        posterPath: this.posterPath);
+        airDate: airDate,
+        episodeCount: episodeCount,
+        seasonName: seasonName,
+        posterPath: posterPath);
   }
 
   @override

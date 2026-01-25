@@ -9,8 +9,8 @@ class MovieCard extends StatelessWidget {
   final bool showContentType;
   final String contentType;
 
-  MovieCard(this.movie,
-      {this.showContentType = false,
+  const MovieCard(this.movie,
+      {super.key, this.showContentType = false,
       this.contentType = DatabaseHelper.CONTENT_TYPE_MOVIE});
 
   @override
@@ -71,6 +71,7 @@ class MovieCard extends StatelessWidget {
                 bottom: 16,
               ),
               child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
                   width: 80,
@@ -79,7 +80,6 @@ class MovieCard extends StatelessWidget {
                   ),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
             ),
           ],

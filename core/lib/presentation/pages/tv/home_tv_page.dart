@@ -8,10 +8,10 @@ class HomeTvPage extends StatefulWidget {
   final Widget homeTVSereisPageContent;
 
   const HomeTvPage({
-    Key? key,
+    super.key,
     required this.toggleDrawer,
     required this.homeTVSereisPageContent,
-  }) : super(key: key);
+  });
 
   @override
   _HomeTvPageState createState() => _HomeTvPageState();

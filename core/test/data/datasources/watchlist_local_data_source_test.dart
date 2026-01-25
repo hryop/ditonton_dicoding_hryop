@@ -1,7 +1,6 @@
 import 'package:core/data/datasources/watchlist_local_data_source.dart';
 import 'package:core/utils/exception.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
-import 'package:core/data/datasources/movie/movie_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

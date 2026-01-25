@@ -8,10 +8,10 @@ class HomeMoviePage extends StatefulWidget {
   final Widget homeMoviePageContent;
 
   const HomeMoviePage({
-    Key? key,
+    super.key,
     required this.toggleDrawer,
     required this.homeMoviePageContent,
-  }) : super(key: key);
+  });
 
   @override
   _HomeMoviePageState createState() => _HomeMoviePageState();

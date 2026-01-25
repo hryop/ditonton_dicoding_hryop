@@ -6,7 +6,7 @@ class TvSeriesSeason extends Equatable{
   final String seasonName;
   final String posterPath;
 
-  TvSeriesSeason({
+  const TvSeriesSeason({
     required this.airDate,
     required this.episodeCount,
     required this.seasonName,
