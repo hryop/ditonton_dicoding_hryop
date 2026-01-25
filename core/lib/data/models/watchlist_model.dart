@@ -16,7 +16,7 @@ class WatchlistModel extends Equatable {
   final String? overview;
   final String? contentType;
 
-  WatchlistModel({
+  const WatchlistModel({
     required this.id,
     required this.title,
     required this.posterPath,

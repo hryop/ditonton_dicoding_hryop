@@ -1,12 +1,11 @@
 import 'package:core/styles/text_styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SubHeading extends StatelessWidget {
   String title;
   Function() onTap;
 
-  SubHeading({required this.title, required this.onTap});
+  SubHeading({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

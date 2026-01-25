@@ -24,7 +24,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   @override
   Future<List<WatchlistModel>> getCachedNowPlayingMovies() async {
     final result = await databaseHelper.getCacheMovies(DatabaseHelper.CATEGORY_NOW_PLAYING);
-    if (result.length > 0) {
+    if (result.isNotEmpty) {
       return result.map((data) => WatchlistModel.fromMap(data)).toList();
     } else {
       throw CacheException("Can't get the data :(");
@@ -34,7 +34,7 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   @override
   Future<List<WatchlistModel>> getCachedAiringTodayTvSeries() async {
     final result = await databaseHelper.getCacheMovies(DatabaseHelper.CATEGORY_AIRING_TODAY);
-    if (result.length > 0) {
+    if (result.isNotEmpty) {
       return result.map((data) => WatchlistModel.fromMap(data)).toList();
     } else {
       throw CacheException("Can't get the data :(");
