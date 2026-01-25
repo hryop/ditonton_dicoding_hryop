@@ -9,7 +9,7 @@ class CustomDrawer extends StatefulWidget {
   Widget homeTVSeriesPageContent;
   Widget homeMoviePageContent;
 
-  CustomDrawer({
+  CustomDrawer({super.key,
     required this.homeTVSeriesPageContent,
     required this.homeMoviePageContent,
   });
@@ -21,7 +21,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  String SELECTED_HOME = DatabaseHelper.CONTENT_TYPE_MOVIE;
+  String selectedHome = DatabaseHelper.CONTENT_TYPE_MOVIE;
 
   void toggle() => _animationController.isDismissed
       ? _animationController.forward()
@@ -64,7 +64,7 @@ class _CustomDrawerState extends State<CustomDrawer>
                     ..translate(slide)
                     ..scale(scale),
                   alignment: Alignment.centerLeft,
-                  child: SELECTED_HOME == DatabaseHelper.CONTENT_TYPE_MOVIE
+                  child: selectedHome == DatabaseHelper.CONTENT_TYPE_MOVIE
                       ? HomeMoviePage(
                           toggleDrawer: toggle,
                           homeMoviePageContent: widget.homeMoviePageContent,
@@ -100,7 +100,7 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.movie),
             title: Text('Movies'),
             onTap: () {
-              SELECTED_HOME = DatabaseHelper.CONTENT_TYPE_MOVIE;
+              selectedHome = DatabaseHelper.CONTENT_TYPE_MOVIE;
               toggle();
             },
           ),
@@ -108,7 +108,7 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.tv),
             title: Text('TV Series'),
             onTap: () {
-              SELECTED_HOME = DatabaseHelper.CONTENT_TYPE_TV;
+              selectedHome = DatabaseHelper.CONTENT_TYPE_TV;
               toggle();
             },
           ),
@@ -116,12 +116,12 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.save_alt),
             title: Text('Watchlist'),
             onTap: () {
-              Navigator.pushNamed(context, WATCHLIST_ROUTE);
+              Navigator.pushNamed(context, watchlistRoute);
             },
           ),
           ListTile(
             onTap: () {
-              Navigator.pushNamed(context, ABOUT_ROUTE);
+              Navigator.pushNamed(context, aboutRoute);
             },
             leading: Icon(Icons.info_outline),
             title: Text('About'),

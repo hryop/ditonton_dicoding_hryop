@@ -22,8 +22,8 @@ class MovieCard extends StatelessWidget {
           Navigator.pushNamed(
             context,
             contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
-                ? DETAIL_MOVIE_ROUTE
-                : DETAIL_TV_SERIES_ROUTE,
+                ? detailMovieRoute
+                : detailTVSeriesRoute,
             arguments: movie.id,
           );
         },

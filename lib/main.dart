@@ -66,35 +66,35 @@ class MyApp extends StatelessWidget {
                 ),
               );
 
-            case POPULAR_MOVIES_ROUTE:
+            case popularMoviesRoute:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            case TOP_RATED_MOVIE_ROUTE:
+            case topRatedMovieRoute:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
-            case DETAIL_MOVIE_ROUTE:
+            case detailMovieRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
                 settings: settings,
               );
-            case SEARCH_MOVIE_ROUTE:
+            case searchMovieRoute:
               return CupertinoPageRoute(builder: (_) => SearchMoviePage());
 
-            case POPULAR_TV_SERIES_ROUTE:
+            case popularTVSeriesRoute:
               return CupertinoPageRoute(builder: (_) => PopularTVPage());
-            case TOP_RATED_TV_SERIES_ROUTE:
+            case topRatedTVSeriesRoute:
               return CupertinoPageRoute(builder: (_) => TopRatedTVPage());
-            case DETAIL_TV_SERIES_ROUTE:
+            case detailTVSeriesRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TVDetailPage(id: id),
                 settings: settings,
               );
-            case SEARCH_TV_SERIES_ROUTE:
+            case searchTVSeriesRoute:
               return CupertinoPageRoute(builder: (_) => SearchTvPage());
 
-            case WATCHLIST_ROUTE:
+            case watchlistRoute:
               return MaterialPageRoute(builder: (_) => WatchlistPage());
-            case ABOUT_ROUTE:
+            case aboutRoute:
               return MaterialPageRoute(builder: (_) => AboutPage());
             default:
               return MaterialPageRoute(

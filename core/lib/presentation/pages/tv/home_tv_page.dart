@@ -31,7 +31,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SEARCH_TV_SERIES_ROUTE);
+              Navigator.pushNamed(context, searchTVSeriesRoute);
             },
             icon: Icon(Icons.search),
           ),
