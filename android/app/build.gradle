@@ -1,5 +1,5 @@
-import java.util.Properties
-import java.io.FileInputStream
+//import java.util.Properties
+//import java.io.FileInputStream
 
 plugins {
     id "com.android.application"
@@ -75,12 +75,12 @@ android {
                 keyAlias System.getenv()["CM_KEY_ALIAS"]
                 keyPassword System.getenv()["CM_KEY_PASSWORD"]
             }
-            else {
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-                storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-                storePassword keystoreProperties['storePassword']
-            }
+//            else {
+//                keyAlias keystoreProperties['keyAlias']
+//                keyPassword keystoreProperties['keyPassword']
+//                storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+//                storePassword keystoreProperties['storePassword']
+//            }
         }
     }
     buildTypes {
