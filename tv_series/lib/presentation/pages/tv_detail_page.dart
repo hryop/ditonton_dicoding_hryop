@@ -255,8 +255,6 @@ class TVDetailPageState extends State<TVDetailPage> {
       builder: (context, state) {
         return FilledButton(
           onPressed: () async {
-            // throw StateError("Test Crash");
-
             if (tvDetail != null) {
               if (isAddedWatchlist) {
                 context.read<TVWatchlistBloc>().add(
