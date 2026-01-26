@@ -17,7 +17,7 @@ class HttpSSLPinning {
   static Future<http.Client> createLEClient() async {
     SecurityContext securityContext = SecurityContext(withTrustedRoots: false);
     try {
-      final bytes = await rootBundle.load('certificates/ditonton_api_certificates.pem');
+      final bytes = await rootBundle.load('certificates/ditonton_api_certificate.pem');
       securityContext.setTrustedCertificatesBytes(bytes.buffer.asUint8List());
     } on TlsException catch (e) {
       if (e.osError?.message != null &&

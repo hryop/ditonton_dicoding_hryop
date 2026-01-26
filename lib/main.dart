@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:core/styles/styles.dart';
+import 'package:core/utils/network/ssl_pinning.dart';
 import 'package:core/utils/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -31,6 +32,8 @@ Future<void> main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
