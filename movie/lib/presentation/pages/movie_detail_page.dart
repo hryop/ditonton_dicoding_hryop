@@ -157,7 +157,7 @@ class MovieDetailPageState extends State<MovieDetailPage> {
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: '$BASE_IMAGE_URL${movieDetail?.posterPath}',
+          imageUrl: '$baseImageURL${movieDetail?.posterPath}',
           width: screenWidth,
           placeholder: (context, url) =>
               Center(child: CircularProgressIndicator()),

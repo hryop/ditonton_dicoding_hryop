@@ -160,7 +160,7 @@ class TVDetailPageState extends State<TVDetailPage> {
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: '$BASE_IMAGE_URL${tvDetail?.posterPath}',
+          imageUrl: '$baseImageURL${tvDetail?.posterPath}',
           width: screenWidth,
           placeholder: (context, url) =>
               Center(child: CircularProgressIndicator()),

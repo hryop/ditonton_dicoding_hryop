@@ -48,7 +48,7 @@ class SearchTvPage extends StatelessWidget {
                         final tvSeries = result[index];
                         return MovieCard(
                           tvSeries.toMovieEntity(),
-                          contentType: DatabaseHelper.CONTENT_TYPE_TV,
+                          contentType: DatabaseHelper.contentTypeTV,
                         );
                       },
                       itemCount: result.length,

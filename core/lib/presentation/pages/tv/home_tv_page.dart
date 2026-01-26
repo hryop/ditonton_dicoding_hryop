@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:core/core.dart';
 
 class HomeTvPage extends StatefulWidget {
-  static const ROUTE_NAME = '/home-tv';
+  static const routeName = '/home-tv';
 
   final VoidCallback toggleDrawer;
-  final Widget homeTVSereisPageContent;
+  final Widget homeTVSeriesPageContent;
 
   const HomeTvPage({
     super.key,
     required this.toggleDrawer,
-    required this.homeTVSereisPageContent,
+    required this.homeTVSeriesPageContent,
   });
 
   @override
-  _HomeTvPageState createState() => _HomeTvPageState();
+  HomeTvPageState createState() => HomeTvPageState();
 }
 
-class _HomeTvPageState extends State<HomeTvPage> {
+class HomeTvPageState extends State<HomeTvPage> {
   @override
   void initState() {
     super.initState();
@@ -41,7 +41,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           icon: Icon(Icons.menu),
         ),
       ),
-      body: widget.homeTVSereisPageContent,
+      body: widget.homeTVSeriesPageContent,
     );
   }
 }

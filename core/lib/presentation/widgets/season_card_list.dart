@@ -25,58 +25,56 @@ class SeasonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          Card(
-            child: Container(
-              margin: const EdgeInsets.only(
-                left: 80 + 16,
-                bottom: 8,
-                right: 8,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    season.seasonName.isEmpty? '-' : season.seasonName,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: heading6,
-                  ),
-                  Text(
-                    getAirDate(),
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    "${season.episodeCount} Episode${season.episodeCount > 1 ? "s" : ""}",
-                    overflow: TextOverflow.ellipsis,
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
+    return Stack(
+      alignment: Alignment.bottomLeft,
+      children: [
+        Card(
+          child: Container(
             margin: const EdgeInsets.only(
-              bottom: 16,
+              left: 80 + 16,
+              bottom: 8,
+              right: 8,
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(8)),
-              child: CachedNetworkImage(
-                imageUrl: '$BASE_IMAGE_URL${season.posterPath}',
-                width: 80,
-                placeholder: (context, url) => Center(
-                  child: CircularProgressIndicator(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  season.seasonName.isEmpty? '-' : season.seasonName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: heading6,
                 ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+                Text(
+                  getAirDate(),
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 12),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  "${season.episodeCount} Episode${season.episodeCount > 1 ? "s" : ""}",
+                  overflow: TextOverflow.ellipsis,
+                )
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(
+            bottom: 16,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+            child: CachedNetworkImage(
+              imageUrl: '$baseImageURL${season.posterPath}',
+              width: 80,
+              placeholder: (context, url) => Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

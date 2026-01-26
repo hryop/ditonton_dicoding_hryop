@@ -138,7 +138,7 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<bool> isAddedToWatchlist(int id) async {
     final result = await watchlistLocalDataSource.getWatchlistItemById(
-        id, DatabaseHelper.CONTENT_TYPE_MOVIE);
+        id, DatabaseHelper.contentTypeMovie);
     return result != null;
   }
 

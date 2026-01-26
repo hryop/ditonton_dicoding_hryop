@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core/core.dart';
 
 class HomeMoviePage extends StatefulWidget {
-  static const ROUTE_NAME = '/home-movie';
+  static const routeName = '/home-movie';
 
   final VoidCallback toggleDrawer;
   final Widget homeMoviePageContent;
@@ -14,10 +14,10 @@ class HomeMoviePage extends StatefulWidget {
   });
 
   @override
-  _HomeMoviePageState createState() => _HomeMoviePageState();
+  HomeMoviePageState createState() => HomeMoviePageState();
 }
 
-class _HomeMoviePageState extends State<HomeMoviePage> {
+class HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();

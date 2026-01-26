@@ -30,7 +30,7 @@ class WatchlistModel extends Equatable {
           title: movie.title,
           posterPath: movie.posterPath,
           overview: movie.overview,
-          contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+          contentType: DatabaseHelper.contentTypeMovie);
 
   factory WatchlistModel.fromTvEntity(TVSeriesDetail tvSeriesDetail) =>
       WatchlistModel(
@@ -38,7 +38,7 @@ class WatchlistModel extends Equatable {
           title: tvSeriesDetail.title,
           posterPath: tvSeriesDetail.posterPath,
           overview: tvSeriesDetail.overview,
-          contentType: DatabaseHelper.CONTENT_TYPE_TV);
+          contentType: DatabaseHelper.contentTypeTV);
 
   factory WatchlistModel.fromMap(Map<String, dynamic> map) =>
       WatchlistModel(
@@ -55,7 +55,7 @@ class WatchlistModel extends Equatable {
           title: movie.title,
           posterPath: movie.posterPath,
           overview: movie.overview,
-          contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+          contentType: DatabaseHelper.contentTypeMovie);
 
   factory WatchlistModel.fromTvDTO(TvSeriesModel tvSeriesModel) =>
       WatchlistModel(
@@ -63,7 +63,7 @@ class WatchlistModel extends Equatable {
           title: tvSeriesModel.title,
           posterPath: tvSeriesModel.posterPath,
           overview: tvSeriesModel.overview,
-          contentType: DatabaseHelper.CONTENT_TYPE_TV);
+          contentType: DatabaseHelper.contentTypeTV);
 
   Map<String, dynamic> toJson() =>
       {

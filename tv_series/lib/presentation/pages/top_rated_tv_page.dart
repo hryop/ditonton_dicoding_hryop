@@ -39,7 +39,7 @@ class TopRatedTVPageState extends State<TopRatedTVPage> {
                   final tvSeries = state.result[index];
                   return MovieCard(
                     tvSeries.toMovieEntity(),
-                    contentType: DatabaseHelper.CONTENT_TYPE_TV,
+                    contentType: DatabaseHelper.contentTypeTV,
                   );
                 },
                 itemCount: state.result.length,

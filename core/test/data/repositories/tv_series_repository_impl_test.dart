@@ -23,14 +23,14 @@ void main() {
   late MockTVSereisLocalDataSource mockLocalDataSource;
   late MockWatchlistLocalDataSource mockWatchlistLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
-  late MockDatabaseHelper mockDatabaseHelper;
+  // late MockDatabaseHelper mockDatabaseHelper;
 
   setUp(() {
     mockRemoteDataSource = MockTVSereisRemoteDataSource();
     mockLocalDataSource = MockTVSereisLocalDataSource();
     mockWatchlistLocalDataSource = MockWatchlistLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
-    mockDatabaseHelper = MockDatabaseHelper();
+    // mockDatabaseHelper = MockDatabaseHelper();
     repository = TvSeriesRepositoryImpl(
         remoteDataSource: mockRemoteDataSource,
         localDataSource: mockLocalDataSource,
@@ -76,15 +76,15 @@ void main() {
           'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
       posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
       title: 'Spider-Man',
-      contentType: DatabaseHelper.CONTENT_TYPE_TV);
+      contentType: DatabaseHelper.contentTypeTV);
 
-  final testMovieCacheMap = {
-    'id': 557,
-    'overview':
-        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
-    'posterPath': '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
-    'title': 'Spider-Man',
-  };
+  // final testMovieCacheMap = {
+  //   'id': 557,
+  //   'overview':
+  //       'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+  //   'posterPath': '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+  //   'title': 'Spider-Man',
+  // };
 
   final tTvSeriesModelList = <TvSeriesModel>[tTvSeriesModel];
   final tTvSeriesList = <TVSeries>[tTvSeries];
@@ -521,7 +521,7 @@ void main() {
       // arrange
       final tId = 1;
       when(mockWatchlistLocalDataSource.getWatchlistItemById(
-              tId, DatabaseHelper.CONTENT_TYPE_TV))
+              tId, DatabaseHelper.contentTypeTV))
           .thenAnswer((_) async => null);
       // act
       final result = await repository.isAddedToWatchlist(tId);

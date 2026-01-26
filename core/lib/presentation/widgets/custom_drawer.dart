@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomDrawer extends StatefulWidget {
-  Widget homeTVSeriesPageContent;
-  Widget homeMoviePageContent;
+  final Widget homeTVSeriesPageContent;
+  final Widget homeMoviePageContent;
 
-  CustomDrawer({super.key,
+  const CustomDrawer({super.key,
     required this.homeTVSeriesPageContent,
     required this.homeMoviePageContent,
   });
@@ -21,7 +21,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-  String selectedHome = DatabaseHelper.CONTENT_TYPE_MOVIE;
+  String selectedHome = DatabaseHelper.contentTypeMovie;
 
   void toggle() => _animationController.isDismissed
       ? _animationController.forward()
@@ -64,14 +64,14 @@ class _CustomDrawerState extends State<CustomDrawer>
                     ..translate(slide)
                     ..scale(scale),
                   alignment: Alignment.centerLeft,
-                  child: selectedHome == DatabaseHelper.CONTENT_TYPE_MOVIE
+                  child: selectedHome == DatabaseHelper.contentTypeMovie
                       ? HomeMoviePage(
                           toggleDrawer: toggle,
                           homeMoviePageContent: widget.homeMoviePageContent,
                         )
                       : HomeTvPage(
                           toggleDrawer: toggle,
-                          homeTVSereisPageContent:
+                          homeTVSeriesPageContent:
                               widget.homeTVSeriesPageContent,
                         ),
                 ),
@@ -84,50 +84,48 @@ class _CustomDrawerState extends State<CustomDrawer>
   }
 
   Widget _buildDrawer() {
-    return Container(
-      child: Column(
-        children: [
-          UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage('assets/circle-g.png'),
-              backgroundColor: Colors.grey.shade900,
-            ),
-            accountName: Text('hryop'),
-            accountEmail: Text('https://github.com/hryop'),
-            decoration: BoxDecoration(color: Colors.grey.shade900),
+    return Column(
+      children: [
+        UserAccountsDrawerHeader(
+          currentAccountPicture: CircleAvatar(
+            backgroundImage: AssetImage('assets/circle-g.png'),
+            backgroundColor: Colors.grey.shade900,
           ),
-          ListTile(
-            leading: Icon(Icons.movie),
-            title: Text('Movies'),
-            onTap: () {
-              selectedHome = DatabaseHelper.CONTENT_TYPE_MOVIE;
-              toggle();
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.tv),
-            title: Text('TV Series'),
-            onTap: () {
-              selectedHome = DatabaseHelper.CONTENT_TYPE_TV;
-              toggle();
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.save_alt),
-            title: Text('Watchlist'),
-            onTap: () {
-              Navigator.pushNamed(context, watchlistRoute);
-            },
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.pushNamed(context, aboutRoute);
-            },
-            leading: Icon(Icons.info_outline),
-            title: Text('About'),
-          ),
-        ],
-      ),
+          accountName: Text('hryop'),
+          accountEmail: Text('https://github.com/hryop'),
+          decoration: BoxDecoration(color: Colors.grey.shade900),
+        ),
+        ListTile(
+          leading: Icon(Icons.movie),
+          title: Text('Movies'),
+          onTap: () {
+            selectedHome = DatabaseHelper.contentTypeMovie;
+            toggle();
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.tv),
+          title: Text('TV Series'),
+          onTap: () {
+            selectedHome = DatabaseHelper.contentTypeTV;
+            toggle();
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.save_alt),
+          title: Text('Watchlist'),
+          onTap: () {
+            Navigator.pushNamed(context, watchlistRoute);
+          },
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.pushNamed(context, aboutRoute);
+          },
+          leading: Icon(Icons.info_outline),
+          title: Text('About'),
+        ),
+      ],
     );
   }
 }

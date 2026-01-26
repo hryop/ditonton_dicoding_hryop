@@ -69,19 +69,19 @@ void main() {
 
     test('should return Movie Detail Table when data is found', () async {
       // arrange
-      when(mockDatabaseHelper.getWatchlistItemById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE))
+      when(mockDatabaseHelper.getWatchlistItemById(tId, DatabaseHelper.contentTypeMovie))
           .thenAnswer((_) async => testMovieMap);
       // act
-      final result = await dataSource.getWatchlistItemById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE);
+      final result = await dataSource.getWatchlistItemById(tId, DatabaseHelper.contentTypeMovie);
       // assert
       expect(result, testMovieTable);
     });
 
     test('should return null when data is not found', () async {
       // arrange
-      when(mockDatabaseHelper.getWatchlistItemById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE)).thenAnswer((_) async => null);
+      when(mockDatabaseHelper.getWatchlistItemById(tId, DatabaseHelper.contentTypeMovie)).thenAnswer((_) async => null);
       // act
-      final result = await dataSource.getWatchlistItemById(tId, DatabaseHelper.CONTENT_TYPE_MOVIE);
+      final result = await dataSource.getWatchlistItemById(tId, DatabaseHelper.contentTypeMovie);
       // assert
       expect(result, null);
     });

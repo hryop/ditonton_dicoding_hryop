@@ -11,7 +11,7 @@ class MovieCard extends StatelessWidget {
 
   const MovieCard(this.movie,
       {super.key, this.showContentType = false,
-      this.contentType = DatabaseHelper.CONTENT_TYPE_MOVIE});
+      this.contentType = DatabaseHelper.contentTypeMovie});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MovieCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            contentType == DatabaseHelper.CONTENT_TYPE_MOVIE
+            contentType == DatabaseHelper.contentTypeMovie
                 ? detailMovieRoute
                 : detailTVSeriesRoute,
             arguments: movie.id,
@@ -73,7 +73,7 @@ class MovieCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                  imageUrl: '$baseImageURL${movie.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),

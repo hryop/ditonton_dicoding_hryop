@@ -22,14 +22,14 @@ void main() {
   late MockMovieLocalDataSource mockLocalDataSource;
   late MockWatchlistLocalDataSource mockWatchlistLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
-  late MockDatabaseHelper mockDatabaseHelper;
+  // late MockDatabaseHelper mockDatabaseHelper;
 
   setUp(() {
     mockRemoteDataSource = MockMovieRemoteDataSource();
     mockLocalDataSource = MockMovieLocalDataSource();
     mockWatchlistLocalDataSource = MockWatchlistLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
-    mockDatabaseHelper = MockDatabaseHelper();
+    // mockDatabaseHelper = MockDatabaseHelper();
     repository = MovieRepositoryImpl(
       remoteDataSource: mockRemoteDataSource,
       localDataSource: mockLocalDataSource,
@@ -78,16 +78,16 @@ void main() {
         'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
     posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
     title: 'Spider-Man',
-    contentType: DatabaseHelper.CONTENT_TYPE_MOVIE,
+    contentType: DatabaseHelper.contentTypeMovie,
   );
 
-  final testMovieCacheMap = {
-    'id': 557,
-    'overview':
-        'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
-    'posterPath': '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
-    'title': 'Spider-Man',
-  };
+  // final testMovieCacheMap = {
+  //   'id': 557,
+  //   'overview':
+  //       'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+  //   'posterPath': '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+  //   'title': 'Spider-Man',
+  // };
 
   final tMovieModelList = <MovieModel>[tMovieModel];
   final tMovieList = <Movie>[tMovie];
@@ -585,7 +585,7 @@ void main() {
       when(
         mockWatchlistLocalDataSource.getWatchlistItemById(
           tId,
-          DatabaseHelper.CONTENT_TYPE_MOVIE,
+          DatabaseHelper.contentTypeMovie,
         ),
       ).thenAnswer((_) async => null);
       // act

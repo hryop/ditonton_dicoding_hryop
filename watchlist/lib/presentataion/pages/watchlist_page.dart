@@ -57,7 +57,7 @@ class WatchlistPageState extends State<WatchlistPage> with RouteAware {
                     showContentType: true,
                     contentType:
                         movieTable.contentType ??
-                        DatabaseHelper.CONTENT_TYPE_MOVIE,
+                        DatabaseHelper.contentTypeMovie,
                   );
                 },
                 itemCount: state.result.length,

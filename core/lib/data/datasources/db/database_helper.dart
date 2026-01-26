@@ -6,10 +6,10 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
   static const int databaseVersion = 2;
-  static const String CONTENT_TYPE_TV = 'tv series';
-  static const String CONTENT_TYPE_MOVIE = 'movie';
-  static const String CATEGORY_AIRING_TODAY = 'airing today';
-  static const String CATEGORY_NOW_PLAYING = 'now playing';
+  static const String contentTypeTV = 'tv series';
+  static const String contentTypeMovie = 'movie';
+  static const String categoryAairingToday = 'airing today';
+  static const String categoryNowPlaying = 'now playing';
 
   DatabaseHelper._instance() {
     _databaseHelper = this;

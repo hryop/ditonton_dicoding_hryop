@@ -72,7 +72,7 @@ final testWatchlistMovieTable = WatchlistModel(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
-  contentType: DatabaseHelper.CONTENT_TYPE_MOVIE,
+  contentType: DatabaseHelper.contentTypeMovie,
 );
 
 final testMovieTable = WatchlistModel(
@@ -80,7 +80,7 @@ final testMovieTable = WatchlistModel(
     title: 'title',
     posterPath: 'posterPath',
     overview: 'overview',
-    contentType: DatabaseHelper.CONTENT_TYPE_MOVIE);
+    contentType: DatabaseHelper.contentTypeMovie);
 
 final testMovieMap = {
   'id': 1,

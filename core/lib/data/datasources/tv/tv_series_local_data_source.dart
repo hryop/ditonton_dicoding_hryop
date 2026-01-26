@@ -15,13 +15,13 @@ class TVSereisLocalDataSourceImpl implements TVSereisLocalDataSource {
 
   @override
   Future<void> cacheAiringTodayTvSeries(List<WatchlistModel> movies) async {
-    await databaseHelper.clearCache(DatabaseHelper.CATEGORY_AIRING_TODAY);
-    await databaseHelper.insertCacheTransaction(movies, DatabaseHelper.CATEGORY_AIRING_TODAY);
+    await databaseHelper.clearCache(DatabaseHelper.categoryAairingToday);
+    await databaseHelper.insertCacheTransaction(movies, DatabaseHelper.categoryAairingToday);
   }
 
   @override
   Future<List<WatchlistModel>> getCachedAiringTodayTvSeries() async {
-    final result = await databaseHelper.getCacheMovies(DatabaseHelper.CATEGORY_AIRING_TODAY);
+    final result = await databaseHelper.getCacheMovies(DatabaseHelper.categoryAairingToday);
     if (result.isNotEmpty) {
       return result.map((data) => WatchlistModel.fromMap(data)).toList();
     } else {
