@@ -1,3 +1,4 @@
+import 'package:core/presentation/widgets/empty_result_widget.dart';
 import 'package:core/utils/route.dart';
 import 'package:core/utils/utils.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
@@ -63,21 +64,15 @@ class WatchlistPageState extends State<WatchlistPage> with RouteAware {
                 itemCount: state.result.length,
               );
             } else if (state is WatchlistErrorState) {
-              return Expanded(
-                child: Center(
-                  key: Key('error_message'),
-                  child: Text(state.message),
-                ),
-              );
+              return SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: EmptyResultWidget(state.message));
             } else {
-              return Expanded(
-                child: Center(
-                  child: Text(
-                    "No Watchlist at the momment\nLet's add new one!",
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              );
+              return SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: EmptyResultWidget("No Watchlist at the momment\nLet's add new one!"));
             }
           },
         ),
